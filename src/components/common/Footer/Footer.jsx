@@ -47,7 +47,7 @@ class Footer extends React.Component {
                                 </li>
                                 <li>
                                     <a href="/">
-                                        &nbsp;&nbsp;|&nbsp;&nbsp;고객센터
+                                        &nbsp;&nbsp;|&nbsp;&nbsp;고객문의
                                     </a>
                                 </li>
                             </ul>
