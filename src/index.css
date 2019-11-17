@@ -37,3 +37,15 @@ html {
     display: block;
     clear: both;
 }
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+.primary_blue {
+    color: #16bdc6;
+}
