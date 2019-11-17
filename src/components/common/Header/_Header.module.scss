@@ -1,0 +1,49 @@
+header {
+    width: 100%;
+    background-color: #ffffff;
+    & > .content {
+        max-width: 1440px;
+        height: 72px;
+        border-bottom: 1px solid #e8e8e8;
+        margin: 0 auto;
+        & > nav {
+            display: table;
+            float: left;
+            margin-left: 64px;
+            height: 100%;
+            & > a {
+                display: table-cell;
+                padding: 0 32px;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+        }
+
+        & > h2 {
+            position: relative;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            float: left;
+
+            & > a {
+                display: block;
+                & > img {
+                    height: 40px;
+                }
+            }
+        }
+
+        & > .member-wrap {
+            height: 100%;
+            display: table;
+            float: right;
+            margin-right: 64px;
+            & > a {
+                display: table-cell;
+                vertical-align: middle;
+                padding: 0 32px;
+            }
+        }
+    }
+}

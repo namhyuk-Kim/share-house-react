@@ -1,0 +1,118 @@
+.Login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background-color: #ffffff;
+    & > .login-wrap {
+        width: 352px;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #ffffff;
+        & > h1 {
+            font-size: 32px;
+            margin-top: 42px;
+            margin-bottom: 8px;
+        }
+        & > span {
+            display: block;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.3);
+        }
+        & > form {
+            & > input::placeholder {
+                font-size: 13px;
+                color: rgba(0, 0, 0, 0.3);
+            }
+            & > input,
+            select {
+                width: 352px;
+                border: 1px solid #e0e0e0;
+                margin: 8px 0;
+                height: 40px;
+                font-size: 13px;
+                padding-left: 8px;
+                & > option[data-default] {
+                    font-size: 13px;
+                    color: rgba(0, 0, 0, 0.3);
+                }
+            }
+            & > select {
+                -webkit-appearance: none;
+                background: url("../../../assets/images/select_arrow.png")
+                    no-repeat 95% 50%;
+            }
+            & > .genders {
+                & > label {
+                    margin: 8px 0;
+                    display: inline-block;
+                    & > input[type="radio"] {
+                        display: none;
+                    }
+                    & > input[type="radio"]:checked ~ .gender-box {
+                        background: #16bdc6;
+                        border-color: #16bdc6;
+                        border-radius: 0px 3px 3px 0px;
+                        color: #fff;
+                        transition: 0.5s all;
+                    }
+                    & > .gender-box {
+                        background-color: #fff;
+                        border-radius: 3px;
+                        font-size: 13px;
+                        line-height: 40px;
+                        width: 175px;
+                        height: 40px;
+                        text-align: center;
+                        border: 1px solid #e0e0e0;
+                        transition: 0.5s all;
+                    }
+                }
+            }
+            & > p {
+                text-align: left;
+                margin-bottom: 31px;
+                font-size: 13px;
+                font-weight: 300;
+                color: #323232;
+            }
+            & > label {
+                display: table;
+                & > input {
+                    display: inline-block;
+                    vertical-align: middle;
+                    border: 1px solid #e0e0e0;
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 10px;
+                    background-color: #fff;
+                }
+                color: #323232;
+                font-size: 13px;
+                font-weight: 300;
+            }
+
+            & > button {
+                background: #4f4f4f;
+                width: 352px;
+                height: 48px;
+                text-align: center;
+                line-height: 48px;
+                color: #fff;
+            }
+
+            & > div:last-child {
+                padding-top: 24px;
+
+                & > span {
+                    margin-right: 165px;
+                    font-size: 12px;
+                }
+                & > a {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
