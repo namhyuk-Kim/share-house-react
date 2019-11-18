@@ -32,18 +32,18 @@ class Footer extends React.Component {
                             <h3>컴앤스테이</h3>
                             <ul>
                                 <li>
-                                    <Link to="/">회사소개</Link>
+                                    <a href="/company/intro">회사소개</a>
                                 </li>
                                 <li>
-                                    <Link to="/">
+                                    <a href="/company/terms">
                                         &nbsp;&nbsp;|&nbsp;&nbsp;이용약관
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
-                                    <Link to="/">
+                                    <a href="/company/Privacy">
                                         &nbsp;&nbsp;|&nbsp;&nbsp;개인정보
                                         취급방침
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
                                     <Link to="/">
