@@ -965,6 +965,15 @@ class Detail extends React.Component {
                             <h1>문의하기</h1>
                             <p>전화문의 0504-777-7777</p>
                         </div>
+                        <div className={cx("date-selector")}>
+                            <span>입주희망일</span>
+                            <div>체크인</div>
+                            <div>체크아웃</div>
+                        </div>
+                        <div className={cx("chat-sender")}>
+                            <div></div>
+                            <div className={cx("icon")}></div>
+                        </div>
                     </div>
                 </div>
             </div>
