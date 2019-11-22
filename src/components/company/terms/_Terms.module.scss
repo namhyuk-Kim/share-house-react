@@ -9,6 +9,15 @@
         text-align: center;
         margin: 39px 0;
     }
+    & > .terms {
+        margin: 0 auto;
+        width: 995px;
+        & > p {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.3);
+        }
+    }
 }
 
 .index {

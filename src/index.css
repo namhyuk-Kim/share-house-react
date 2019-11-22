@@ -5,7 +5,6 @@
     box-sizing: border-box;
     font-family: "Noto Sans KR", sans-serif;
     font-size: 14px;
-    line-height: 28px;
     letter-spacing: -0.4px;
     color: #323232;
 }
@@ -29,8 +28,6 @@ label {
 
 body,
 html {
-    width: 100%;
-    scroll-behavior: smooth;
 }
 
 .clear {

@@ -12,16 +12,6 @@ class Register extends React.Component {
             <div className={cx("content")}>
                 <div className={cx("register")}>
                     <div className={cx("register-left")}>
-                        <h1>
-                            함께하는 즐거움
-                            <br />
-                            <span className={cx("white")}>‘공유’</span>와
-                            <span className={cx("white")}>‘교류’</span>가
-                            매력적인
-                            <br />
-                            쉐어하우스
-                        </h1>
-                        <p>지금바로가입하세요</p>
                         <div className={cx("clear")}></div>
                     </div>
                     <div className={cx("register-right")}>
@@ -108,6 +98,7 @@ class Register extends React.Component {
                             </form>
                         </div>
                     </div>
+                    <div className={cx("clear")}></div>
                 </div>
             </div>
         );

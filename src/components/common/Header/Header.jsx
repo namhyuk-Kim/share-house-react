@@ -27,7 +27,7 @@ class Header extends React.Component {
                         </Link>
                     </h2>
                     <div className={cx("member-wrap")}>
-                        <Link to="/">하우스 검색</Link>
+                        <Link to="/house/search">하우스 검색</Link>
                         <Link to="/user/Register">회원가입</Link>
                         <a href="/">로그인</a>
                     </div>

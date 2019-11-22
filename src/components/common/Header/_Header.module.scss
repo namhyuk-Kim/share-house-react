@@ -1,11 +1,13 @@
 header {
     width: 100%;
     background-color: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
     & > .content {
         max-width: 1440px;
         height: 72px;
-        border-bottom: 1px solid #e8e8e8;
+        min-width: 1024px;
         margin: 0 auto;
+        position: relative;
         & > nav {
             display: table;
             float: left;
@@ -20,9 +22,9 @@ header {
         }
 
         & > h2 {
-            position: relative;
+            position: absolute;
             top: 50%;
-            left: 25%;
+            left: 50%;
             transform: translate(-50%, -50%);
             float: left;
 

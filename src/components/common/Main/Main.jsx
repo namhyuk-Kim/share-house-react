@@ -102,7 +102,7 @@ class Main extends React.Component {
                                     </div>
                                     <div className={cx("price")}>
                                         <p>
-                                            <span>월세</span>
+                                            <span>월세&nbsp;</span>
                                             <span>38만원 ~ 55만원</span>
                                         </p>
                                         <p>
