@@ -14,6 +14,7 @@ import room6 from "assets/images/room6.png";
 import room7 from "assets/images/room7.png";
 import star_yellow from "assets/images/star_yellow.png";
 import star_gray from "assets/images/Star_gray.png";
+import plus_icon from "assets/images/Union.png";
 
 const cx = classnames.bind(styles);
 
@@ -101,7 +102,7 @@ class Main extends React.Component {
                                     </div>
                                     <div className={cx("price")}>
                                         <p>
-                                            <span>월세</span>
+                                            <span>월세&nbsp;</span>
                                             <span>38만원 ~ 55만원</span>
                                         </p>
                                         <p>
@@ -201,6 +202,217 @@ class Main extends React.Component {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className={cx("recently-viewed")}>
+                    <div className={cx("content")}>
+                        <h2>
+                            최근 본 하우스&nbsp;&nbsp;&nbsp;
+                            <span>|&nbsp;&nbsp;&nbsp; 관심 하우스</span>
+                            <Link to="/">더보기</Link>
+                        </h2>
+                        <div className={cx("recently-viewed-items")}>
+                            <div>
+                                <div>
+                                    <img src={star_gray} alt={"star_gray"} />
+                                    <div className={cx("image-box")}>
+                                        <img src={room7} alt={"room"} />
+                                    </div>
+                                    <div className={cx("types")}>
+                                        <button>청년주택</button>
+                                        <span>국민임대</span>
+                                    </div>
+                                    <div className={cx("title")}>
+                                        2019년 서울시 영구임대주택 예비입주자
+                                        모집
+                                    </div>
+                                    <div className={cx("location")}>
+                                        <span>
+                                            성북구 길음동, 길음역 도보 5분
+                                        </span>
+                                    </div>
+                                    <div className={cx("price")}>
+                                        <p>
+                                            <span>월세</span>
+                                            <span>38만원 ~ 55만원</span>
+                                        </p>
+                                        <p>
+                                            <span>보증금</span>
+                                            <span>150만원 ~ 150만원</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src={star_gray} alt={"star_gray"} />
+                                    <div className={cx("image-box")}>
+                                        <img src={room6} alt={"room"} />
+                                    </div>
+                                    <div className={cx("types")}>
+                                        <button>청년주택</button>
+                                        <span>국민임대</span>
+                                    </div>
+                                    <div className={cx("title")}>
+                                        2019년 서울시 영구임대주택 예비입주자
+                                        모집
+                                    </div>
+                                    <div className={cx("location")}>
+                                        <span>
+                                            성북구 길음동, 길음역 도보 5분
+                                        </span>
+                                    </div>
+                                    <div className={cx("price")}>
+                                        <p>
+                                            <span>월세</span>
+                                            <span>38만원 ~ 55만원</span>
+                                        </p>
+                                        <p>
+                                            <span>보증금</span>
+                                            <span>150만원 ~ 150만원</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <img src={star_gray} alt={"star_gray"} />
+                                    <div className={cx("image-box")}>
+                                        <img src={room5} alt={"room"} />
+                                    </div>
+                                    <div className={cx("types")}>
+                                        <button>청년주택</button>
+                                        <span>국민임대</span>
+                                    </div>
+                                    <div className={cx("title")}>
+                                        2019년 서울시 영구임대주택 예비입주자
+                                        모집
+                                    </div>
+                                    <div className={cx("location")}>
+                                        <span>
+                                            성북구 길음동, 길음역 도보 5분
+                                        </span>
+                                    </div>
+                                    <div className={cx("price")}>
+                                        <p>
+                                            <span>월세</span>
+                                            <span>38만원 ~ 55만원</span>
+                                        </p>
+                                        <p>
+                                            <span>보증금</span>
+                                            <span>150만원 ~ 150만원</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className={cx("more-house")}>
+                                    <div className={cx("more-content")}>
+                                        <span>
+                                            아직 못 보신 더 많은 하우스가
+                                            있어요!
+                                        </span>
+                                        <button>
+                                            <img src={plus_icon} alt="plus" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={cx("event-banner")}>
+                    <div className={cx("content")}>
+                        <div>
+                            <h3>
+                                10월 입주 대상자 할로윈 파티
+                                <br />
+                                플랜 A 이벤트
+                            </h3>
+                            <Link to="/">자세히 보기</Link>
+                        </div>
+                        <div>
+                            <h3>
+                                내 냥냥이의 건강한
+                                <br />
+                                여름나기 캠페인
+                            </h3>
+                            <Link to="/">자세히 보기</Link>
+                        </div>
+                    </div>
+                </div>
+                <div className={cx("inhabitation")}>
+                    <div className={cx("inhabi-text")}>
+                        <h1>
+                            Come&Stay의
+                            <br />
+                            청년주거 백과
+                        </h1>
+                    </div>
+                    <div className={cx("inhabi-grid-content")}>
+                        <div className={cx("inhabi-grid")}>
+                            <div>
+                                <h3>
+                                    서울시 청년주택
+                                    <br />
+                                    <span>찾아보기</span>
+                                </h3>
+                                <p>
+                                    그게 뭐야?
+                                    <br />
+                                    자가용이 안된다고?
+                                </p>
+                            </div>
+                            <div>
+                                <h3>
+                                    쉐어하우스
+                                    <br />
+                                    <span>가이드</span>
+                                </h3>
+                                <p>
+                                    쉐어하우스에
+                                    <br />
+                                    관한다양한 정보를
+                                    <br />
+                                    알고 싶다면
+                                </p>
+                            </div>
+                            <div>
+                                <h3>
+                                    쉐어하우스
+                                    <br />
+                                    <span>스토리</span>
+                                </h3>
+                                <p>
+                                    쉐어하우스 반려동물
+                                    <br />
+                                    밍키의 쉐어라이프
+                                </p>
+                            </div>
+                            <div>
+                                <h3>
+                                    청년주택
+                                    <br />
+                                    <span>가이드</span>
+                                </h3>
+                                <p>
+                                    청년주택에 관한
+                                    <br />
+                                    자세한 정보를
+                                    <br />
+                                    알고 싶다면
+                                </p>
+                            </div>
+                            <div>
+                                <h3>
+                                    쉐어하우스
+                                    <br />
+                                    <span>사는 애 이야기</span>
+                                </h3>
+                                <p>
+                                    Vol 9. 입주시즌에
+                                    <br />
+                                    벌어지는 일
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={cx("clear")}></div>
                 </div>
             </div>
         );

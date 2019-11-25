@@ -5,7 +5,10 @@ import PropTypes from "prop-types";
 import styles from "./_Header.module.scss";
 import logo from "assets/images/logo.png";
 import Popup from "components/common/Popup/Popup";
-import Login from "components/common/Login/Login";
+import Login from "components/user/Login/Login";
+import PasswordFind from "components/user/PasswordFind/PasswordFind";
+import PasswordMod from "components/user/PasswordMod/PasswordMod";
+import Dormancy from "components/user/Dormancy/Dormancy";
 
 const cx = classNames.bind(styles);
 
@@ -13,11 +16,6 @@ class Header extends React.Component {
     render() {
         return (
             <header className={cx("invert")}>
-                <>
-                    <Popup>
-                        <Login />
-                    </Popup>
-                </>
                 <div className={cx("content")}>
                     <nav className={cx("navigation")}>
                         <Link to="/">청년주거 백과</Link>
@@ -29,8 +27,8 @@ class Header extends React.Component {
                         </Link>
                     </h2>
                     <div className={cx("member-wrap")}>
-                        <Link to="/">하우스 검색</Link>
-                        <Link to="/Register">회원가입</Link>
+                        <Link to="/house/search">하우스 검색</Link>
+                        <Link to="/user/Register">회원가입</Link>
                         <a href="/">로그인</a>
                     </div>
                 </div>

@@ -2,14 +2,17 @@ footer {
     width: 100%;
     height: 275px;
     background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+
     & > .content {
+        min-width: 1024px;
         max-width: 1440px;
         height: 100%;
         margin: 0 auto;
         & > .introduce {
             height: 100%;
             float: left;
-            margin-left: 158px;
+
             & > div {
                 & > h3 {
                     padding-top: 27px;
@@ -53,13 +56,13 @@ footer {
         }
 
         & > .navigation {
-            float: left;
-            margin-left: 240px;
+            float: right;
+
             margin-top: 42px;
 
             & > .language {
                 float: left;
-                margin-left: 75px;
+                margin-left: 64px;
                 & > div {
                     display: inline-block;
                     padding-right: 24px;
@@ -95,9 +98,8 @@ footer {
                 & > ul {
                     display: table;
                     & > li {
-                        width: 158px;
                         float: left;
-                        margin-right: 34px;
+                        margin-right: 60px;
                         & > div {
                             font-size: 13px;
                             font-weight: 300;
@@ -106,6 +108,9 @@ footer {
                                 display: block;
                             }
                         }
+                    }
+                    & > li:last-child {
+                        margin-right: 0;
                     }
                 }
             }

@@ -1,0 +1,30 @@
+.content {
+    width: 1440px;
+    margin: 0 auto;
+    & > h1 {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 35px;
+        color: #323232;
+        text-align: center;
+        margin: 39px 0;
+    }
+    & > .terms {
+        margin: 0 auto;
+        width: 995px;
+        & > p {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+.index {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    position: fixed;
+    top: 200px;
+    left: 160px;
+}

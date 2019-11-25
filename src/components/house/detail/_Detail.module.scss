@@ -1,0 +1,729 @@
+.detail-all-wrap {
+    max-width: 1440px;
+    min-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+
+    & > .detail-wrap {
+        max-width: 736px;
+        width: calc(100% - 544px);
+        margin-top: 40px;
+
+        display: inline-block;
+        & > .detail-content {
+            width: 100%;
+            & > .detail-slider {
+                width: 100%;
+                position: relative;
+
+                margin-bottom: 15px;
+                overflow: hidden;
+                & > .detail-slider-inner {
+                    position: static;
+                    margin-left: 0; // 슬라이드 할때 쓸거임...
+                    width: 1000%;
+                    height: auto;
+                    & > .inner-item {
+                        width: 10%;
+                        height: 100%;
+                        float: left;
+                        & > img {
+                            max-width: 100%;
+                            height: auto;
+                        }
+                    }
+                }
+            }
+
+            & > .thumb-changer {
+                width: 100%;
+                height: 75px;
+                position: relative;
+                overflow: hidden;
+                margin-bottom: 40px;
+                & > .thumb-changer-slider {
+                    position: absolute;
+                    height: 100%;
+                    width: calc(1000% + 11px * 10);
+                    left: 32px;
+                    & > div {
+                        cursor: pointer;
+                        width: 96px;
+                        height: 72px;
+                        overflow: hidden;
+                        border-radius: 2px;
+                        margin-right: 11px;
+                        float: left;
+                        & > img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+                & > .thumb-slide-left {
+                    cursor: pointer;
+                    width: 24px;
+                    height: 74px;
+                    background: #ffffff;
+                    opacity: 0.8;
+                    border: 1px solid #e0e0e0;
+                    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                & > .thumb-slide-right {
+                    cursor: pointer;
+                    z-index: 5;
+                    width: 24px;
+                    height: 74px;
+                    background: #ffffff;
+                    opacity: 0.8;
+                    right: 0;
+                    transform: rotateZ(180deg);
+                    border: 1px solid #e0e0e0;
+                    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            & > .house-content {
+                width: 100%;
+                & > .content-category {
+                    width: 100%;
+                    margin-bottom: 46px;
+                    & > button:first-child {
+                        background: #4f4f4f;
+                        border-radius: 2px 0px 0px 2px;
+                        color: #fff;
+                    }
+                    & > button {
+                        font-weight: 500;
+                        font-size: 14px;
+                        display: inline-block;
+                        background: #fafafa;
+                        border: 1px solid #e0e0e0;
+                        max-width: 183px;
+                        height: 50px;
+                        width: calc(100% / 4);
+                    }
+                }
+
+                & > .content-event-banner {
+                    width: 100%;
+                    padding-top: 184px;
+                    position: relative;
+                    margin-bottom: 50px;
+                    & > div {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        & > img {
+                            max-width: 100%;
+                            max-height: 100%;
+                        }
+                    }
+                }
+
+                & > .more-information {
+                    width: 100%;
+                    & > h1 {
+                        margin-bottom: 15px;
+                        font-size: 18px;
+                    }
+                    & > .info-detail {
+                        width: 100%;
+                        border: 1px solid #e0e0e0;
+                        background-color: #fff;
+                        border-radius: 3px;
+                        & > div {
+                            width: calc(100% / 2);
+                            display: inline-block;
+                            & > div {
+                                width: calc(100% / 2);
+                                padding: 24px 0;
+                                text-align: center;
+                                float: left;
+                                & > span {
+                                    display: block;
+                                    margin-bottom: 16px;
+                                    color: rgba(0, 0, 0, 0.3);
+                                }
+                                & > h1 {
+                                    font-weight: 500;
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+                    }
+                    & > .info-detail-more {
+                        display: table;
+                        width: 100%;
+                        & > .t-row {
+                            display: table-row;
+
+                            & > .t-cell:first-child {
+                                color: rgba(0, 0, 0, 0.3);
+                                font-size: 14px;
+                                padding: 21px 8px 0;
+                                width: 137px;
+                                min-width: 137px;
+                                vertical-align: top;
+                            }
+
+                            & > .t-cell {
+                                border-bottom: 1px solid #e0e0e0;
+                                padding: 21px 0;
+                                width: calc(100% - 137px);
+                                display: table-cell;
+                                color: #323232;
+                                font-weight: 300;
+                                font-size: 14px;
+                                & > .t-row {
+                                    width: 100%;
+                                    & > .t-cell:first-child {
+                                        vertical-align: top;
+                                        padding-right: 32px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    & > .room_infomation {
+                        & > h1 {
+                            font-size: 18px;
+                            margin-bottom: 11px;
+                            & > span {
+                                display: inline-block;
+                                vertical-align: unset;
+                                cursor: pointer;
+                                float: right;
+                            }
+                            & > span:last-child {
+                                margin-right: 12px;
+                            }
+                            & > span[data-select="true"] {
+                                border-bottom: 1px solid #444444;
+                                padding-bottom: 10px;
+                            }
+                            & > span[data-select="false"] {
+                                font-weight: 300;
+                                font-size: 13px;
+                                color: rgba(0, 0, 0, 0.3);
+                            }
+                        }
+                        & > .room-info-table {
+                            border-top: 1px solid #e0e0e0;
+                            border-bottom: 1px solid #e0e0e0;
+                            & > table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                border-spacing: 0;
+                                & > thead {
+                                    & > tr {
+                                        & > th {
+                                            padding: 14px 14px;
+                                            background: #fafafa;
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+                                & > tbody {
+                                    & > tr:first-child {
+                                        border-top: 1px solid #e0e0e0;
+                                        border-bottom: 1px solid #e0e0e0;
+                                        & > td {
+                                            vertical-align: middle;
+                                            line-height: 48px;
+                                            text-align: center;
+                                            border-right: 1px solid #e0e0e0;
+                                            font-weight: 300;
+                                            font-size: 14px;
+                                        }
+                                        & > td:last-child {
+                                            border-right: none;
+                                        }
+                                        & > td:first-child {
+                                            vertical-align: middle;
+                                            line-height: 48px;
+                                            text-align: left;
+                                        }
+                                    }
+                                    & > tr:not(first-child) {
+                                        & > td {
+                                            text-align: center;
+                                            vertical-align: middle;
+                                            line-height: 48px;
+                                            font-weight: 300;
+                                            font-size: 14px;
+                                        }
+                                        & > td:not(first-child) {
+                                            vertical-align: middle;
+                                            line-height: 48px;
+                                            text-align: left;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    & > .room_infomation-young {
+                        & > .floor-infomation {
+                            max-width: 100%;
+                            margin-bottom: 45px;
+                            & > .infomation-left {
+                                max-width: 160px;
+                                float: left;
+                                & > div {
+                                    padding-bottom: 19px;
+                                    border-bottom: 1px solid #e0e0e0;
+                                    font-weight: 300;
+                                    font-size: 14px;
+                                    margin-top: 15px;
+                                    cursor: pointer;
+                                }
+
+                                & > div:first-child {
+                                    margin-top: 15px;
+                                }
+                                & > div[data-selected="true"] {
+                                    color: #16bdc6;
+                                }
+                            }
+                            & > .infomation-right {
+                                max-width: calc(100% - 255px);
+                                float: left;
+                                & > img {
+                                    margin-left: 95px;
+                                }
+                            }
+                        }
+                        & > h1 {
+                            font-size: 18px;
+                            margin-bottom: 11px;
+
+                            & > span {
+                                margin-left: 15px;
+                                display: inline-block;
+                                vertical-align: unset;
+                                font-weight: 300;
+                                font-size: 14px;
+                                color: rgba(0, 0, 0, 0.65);
+                            }
+                        }
+                        & > div {
+                            width: 100%;
+                            & > table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                border-spacing: 0;
+                                & > thead {
+                                    & > tr {
+                                        border-top: 1px solid #e0e0e0;
+                                        border-bottom: 1px solid #e0e0e0;
+                                        & > th {
+                                            background-color: #fafafa;
+                                            padding: 16px 0;
+                                            border-right: 1px solid #e0e0e0;
+                                            font-size: 14px;
+                                            color: rgba(0, 0, 0, 0.3);
+                                        }
+                                        & > th:last-child {
+                                            border-right: none;
+                                        }
+                                    }
+                                }
+                                & > tbody {
+                                    & > tr {
+                                        & > td {
+                                            padding: 15px 15px;
+                                            border-right: 1px solid #e0e0e0;
+                                            text-align: center;
+                                            vertical-align: middle;
+                                            border-top: 1px solid #e0e0e0;
+                                            border-bottom: 1px solid #e0e0e0;
+                                        }
+                                        & > td:last-child {
+                                            border-right: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & > .house-location {
+                        h1 {
+                            font-size: 18px;
+                            margin-bottom: 15px;
+                        }
+                        & > .house-location-map {
+                            margin-bottom: 34px;
+                        }
+
+                        & > .house-location-info {
+                            & > .train-info {
+                                & > .info-items {
+                                    vertical-align: middle;
+                                    & > span {
+                                        text-align: center;
+                                        line-height: 26px;
+                                        font-size: 14px;
+                                        font-weight: 500px;
+                                        color: #ffffff;
+                                        display: inline-block;
+                                        width: 26px;
+                                        height: 26px;
+                                        border-radius: 50%;
+                                        margin-right: 6px;
+                                    }
+                                }
+                            }
+                            & > .walk-info {
+                                font-weight: 300;
+                                font-size: 14px;
+                                line-height: 32px;
+                                margin-bottom: 15px;
+                            }
+                            & > .house-info {
+                                font-weight: 300;
+                                font-size: 14px;
+                                line-height: 32px;
+                            }
+                        }
+                    }
+                    & > .master-info {
+                        max-width: 100%;
+                        width: 100%;
+                        border: 1px solid #e0e0e0;
+                        background: #ffffff;
+                        padding-top: 24px;
+                        display: flex;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                        & > .profile {
+                            display: inline-block;
+                            min-width: 110px;
+                            margin-left: 32px;
+
+                            & > div {
+                                width: 72px;
+                                height: 72px;
+                                border-radius: 50%;
+                            }
+                        }
+                        & > .info-content {
+                            max-width: 560px;
+                            width: 100%;
+                            vertical-align: top;
+                            display: inline-block;
+                            padding-left: 26px;
+                            margin-bottom: 32px;
+                            & > h1 {
+                                font-weight: 500;
+                                font-size: 20px;
+                                line-height: 29px;
+                                margin-bottom: 7px;
+                            }
+                            & > span {
+                                font-weight: 300;
+                                font-size: 12px;
+                                line-height: 17px;
+                            }
+                        }
+                    }
+                    & > .house-story {
+                        & > h1 {
+                            font-weight: 500;
+                            font-size: 20px;
+                            line-height: 29px;
+                            text-align: center;
+                        }
+                        & > .story-cards-wrap {
+                            display: flex;
+                            justify-content: space-between;
+                            flex-wrap: wrap;
+                            & > .story-card {
+                                max-width: 224px;
+                                width: 100%;
+                                & > .card-image {
+                                    margin-bottom: 17px;
+                                    & > div {
+                                        width: 100%;
+                                        height: 100%;
+                                        & > img {
+                                            width: 100%;
+                                            height: auto;
+                                        }
+                                    }
+                                }
+                                & > .card-title {
+                                    font-weight: 500;
+                                    font-size: 16px;
+                                    line-height: 23px;
+                                    margin-bottom: 10px;
+                                }
+
+                                & > .card-footer {
+                                    width: 100%;
+                                    & > span {
+                                        font-weight: 300;
+                                        font-size: 12px;
+                                        vertical-align: middle;
+                                        line-height: 16px;
+                                        & > img {
+                                            margin-right: 2px;
+                                        }
+                                    }
+                                    & > span:first-child {
+                                        margin-right: 90px;
+                                    }
+                                    & > span:last-child {
+                                        margin-left: 14px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .fixed-info {
+        max-width: 384px;
+        width: 100%;
+        float: right;
+        margin-top: 81px;
+        margin-left: 41px;
+        & > .tag-box {
+            & > span {
+                font-size: 11px;
+                color: rgba(0, 0, 0, 0.4);
+            }
+        }
+        & > h1 {
+            font-weight: 500;
+            font-size: 22px;
+            padding-bottom: 11px;
+            border-bottom: 1px solid #e0e0e0;
+            width: 344px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-top: 10px;
+            margin-bottom: 31px;
+        }
+        & > .info-notice {
+            font-size: 14px;
+        }
+        & > form {
+            & > select {
+                margin-top: 24px;
+                width: 100%;
+                height: 36px;
+                background-color: #ffffff;
+                border: 1px solid #e0e0e0;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.3);
+                margin-bottom: 25px;
+            }
+            & > button {
+                background: #4f4f4f;
+                border-radius: 4px;
+                height: 48px;
+                width: 100%;
+                color: #ffffff;
+            }
+        }
+        & > .util-buttons {
+            position: relative;
+            margin-top: 48px;
+            margin-bottom: 300px;
+            & > div {
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #e0e0e0;
+                border-radius: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: left;
+            }
+            & > div:nth-child(3):hover ~ .hover-util {
+                width: 100%;
+                transition: 0.5s all;
+                border: 1px solid #e0e0e0;
+            }
+            & > .hover-util {
+                border: none;
+                transition: 0.5s all;
+                background-color: #ffffff;
+                position: absolute;
+                max-width: 240px;
+                width: 0%;
+                overflow: hidden;
+                left: 144px;
+                & > a {
+                    margin: 0 11.5px;
+                }
+            }
+            & > div:not(last-child) {
+                margin-right: 8px;
+            }
+            & > button {
+                float: right;
+                width: 104px;
+                height: 36px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 13px;
+                border-radius: 2px;
+                & > img {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+
+.t-cell {
+    display: table-cell;
+}
+
+.t-row {
+    display: table-row;
+}
+
+.type-button {
+    width: 80px;
+    height: 32px;
+    background-color: #fff;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    opacity: 0.9;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.type-button:focus {
+    opacity: 1;
+}
+
+.floor-button {
+    width: 96px;
+    height: 32px;
+    background-color: #fff;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    opacity: 0.9;
+    position: absolute;
+    top: 25px;
+    left: 113px;
+}
+
+.floor-button:focus {
+    opacity: 1;
+}
+
+.room-selector {
+    width: 96px;
+    height: 32px;
+    background-color: #fff;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    opacity: 0.9;
+    position: absolute;
+    top: 25px;
+    left: 226px;
+}
+
+.room-selector:focus {
+    opacity: 1;
+}
+
+.vr-see {
+    width: 96px;
+    height: 32px;
+    background-color: #fff;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    opacity: 0.9;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    line-height: 32px;
+    & > img {
+        margin-top: -5px;
+        vertical-align: middle;
+        margin-right: 9px;
+    }
+}
+
+.vr-see:focus {
+    opacity: 1;
+}
+
+.appender {
+    border: none;
+}
+
+.train-number1 {
+    background: #1c66ce;
+}
+
+.primary-blue-btn {
+    width: 58px;
+    height: 20px;
+    background: #16bdc6;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 11px;
+    margin-right: 8px;
+}
+
+.nomination-btn {
+    width: 30px;
+    height: 20px;
+    background: #fc9852;
+    opacity: 0.8;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 11px;
+    margin-right: 5px;
+}
+
+.chating {
+    width: 344px;
+    & > .chating-head {
+        width: 100%;
+        height: 72px;
+        background-color: #16bdc6;
+        & > h1 {
+            font-size: 18px;
+            color: #ffffff;
+            margin-top: 15px;
+            text-align: center;
+        }
+        & > p {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #fafafa;
+            text-align: center;
+        }
+    }
+}
