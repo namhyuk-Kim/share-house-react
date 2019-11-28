@@ -34,7 +34,7 @@ class App extends React.Component {
           <Route
             exact
             path="/dictionary/post"
-            component={DictionaryPostw}
+            component={DictionaryPost}
           ></Route>
 
           {/* <Route exact path="/login" component={Login}></Route> */}
