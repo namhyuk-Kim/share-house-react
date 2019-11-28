@@ -24,6 +24,7 @@ import school from "assets/images/school.png";
 import house from "assets/images/house.png";
 import pin from "assets/images/pin.png";
 import Compare from "components/house/compare/Compare";
+import Slider from "../slider/slider";
 
 const cx = classnames.bind(styles);
 
@@ -31,7 +32,7 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: { min: 0, max: 10 },
+            value: { min: 0, max: 100000000 },
             ShowFlilter: false,
             Isfocus: false
         };
@@ -158,12 +159,7 @@ class Search extends React.Component {
                             <div className={cx("deposit")}>
                                 <h3>보증금</h3>
                                 <div>
-                                    <InputRange
-                                        value={this.state.value}
-                                        onChange={value =>
-                                            this.setState({ value })
-                                        }
-                                    />
+                                    <Slider min={0} max={10} />
                                 </div>
                                 <h3>월세</h3>
                                 <div>

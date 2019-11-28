@@ -1,0 +1,552 @@
+.Postdetail-wrap {
+    max-width: 1440px;
+    min-width: 1024px;
+    margin: 0 auto;
+    position: relative;
+
+    & > .post-top-nav {
+        border-bottom: 1px solid #e0e0e0;
+        height: 56px;
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+        vertical-align: middle;
+        padding-top: 18px;
+        & > img {
+            margin-right: 11px;
+            vertical-align: middle;
+        }
+        & > span {
+            vertical-align: top;
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+        }
+    }
+    & > .post-wrap {
+        max-width: 737px;
+        width: calc(100% - 543px);
+        padding-top: 32px;
+        & > .post-content {
+            max-width: 100%;
+            width: 100%;
+
+            & > .main-image {
+                max-width: 100%;
+                width: 100%;
+                padding-bottom: 42px;
+            }
+            & > .main-content {
+                margin: 0 32px;
+                & > h2 {
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 24px;
+                    margin-bottom: 40px;
+                }
+                & > p {
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 15px;
+                    line-height: 28px;
+                    color: rgba(0, 0, 0, 0.65);
+                }
+                & > img {
+                    margin: 40px 0;
+                }
+                & > .post-tags {
+                    margin-top: 32px;
+                    margin-bottom: 86px;
+                    & > .post-tag {
+                        margin-right: 8px;
+                        position: relative;
+                        display: inline-block;
+                        padding: 6px;
+                        padding-left: 8px;
+                        background: #e0e0e0;
+                        border-radius: 4px;
+                        text-align: center;
+                        font-family: Roboto;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 12px;
+                        color: rgba(0, 0, 0, 0.65);
+                    }
+                }
+            }
+
+            & > .post-comment {
+                margin-bottom: 57px;
+                & > .comment_count {
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 15px;
+                    padding-bottom: 18px;
+                }
+                & > .add-comment {
+                    max-width: 100%;
+                    width: 100%;
+                    margin-bottom: 8px;
+                    & > input {
+                        width: calc(100% - 80px);
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        padding-left: 16px;
+                        display: inline-block;
+                        border: 1px solid #e0e0e0;
+                        border-right: none;
+                        border-radius: 3px 0 3px 0;
+                        height: 56px;
+                        vertical-align: middle;
+                    }
+                    & > button {
+                        display: inline-block;
+                        height: 56px;
+                        width: 80px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 0px 3px 3px 3px;
+                        background-color: #ffffff;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 14px;
+                        vertical-align: middle;
+                    }
+                }
+
+                & > .comments {
+                    margin-top: 16px;
+                    padding: 0 16px;
+                    padding-bottom: 17px;
+                    border-bottom: 1px solid #e0e0e0;
+                    & > p {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 14px;
+                        line-height: 24px;
+                        margin-bottom: 15px;
+                        color: rgba(0, 0, 0, 0.65);
+                    }
+                    & > button {
+                        display: inline-block;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 12px;
+                        height: 24px;
+                        margin-right: 16px;
+                        color: rgba(0, 0, 0, 0.65);
+                    }
+                    & > .comment-data {
+                        display: inline-block;
+                        float: right;
+
+                        & > .nickname {
+                            font-family: IBM Plex Sans;
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 12px;
+                            vertical-align: middle;
+                        }
+                        & > .add-date {
+                            font-family: IBM Plex Sans;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 12px;
+                            color: rgba(0, 0, 0, 0.3);
+                            vertical-align: middle;
+                        }
+                        & > .nickname::after {
+                            content: "";
+                            margin-left: 9px;
+                            margin-right: 9px;
+                            border: 1px solid #e0e0e0;
+                        }
+                    }
+                    & > .re-comment {
+                        margin-top: 33px;
+                        & > div {
+                            display: inline-block;
+                            vertical-align: text-top;
+                            margin-right: 16px;
+                        }
+                        & > .re-comment-text {
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 24px;
+                            margin-bottom: 15px;
+                            color: rgba(0, 0, 0, 0.65);
+                        }
+
+                        & > button:nth-child(3) {
+                            margin-left: 34px;
+                        }
+
+                        & > button {
+                            display: inline-block;
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 12px;
+                            height: 24px;
+                            margin-right: 16px;
+                            color: rgba(0, 0, 0, 0.65);
+                        }
+
+                        & > .comment-data {
+                            display: inline-block;
+                            float: right;
+                            margin-right: -10px;
+
+                            & > .nickname {
+                                font-family: IBM Plex Sans;
+                                font-style: normal;
+                                font-weight: 600;
+                                font-size: 12px;
+                                vertical-align: middle;
+                            }
+                            & > .add-date {
+                                font-family: IBM Plex Sans;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 12px;
+                                color: rgba(0, 0, 0, 0.3);
+                                vertical-align: middle;
+                            }
+                            & > .nickname::after {
+                                content: "";
+                                margin-left: 9px;
+                                margin-right: 9px;
+                                border: 1px solid #e0e0e0;
+                            }
+                        }
+                        & > .add-re-comment {
+                            width: calc(100% - 34px);
+                            display: inline-block;
+                            vertical-align: text-top;
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 24px;
+                            color: rgba(0, 0, 0, 0.65);
+                            margin-right: 0;
+                            & > .add-comment {
+                                max-width: 100%;
+                                width: 100%;
+                                margin-bottom: 8px;
+                                & > input {
+                                    width: calc(100% - 80px);
+                                    font-family: Noto Sans KR;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 13px;
+                                    padding-left: 16px;
+                                    display: inline-block;
+                                    border: 1px solid #e0e0e0;
+                                    border-right: none;
+                                    border-radius: 3px 0 3px 0;
+                                    height: 56px;
+                                    vertical-align: middle;
+                                }
+                                & > button {
+                                    display: inline-block;
+                                    height: 56px;
+                                    width: 80px;
+                                    border: 1px solid #e0e0e0;
+                                    border-radius: 0px 3px 3px 3px;
+                                    background-color: #ffffff;
+                                    font-family: Noto Sans KR;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 14px;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                        & > .modi-re-comment {
+                            width: calc(100% - 34px);
+                            display: inline-block;
+                            vertical-align: text-top;
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 24px;
+                            color: rgba(0, 0, 0, 0.65);
+                            margin-right: 0;
+                            & > .modi-comment {
+                                max-width: 100%;
+                                width: 100%;
+                                margin-bottom: 8px;
+                                & > input {
+                                    width: calc(100% - 80px);
+                                    font-family: Noto Sans KR;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 13px;
+                                    padding-left: 16px;
+                                    display: inline-block;
+                                    border: 1px solid #e0e0e0;
+                                    border-right: none;
+                                    border-radius: 3px 0 3px 0;
+                                    height: 56px;
+                                    vertical-align: middle;
+                                }
+                                & > button {
+                                    display: inline-block;
+                                    height: 56px;
+                                    width: 80px;
+                                    border: 1px solid #e0e0e0;
+                                    border-radius: 0px 3px 3px 3px;
+                                    background-color: #ffffff;
+                                    font-family: Noto Sans KR;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 14px;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            & > .house-story {
+                margin-bottom: 86px;
+                & > h1 {
+                    margin-bottom: 29px;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 29px;
+                    text-align: center;
+                }
+                & > .story-cards-wrap {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    & > .story-card {
+                        max-width: 224px;
+                        width: 100%;
+                        & > .card-image {
+                            margin-bottom: 17px;
+                            & > div {
+                                width: 100%;
+                                height: 100%;
+                                & > img {
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                        }
+                        & > .card-title {
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                        }
+
+                        & > .card-footer {
+                            width: 100%;
+                            & > span {
+                                font-weight: 300;
+                                font-size: 12px;
+                                vertical-align: middle;
+                                line-height: 16px;
+                                & > img {
+                                    margin-right: 2px;
+                                }
+                            }
+                            & > span:first-child {
+                                margin-right: 90px;
+                            }
+                            & > span:last-child {
+                                margin-left: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    & > .fixed-info {
+        max-width: 384px;
+        width: 100%;
+        top: 180px;
+        right: 27%;
+        position: fixed;
+        height: 100%;
+
+        & > .primary_blue {
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            color: #16bdc6;
+        }
+
+        & > h1 {
+            font-weight: 500;
+            font-size: 22px;
+            padding-bottom: 11px;
+            width: 344px;
+            margin-top: 10px;
+        }
+
+        & > .publisher {
+            font-family: IBM Plex Sans;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 12px;
+            & > .profile {
+                width: 22px;
+                height: 22px;
+                overflow: hidden;
+                border: 50%;
+                display: inline-block;
+                margin-right: 6px;
+                vertical-align: middle;
+                & > img {
+                    text-align: center;
+                }
+            }
+        }
+        & > .write-date {
+            display: block;
+            margin-top: 15px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e0e0e0;
+            font-family: IBM Plex Sans;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 12px;
+            margin-bottom: 24px;
+        }
+
+        & > .like {
+            vertical-align: middle;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            box-sizing: border-box;
+            border-radius: 2px;
+            width: 168px;
+            height: 40px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            margin-right: 7px;
+            & > img {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 6px;
+            }
+        }
+
+        & > .scrap {
+            vertical-align: middle;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            box-sizing: border-box;
+            border-radius: 2px;
+            width: 168px;
+            height: 40px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 13px;
+            & > img {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 6px;
+            }
+        }
+
+        & > .info-notice {
+            font-size: 14px;
+        }
+        & > form {
+            & > select {
+                margin-top: 24px;
+                width: 100%;
+                height: 36px;
+                background-color: #ffffff;
+                border: 1px solid #e0e0e0;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.3);
+                margin-bottom: 25px;
+            }
+            & > button {
+                background: #4f4f4f;
+                border-radius: 4px;
+                height: 48px;
+                width: 100%;
+                color: #ffffff;
+            }
+        }
+        & > .util-buttons {
+            position: relative;
+            margin-top: 24px;
+            margin-bottom: 100px;
+            & > div {
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #e0e0e0;
+                border-radius: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: left;
+            }
+            & > div:nth-child(3):hover ~ .hover-util {
+                width: 100%;
+                transition: 0.5s all;
+                border: 1px solid #e0e0e0;
+            }
+            & > .hover-util {
+                border: none;
+                transition: 0.5s all;
+                background-color: #ffffff;
+                position: absolute;
+                max-width: 240px;
+                width: 0%;
+                overflow: hidden;
+                left: 144px;
+                & > a {
+                    margin: 0 11.5px;
+                }
+            }
+            & > .hover-util:hover {
+                border: 1px solid #e0e0e0;
+                width: 100%;
+            }
+            & > div:not(last-child) {
+                margin-right: 8px;
+            }
+            & > button {
+                float: right;
+                width: 104px;
+                height: 36px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 13px;
+                border-radius: 2px;
+                & > img {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

@@ -18,7 +18,7 @@ class Header extends React.Component {
             <header className={cx("invert")}>
                 <div className={cx("content")}>
                     <nav className={cx("navigation")}>
-                        <Link to="/">청년주거 백과</Link>
+                        <Link to="/dictionary">청년주거 백과</Link>
                         <Link to="/">비즈페이지</Link>
                     </nav>
                     <h2>
