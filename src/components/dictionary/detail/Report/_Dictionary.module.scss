@@ -1,0 +1,79 @@
+.dictionary-contents {
+    max-width: 1440px;
+    min-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    & > .contents-list {
+        max-width: 1120px;
+        margin: 0 auto;
+        & > .houselife-report {
+            margin-top: 32px;
+            position: relative;
+            & > div {
+                display: flex;
+                flex-wrap: wrap;
+                & > .third-cols:nth-child(2) {
+                    margin: 0 2.7%;
+                }
+                & > .third-cols {
+                    text-align: center;
+                    max-width: 352px;
+                    width: 100%;
+
+                    & > h3 {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        margin-bottom: 13px;
+                    }
+                    & > .image-cover {
+                        width: 352px;
+                        height: 264px;
+                        overflow: hidden;
+                        border-radius: 2px;
+                        margin-bottom: 24px;
+                    }
+                    & > .publisher {
+                        font-family: IBM Plex Sans;
+                        font-style: normal;
+                        font-weight: 300;
+                        font-size: 12px;
+                        margin-bottom: 8px;
+                        & > .profile {
+                            width: 22px;
+                            height: 22px;
+                            overflow: hidden;
+                            border: 50%;
+                            display: inline-block;
+                            margin-right: 6px;
+                            vertical-align: middle;
+                            & > img {
+                                text-align: center;
+                            }
+                        }
+                    }
+
+                    & > .card-footer {
+                        width: 100%;
+                        text-align: center;
+                        & > span {
+                            font-family: IBM Plex Sans;
+                            font-style: normal;
+                            font-weight: 300;
+                            font-size: 12px;
+                            line-height: 16px;
+                            vertical-align: middle;
+                            margin-right: 9px;
+                            & > img {
+                                margin-right: 2px;
+                                vertical-align: middle;
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

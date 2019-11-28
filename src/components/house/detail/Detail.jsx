@@ -40,6 +40,8 @@ import facebook_share from "assets/images/facebook_share.png";
 import kakao_share from "assets/images/kakao_share.png";
 import twitter_share from "assets/images/twitter_share.png";
 import link_share from "assets/images/link_share.png";
+import caledar from "assets/images/caledar.png";
+import chat_profile from "assets/images/chat-profile.png";
 
 const cx = classnames.bind(styles);
 
@@ -736,6 +738,47 @@ class Detail extends React.Component {
                                         </table>
                                     </div>
                                 </div>
+                                <div className={cx("public-space")}>
+                                    <h1>공용공간</h1>
+                                    <div className={cx("space-info")}>
+                                        <h1>북카페</h1>
+                                        <p>
+                                            조용하게 커피를 마시며 책을 읽을 수
+                                            있는 공간
+                                        </p>
+                                        <span className={cx("target-ou")}>
+                                            사용대상: 청년주택 입주자 수용
+                                        </span>
+                                        <span className={cx("personnel")}>
+                                            인원: 최대 45명
+                                        </span>
+                                        <span className={cx("facility")}>
+                                            시설: 2, 4, 8인용 테이블, 책장 등
+                                        </span>
+                                        <span className={cx("usage-time")}>
+                                            사용시간: 24시간 개방
+                                        </span>
+                                    </div>
+                                    <div className={cx("space-info")}>
+                                        <h1>회의실</h1>
+                                        <p>
+                                            조용하게 커피를 마시며 책을 읽을 수
+                                            있는 공간
+                                        </p>
+                                        <span className={cx("target-ou")}>
+                                            사용대상: 청년주택 입주자 수용
+                                        </span>
+                                        <span className={cx("personnel")}>
+                                            인원: 최대 45명
+                                        </span>
+                                        <span className={cx("facility")}>
+                                            시설: 2, 4, 8인용 테이블, 책장 등
+                                        </span>
+                                        <span className={cx("usage-time")}>
+                                            사용시간: 24시간 개방
+                                        </span>
+                                    </div>
+                                </div>
                                 <div className={cx("house-location")}>
                                     <h1>하우스 소개</h1>
                                     <div className={cx("house-location-map")}>
@@ -967,11 +1010,62 @@ class Detail extends React.Component {
                         </div>
                         <div className={cx("date-selector")}>
                             <span>입주희망일</span>
-                            <div>체크인</div>
-                            <div>체크아웃</div>
+                            <input
+                                type="date"
+                                placeholder="체크인"
+                                className={cx("start-date")}
+                            />
+                            {/* <img src={caledar} alt="caledar" /> 달력아이콘 */}
+                            <input
+                                type="date"
+                                placeholder="체크아웃"
+                                className={cx("end-date")}
+                            />
+                            {/* <img src={caledar} alt="caledar" /> 달력아이콘 */}
+                        </div>
+                        <div className={cx("chat-body")}>
+                            <div className={cx("user-chat")}>
+                                <div className={cx("chat")}>
+                                    안녕하세요. 혹시 12월 20일에 입주
+                                    가능한가요?
+                                    <span className={cx("time-line")}>
+                                        19.02.12
+                                    </span>
+                                </div>
+
+                                <span className="clear"></span>
+                            </div>
+                            <div className={cx("admin-chat")}>
+                                <div className={cx("chat-profile")}>
+                                    <img src={chat_profile} alt="profile" />
+                                </div>
+                                <div className={cx("chat")}>
+                                    안녕하세요. 고객님 2019년 12월 20일로
+                                    원하시나요?
+                                    <span className={cx("time-line")}>
+                                        19.02.12
+                                    </span>
+                                </div>
+
+                                <span className="clear"></span>
+                            </div>
+                            <div className={cx("user-chat")}>
+                                <div className={cx("chat")}>
+                                    네, 보증금을 낮출 수 있는지 궁금합니다.
+                                    <span className={cx("time-line")}>
+                                        19.02.12
+                                    </span>
+                                </div>
+
+                                <span className="clear"></span>
+                            </div>
+                            <div className="clear"></div>
                         </div>
                         <div className={cx("chat-sender")}>
-                            <div></div>
+                            <input
+                                type="text"
+                                placeholder="메시지를 입력하세요."
+                            />
                             <div className={cx("icon")}></div>
                         </div>
                     </div>
