@@ -275,11 +275,6 @@
                     margin-bottom: 6px;
                 }
                 & > form {
-                    // & > input:valid {
-                    //     // background-color: #fafafa;
-                    //     // date는 적용되는데 다른거가 안됨-
-                    // }
-
                     & > input::placeholder {
                         font-size: 13px;
                         color: rgba(0, 0, 0, 0.3);
@@ -313,8 +308,6 @@
                     }
                     & > select {
                         -webkit-appearance: none;
-                        // background: url("../../../assets/images/select_arrow.png")
-                        //     no-repeat 95% 50%;
                     }
                     & > .genders {
                         & > label {

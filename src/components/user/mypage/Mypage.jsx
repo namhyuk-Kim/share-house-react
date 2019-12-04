@@ -52,10 +52,6 @@ class Mypage extends React.Component {
                         </ul>
                     </div>
                 </div>
-                {/* <Recently /> 최근본 하우스 */}
-                {/* <Scraps />  내 스크랩*/}
-                {/* <Inquiry /> 문의내역*/}
-                {/* <UserAccount 계정정보 /> */}
                 <InquiryDetail />
             </div>
         );

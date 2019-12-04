@@ -24,30 +24,28 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: 0
+            active: 0,
+            nowSearchPh: "지역"
         };
     }
-    // slicetext = () => {
-    // 말줄임 관련 함수...
-    //     const slicelength = 24;
-    //     let location_texts = document
-    //         .getElementsByClassName("content")
-    //         .getElementsByClassName("location");
-    //     console.log(location_texts);
-    // };
 
     changeActive = e => {
         let selected = e;
-        let element = document.getElementsByClassName("main-search-input");
         this.setState({
             active: selected
         });
         if (e === 0) {
-            element[0].placeholder = "지역";
+            this.setState({
+                nowSearchPh: "지역"
+            });
         } else if (e === 1) {
-            element[0].placeholder = "지역/지하철역/대학교/하우스 명";
+            this.setState({
+                nowSearchPh: "지역/지하철역/대학교/하우스 명"
+            });
         } else {
-            element[0].placeholder = "지역/지하철역";
+            this.setState({
+                nowSearchPh: "지역/지하철역"
+            });
         }
     };
 
@@ -113,7 +111,7 @@ class Main extends React.Component {
                             <form>
                                 <input
                                     type="text"
-                                    placeholder="지역"
+                                    placeholder={this.state.nowSearchPh}
                                     className={cx("main-search-input")}
                                     onChange={e => this.SearchHasData(e)}
                                 />
