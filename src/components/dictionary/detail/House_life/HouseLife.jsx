@@ -19,57 +19,6 @@ class Dictionary extends React.Component {
     render() {
         return (
             <div className={cx("dictionary-wrap")}>
-                <div className={cx("dictionary-search")}>
-                    <h1>청년주거 백과</h1>
-                    <p>
-                        청년들의 더 나은 주거환경과 올바른 주거문화 형성을 위한
-                        <br />
-                        다양한 정보를 제공해 드립니다.
-                    </p>
-                    <form>
-                        <input
-                            type="text"
-                            placeholder="검색어를 입력해주세요."
-                        ></input>
-                        <button>검색</button>
-                        <img src={search} alt={"search"} />
-                    </form>
-                </div>
-                <div className={cx("dictionary-category")}>
-                    <div className={cx("main-category")}>
-                        <ul>
-                            <li>
-                                <Link to="/" className={cx("primary_blue")}>
-                                    ALL
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/">쉐어하우스</Link>
-                            </li>
-                            <li>
-                                <Link to="/">서울시 청년주택</Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className={cx("sub-category")}>
-                        <ul>
-                            <li>
-                                <Link to="/">슬기로운 하우스생활</Link>
-                            </li>
-                            <li>
-                                <Link to="/" className={cx("primary_blue")}>
-                                    컴앤스테이툰
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/">쉐어하우스 스토리</Link>
-                            </li>
-                            <li>
-                                <Link to="/">쉐어하우스 리포트</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div className={cx("dictionary-contents")}>
                     <div className={cx("contents-list")}>
                         <div className={cx("houselife-items")}>

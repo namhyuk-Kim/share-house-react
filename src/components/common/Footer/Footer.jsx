@@ -17,17 +17,23 @@ const cx = classnames.bind(styles);
 class Footer extends React.Component {
     render() {
         return (
-            <footer>
+            <footer className={cx("footer")}>
                 <div className={cx("content")}>
                     <div className={cx("introduce")}>
                         <div>
                             <div className={cx("download")}>
-                                <Link to="#">
+                                <a
+                                    href="https://apps.apple.com/kr/app/%EC%BB%B4%EC%95%A4%EC%8A%A4%ED%85%8C%EC%9D%B4/id1089462100"
+                                    target="_blank"
+                                >
                                     <img src={apple} alt={"download-apple"} />
-                                </Link>
-                                <Link to="#">
+                                </a>
+                                <a
+                                    href="https://play.google.com/store/apps/details?id=com.thecomenstay&hl=ko"
+                                    target="_blank"
+                                >
                                     <img src={google} alt={"download-google"} />
-                                </Link>
+                                </a>
                             </div>
                             <h3>컴앤스테이</h3>
                             <ul>

@@ -8,6 +8,7 @@ import number2 from "assets/images/number02.png";
 import number3 from "assets/images/number03.png";
 import number4 from "assets/images/number04.png";
 import teams from "assets/images/teams.png";
+import m_teams from "assets/images/img_team.png";
 
 const cx = classnames.bind(styles);
 
@@ -75,6 +76,7 @@ class Intro extends React.Component {
                 <div className={cx("teams")}>
                     <h1>The Come & Stay Team</h1>
                     <img src={teams} alt="teams" />
+                    <img src={m_teams} alt="teams" />
                 </div>
                 <div className={cx("app_advert")}>
                     <h1>스마트폰에서도 편리한 Come & Stay App</h1>

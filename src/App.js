@@ -11,6 +11,7 @@ import Search from "components/house/search/Search";
 import Detail from "components/house/detail/Detail";
 import Dictionary from "components/dictionary/Dictionary";
 import DictionaryPost from "components/dictionary/detail/Postdetail/PostDetail";
+import Mypage from "components/user/mypage/Mypage";
 import "./App.css";
 
 class App extends React.Component {
@@ -18,26 +19,27 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <MainTemplate>
-          <Route exact path="/" component={Main}></Route>
-          <Route exact path="/user/Register" component={Register}></Route>
-          <Route
-            exact
-            path="/user/RegisterDone"
-            component={RegisterDone}
-          ></Route>
-          <Route exact path="/company/intro" component={Intro}></Route>
-          <Route exact path="/company/terms" component={Terms}></Route>
-          <Route exact path="/company/Privacy" component={Privacy}></Route>
-          <Route exact path="/house/search" component={Search}></Route>
-          <Route exact path="/house/detail" component={Detail}></Route>
-          <Route exact path="/dictionary" component={Dictionary}></Route>
-          <Route
-            exact
-            path="/dictionary/post"
-            component={DictionaryPost}
-          ></Route>
-
-          {/* <Route exact path="/login" component={Login}></Route> */}
+          <Switch>
+            <Route exact path="/" component={Main}></Route>
+            <Route exact path="/user/Register" component={Register}></Route>
+            <Route
+              exact
+              path="/user/RegisterDone"
+              component={RegisterDone}
+            ></Route>
+            <Route exact path="/company/intro" component={Intro}></Route>
+            <Route exact path="/company/terms" component={Terms}></Route>
+            <Route exact path="/company/Privacy" component={Privacy}></Route>
+            <Route exact path="/house/search" component={Search}></Route>
+            <Route exact path="/house/detail" component={Detail}></Route>
+            <Route exact path="/dictionary" component={Dictionary}></Route>
+            <Route
+              exact
+              path="/dictionary/post"
+              component={DictionaryPost}
+            ></Route>
+            <Route exact path="/user/mypage" component={Mypage}></Route>
+          </Switch>
         </MainTemplate>
       </BrowserRouter>
     );

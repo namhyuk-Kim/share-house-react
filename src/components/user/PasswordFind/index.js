@@ -1,1 +1,1 @@
-export {default} "./PasswordFindd";
+export {default} "./PasswordFind";

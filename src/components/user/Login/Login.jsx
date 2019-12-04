@@ -13,7 +13,10 @@ class Login extends React.Component {
     render() {
         return (
             <div className={cx("Login")}>
-                <button className={cx("close")}></button>
+                <button
+                    className={cx("close")}
+                    onClick={this.props.closeModal}
+                ></button>
                 <div className={cx("login-wrap")}>
                     <h1>로그인</h1>
                     <span>청년들을 위한 하우스 집합소</span>
@@ -61,8 +64,9 @@ class Login extends React.Component {
                             </label>
                             <div>
                                 <Link to="/">비밀번호찾기</Link>
-
-                                <Link to="/">회원가입</Link>
+                                <Link to="/user/Register" state={123456}>
+                                    회원가입
+                                </Link>
                             </div>
                         </div>
                     </form>

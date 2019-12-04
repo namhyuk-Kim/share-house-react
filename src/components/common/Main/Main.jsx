@@ -15,6 +15,8 @@ import room7 from "assets/images/room7.png";
 import star_yellow from "assets/images/star_yellow.png";
 import star_gray from "assets/images/Star_gray.png";
 import plus_icon from "assets/images/Union.png";
+import CloseAccount from "components/user/CloseAccount/CloseAccount";
+import InhabiMobile from "components/common/InhabiMobile/InhabiMobile";
 
 const cx = classnames.bind(styles);
 
@@ -25,16 +27,57 @@ class Main extends React.Component {
             active: 0
         };
     }
+    // slicetext = () => {
+    // 말줄임 관련 함수...
+    //     const slicelength = 24;
+    //     let location_texts = document
+    //         .getElementsByClassName("content")
+    //         .getElementsByClassName("location");
+    //     console.log(location_texts);
+    // };
 
     changeActive = e => {
         let selected = e;
+        let element = document.getElementsByClassName("main-search-input");
         this.setState({
             active: selected
         });
+        if (e === 0) {
+            element[0].placeholder = "지역";
+        } else if (e === 1) {
+            element[0].placeholder = "지역/지하철역/대학교/하우스 명";
+        } else {
+            element[0].placeholder = "지역/지하철역";
+        }
     };
+
+    SearchHasData = e => {
+        // 글자수 확인하고 1자리 이상이면 입력이 된것으로 판단하고 x 자 띄워 줄거임 입력마다 확인이니 자리수가 0 이면 숨겨줌
+        let Inputdata = e.target.value;
+        console.log(Inputdata);
+    };
+
+    Search = e => {
+        e.preventDefault();
+        let CountChar = document.getElementsByClassName("main-search-input")[0]
+            .value.length;
+        if (CountChar < 2) {
+            alert(
+                "두 자리 이상 검색어를 입력하셔야 합니다. 검색어를 다시 입력해 주세요."
+            );
+            return false;
+        }
+        // 검색결과 가 나온 하우스 검색 페이지로 이동 + 값 post 방식으로 보낼거임
+        window.location.href = "/house/search";
+    };
+
+    componentDidMount() {
+        // this.slicetext();
+    }
 
     render() {
         const { active } = this.state;
+
         return (
             <div className={cx("content")}>
                 <div className={cx("main-banner")}>
@@ -61,15 +104,22 @@ class Main extends React.Component {
                                     쉐어하우스
                                 </li>
                                 <li
-                                    onClick={() => this.changeActive(2)}
+                                    onClick={e => this.changeActive(2)}
                                     className={cx({ active: active === 2 })}
                                 >
                                     원룸
                                 </li>
                             </ul>
                             <form>
-                                <input type="text" placeholder="지역"></input>
-                                <button>검색</button>
+                                <input
+                                    type="text"
+                                    placeholder="지역"
+                                    className={cx("main-search-input")}
+                                    onChange={e => this.SearchHasData(e)}
+                                />
+                                <button onClick={e => this.Search(e)}>
+                                    검색
+                                </button>
                                 <img src={search} alt={"search"} />
                             </form>
                         </div>
@@ -414,6 +464,8 @@ class Main extends React.Component {
                     </div>
                     <div className={cx("clear")}></div>
                 </div>
+                <InhabiMobile />
+                {/* <CloseAccount /> 모달창 테스트 */}
             </div>
         );
     }

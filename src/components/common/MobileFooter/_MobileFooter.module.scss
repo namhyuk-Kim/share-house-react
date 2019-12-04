@@ -1,0 +1,101 @@
+@import "styles/_Common.scss";
+.m-footer {
+    display: none;
+    max-width: 768px;
+    min-width: 360px;
+    width: 100%;
+    background-color: #fff;
+
+    & > .content {
+        max-width: 768px;
+        min-width: 360px;
+        margin: 0 20px;
+        & > .download-app {
+            margin-top: 24px;
+            margin-bottom: 25px;
+            & > a:nth-child(1) {
+                padding-right: 16px;
+            }
+        }
+        & > .language-sns {
+            & > .language {
+                float: left;
+                & > div {
+                    display: inline-block;
+                    padding-right: 24px;
+                    height: 24px;
+                    & > a {
+                        display: table;
+                        height: 100%;
+                        & > img,
+                        span {
+                            display: table-cell;
+                            vertical-align: middle;
+                        }
+                        & > span {
+                            padding-left: 8px;
+                            line-height: 24px;
+                        }
+                    }
+                }
+            }
+
+            & > .sns {
+                float: right;
+                & > div {
+                    display: inline-block;
+                    padding-right: 25px;
+                }
+            }
+        }
+        & > .company-info {
+            & > h3 {
+                padding-top: 27px;
+                display: block;
+                font-size: 16px;
+                font-weight: 500;
+                color: #000000;
+            }
+            & > ul {
+                height: 18px;
+                display: table;
+                width: 100%;
+                padding-top: 16px;
+
+                & > li {
+                    position: relative;
+                    display: inline-block;
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    vertical-align: middle;
+                    font-size: 13px;
+                    line-height: 11px;
+                    border-right: 1px solid #323232;
+                }
+                & > li:first-child {
+                    padding-left: 0;
+                }
+
+                & > li:last-child {
+                    border-right: none;
+                }
+            }
+
+            & > .copy {
+                padding-top: 6px;
+                margin-bottom: 55px;
+                & > p {
+                    line-height: 24px;
+                    font-weight: 300;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}
+
+@include media("<=medium", ">=small") {
+    .m-footer {
+        display: block;
+    }
+}
