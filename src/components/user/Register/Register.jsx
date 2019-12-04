@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 const cx = classnames.bind(styles);
 
 class Register extends React.Component {
+    componentDidMount() {
+        // this.props.closeModal();
+        console.log(this);
+    }
+
     render() {
         return (
             <div className={cx("content")}>
@@ -85,8 +90,7 @@ class Register extends React.Component {
                                 </label>
                                 <p>
                                     회원가입을 함으로써 이용약관,개인정보 수집
-                                    및 이용, 메일수신에
-                                    <br /> 동의하시게 됩니다.
+                                    및 이용, 메일수신에동의하시게 됩니다.
                                 </p>
                                 <button>회원가입</button>
                                 <div>

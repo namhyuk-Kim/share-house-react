@@ -1,0 +1,386 @@
+.Account-management {
+    & > div {
+        & > .UserAccount-left {
+            float: left;
+            min-height: 433px;
+            width: 50%;
+            // background: url("../../../assets/images/login_background.png");
+            background-position: right;
+            & > h1 {
+                margin-right: 71px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                color: #323232;
+                float: right;
+                margin-top: 100px;
+                & > span {
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+            }
+
+            & > p {
+                font-size: 18px;
+                line-height: 26px;
+                color: #323232;
+                margin-left: 352px;
+                margin-top: 17px;
+            }
+        }
+
+        & > .UserAccount-left:nth-child(3) {
+            position: relative;
+            & > .liner {
+                position: absolute;
+                top: 401px;
+                right: -112px;
+                width: 191px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            & > h1 {
+                margin-right: 0;
+                margin-top: 55px;
+            }
+        }
+
+        & > .UserAccount-right:nth-child(4) {
+            margin-bottom: 172px;
+            & > div {
+                margin-top: 48px;
+
+                & > .naver-linked-account {
+                    margin-bottom: 16px;
+                    & > .sns-type {
+                        display: inline-block;
+                        padding: 13px 0;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 3px;
+                        background-color: transparent;
+                        width: 100px;
+
+                        vertical-align: middle;
+                        & > img {
+                            margin-right: 3px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                    & > span {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        color: rgba(0, 0, 0, 0.4);
+                        margin-right: 64px;
+                        display: inline-block;
+                    }
+
+                    & > span.has-linked {
+                        margin-right: 30px;
+                    }
+
+                    & > button {
+                        width: 64px;
+                        height: 40px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 2px;
+                        background-color: transparent;
+                        font-family: Roboto;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        line-height: 13px;
+                    }
+                }
+
+                & > .kakao-linked-account {
+                    margin-bottom: 16px;
+                    & > .sns-type {
+                        display: inline-block;
+                        padding: 13px 0;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 3px;
+                        background-color: transparent;
+                        width: 100px;
+
+                        vertical-align: middle;
+                        & > img {
+                            margin-right: 3px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                    & > span {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        color: rgba(0, 0, 0, 0.4);
+                        margin-right: 64px;
+                        display: inline-block;
+                    }
+
+                    & > span.has-linked {
+                        margin-right: 30px;
+                    }
+
+                    & > button {
+                        width: 64px;
+                        height: 40px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 2px;
+                        background-color: transparent;
+                        font-family: Roboto;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        line-height: 13px;
+                    }
+                }
+
+                & > .facebook-linked-account {
+                    margin-bottom: 48px;
+                    & > .sns-type {
+                        display: inline-block;
+                        padding: 13px 0;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 3px;
+                        background-color: transparent;
+                        width: 100px;
+
+                        vertical-align: middle;
+                        & > img {
+                            margin-right: 3px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                    & > span {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        color: rgba(0, 0, 0, 0.4);
+                        margin-right: 64px;
+                        display: inline-block;
+                    }
+
+                    & > span.has-linked {
+                        margin-right: 30px;
+                    }
+
+                    & > button {
+                        width: 64px;
+                        height: 40px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 2px;
+                        background-color: transparent;
+                        font-family: Roboto;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        line-height: 13px;
+                    }
+                }
+                & > .receive-agreement {
+                    & > div {
+                        float: left;
+                        vertical-align: middle;
+                        margin-bottom: 15px;
+                        & > label {
+                            margin-right: 10px;
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            border: 1px solid #e0e0e0;
+                            background-color: transparent;
+                            vertical-align: bottom;
+                            & > input[type="checkbox"] {
+                                display: none;
+                            }
+                        }
+                        & > span {
+                            line-height: 19px;
+                            display: inline-block;
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 13px;
+                            vertical-align: middle;
+                        }
+                    }
+                    & > div:last-child {
+                        margin-bottom: 24px;
+                    }
+                }
+                & > .close-account {
+                    display: block;
+                    float: right;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 13px;
+                    margin-bottom: 25px;
+                }
+                & > .confirm-change {
+                    border-top: 1px solid #e0e0e0;
+                    & > button {
+                        margin-top: 23px;
+                        width: 159px;
+                    }
+                    & > .confirm-ok {
+                        background: #4f4f4f;
+                        border-radius: 3px;
+                        padding: 16px 12px;
+                        float: right;
+                        color: #fff;
+                    }
+                    & > .confirm-cancel {
+                        margin-right: 25px;
+                        background: #fff;
+                        border-radius: 3px;
+                        padding: 16px 12px;
+                        border: 1px solid #e0e0e0;
+                        float: right;
+                    }
+                }
+            }
+        }
+        & > .UserAccount-right {
+            float: right;
+            width: 50%;
+            min-height: 433px;
+            & > div {
+                text-align: center;
+                width: 352px;
+                margin-left: 112px;
+                margin-top: 89px;
+                & > h1 {
+                    font-size: 24px;
+                    line-height: 35px;
+                    margin-bottom: 6px;
+                }
+                & > form {
+                    & > input::placeholder {
+                        font-size: 13px;
+                        color: rgba(0, 0, 0, 0.3);
+                    }
+                    & > .change-password {
+                        width: 350px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 3px;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        background-color: transparent;
+                        line-height: 0px;
+                        color: #444444;
+                        line-height: 40px;
+                        margin: 8px 0;
+                    }
+                    & > input,
+                    select {
+                        width: 352px;
+                        border: 1px solid #e0e0e0;
+                        margin: 8px 0;
+                        height: 40px;
+                        font-size: 13px;
+                        padding-left: 8px;
+                        & > option[data-default] {
+                            font-size: 13px;
+                            color: rgba(0, 0, 0, 0.3);
+                        }
+                    }
+                    & > select {
+                        -webkit-appearance: none;
+                    }
+                    & > .genders {
+                        & > label {
+                            margin: 8px 0;
+                            display: inline-block;
+                            & > input[type="radio"] {
+                                display: none;
+                            }
+                            & > input[type="radio"]:checked ~ .gender-box {
+                                background: #16bdc6;
+                                border-color: #16bdc6;
+                                border-radius: 0px 3px 3px 0px;
+                                color: #fff;
+                                transition: 0.5s all;
+                            }
+                            & > .gender-box {
+                                background-color: #fff;
+                                border-radius: 3px;
+                                font-size: 13px;
+                                line-height: 40px;
+                                width: 175px;
+                                height: 40px;
+                                text-align: center;
+                                border: 1px solid #e0e0e0;
+                                transition: 0.5s all;
+                            }
+                        }
+                    }
+                    & > p {
+                        text-align: left;
+                        margin-bottom: 31px;
+                        font-size: 13px;
+                        font-weight: 300;
+                        color: #323232;
+                    }
+                    & > label {
+                        display: table;
+                        & > input {
+                            display: inline-block;
+                            vertical-align: middle;
+                            border: 1px solid #e0e0e0;
+                            width: 16px;
+                            height: 16px;
+                            margin-right: 10px;
+                            background-color: #fff;
+                        }
+                        color: #323232;
+                        font-size: 13px;
+                        font-weight: 300;
+                    }
+
+                    & > button {
+                        background: #4f4f4f;
+                        width: 352px;
+                        height: 48px;
+                        text-align: center;
+                        line-height: 48px;
+                        color: #fff;
+                    }
+
+                    & > div:last-child {
+                        padding-top: 24px;
+
+                        & > span {
+                            margin-right: 165px;
+                            font-size: 12px;
+                        }
+                        & > a {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

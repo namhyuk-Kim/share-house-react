@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "include-media": "^1.4.9",
+    "node-sass": "^4.13.0",
     "nouislider": "^14.0.3",
     "prop-types": "^15.7.2",
     "proptypes": "^1.1.0",
@@ -17,6 +19,7 @@
     "redux-logger": "^3.0.6",
     "redux-pender": "^2.0.12",
     "redux-thunk": "^2.3.0",
+    "sass-loader": "^8.0.0",
     "styled-components": "^4.4.1"
   },
   "scripts": {

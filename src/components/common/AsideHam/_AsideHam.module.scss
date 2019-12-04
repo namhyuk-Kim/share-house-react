@@ -1,0 +1,107 @@
+.aside-ham {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    width: 100vw;
+    height: 100vh;
+    transition: 1s all;
+    & > .ham {
+        width: 80%;
+        background-color: #fff;
+        height: 100%;
+        & > .ham-header {
+            position: relative;
+
+            height: 56px;
+            border-bottom: 1px solid #e0e0e0;
+            & > .ham-menu {
+                width: 40px;
+                height: 40px;
+                border: 1px solid #e0e0e0;
+                border-radius: 3px;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                float: left;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0 11px;
+                left: 8px;
+
+                & > .line {
+                    position: absolute;
+                    width: 18px;
+                    margin: 2px 0;
+                    border: 1px solid #323232;
+                    height: 0px;
+                    transform: rotateZ(45deg);
+                }
+                & > .line:nth-child(2) {
+                    transform: rotateZ(-45deg);
+                }
+            }
+
+            & > h2 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                float: left;
+                min-width: 143px;
+                height: auto;
+
+                & > a {
+                    max-width: 100%;
+                    display: block;
+                    & > img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+        }
+        & > .ham-body {
+            & > p {
+                margin-left: 48px;
+                margin-top: 40px;
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                color: #323232;
+            }
+            & > p:hover {
+                color: #16bdc6;
+            }
+        }
+    }
+}
+
+.ham-back {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+    position: fixed;
+    z-index: 98;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.hide {
+    left: -100%;
+    transition: 1s all;
+}
+.show {
+    left: 0;
+    transition: 1s all;
+}
+
+.back-show {
+    display: block;
+}
+.back-hide {
+    display: none;
+}

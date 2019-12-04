@@ -1,3 +1,5 @@
+@import "styles/_Common.scss";
+
 .content {
     max-width: 1440px;
     min-width: 1024px;
@@ -92,6 +94,12 @@
             margin-bottom: 28px;
             display: block;
         }
+        & > img:nth-child(2) {
+            display: block;
+        }
+        & > img:nth-child(3) {
+            display: none;
+        }
     }
 
     & > .app_advert {
@@ -122,6 +130,161 @@
 
         & > a:last-child {
             background: url(../../../assets/images/apple_store.png);
+        }
+    }
+}
+
+@include media("<=medium", ">=small") {
+    .content {
+        max-width: 768px;
+        min-width: 360px;
+        margin: 0 auto;
+        & > .intro-banner {
+            width: 100%;
+            position: relative;
+            height: 121px;
+            background: url(../../../assets/images/intro_banner.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            & > .title {
+                display: flex;
+                justify-content: center;
+                padding-top: 34px;
+                & > h1 {
+                    text-align: center;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 20px;
+                    line-height: 28px;
+                    color: #fff;
+                    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+                }
+            }
+        }
+
+        & > .advantages {
+            position: relative;
+            margin-top: 96px;
+            & > p {
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 22px;
+                line-height: 32px;
+            }
+
+            & > .info-text {
+                margin: 0 auto;
+                width: 225px;
+                margin-top: 24px;
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 15px;
+                line-height: 28px;
+                text-align: center;
+                color: #323232;
+                & > span {
+                    color: #16bdc6;
+                    font-size: 16px;
+                    line-height: 30px;
+                    font-weight: bold;
+                }
+            }
+
+            & > .advantages-item-wrap {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                & > .advantages-item {
+                    margin: 2.5px;
+                    float: left;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 5px;
+                    width: 154px;
+                    height: 184px;
+                    text-align: center;
+                    display: table-cell;
+                    vertical-align: middle;
+                    align-items: center;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    color: #323232;
+                    padding-top: 58px;
+                    line-height: 20px;
+                    position: relative;
+                    & > img {
+                        position: absolute;
+                        top: -15%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                }
+                & > .advantages-item:nth-child(4) {
+                    margin-top: 32px;
+                }
+                & > .advantages-item:nth-child(3) {
+                    margin-top: 32px;
+                }
+            }
+        }
+
+        & > .teams {
+            margin-top: 96px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            & > h1 {
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 35px;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 28px;
+                display: block;
+            }
+            & > img:nth-child(2) {
+                display: none;
+            }
+            & > img:nth-child(3) {
+                display: block;
+            }
+        }
+
+        & > .app_advert {
+            margin-bottom: 109px;
+            margin-top: 96px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            & > h1 {
+                width: 320px;
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 29px;
+            }
+
+            & > a {
+                margin-top: 38px;
+                width: 154px;
+                height: 56px;
+                display: inline-block;
+                background-repeat: no-repeat;
+            }
+
+            & > a:nth-child(2) {
+                background: url(../../../assets/images/m-google.png);
+                margin-right: 8px;
+            }
+
+            & > a:last-child {
+                background: url(../../../assets/images/m-apple.png);
+            }
         }
     }
 }

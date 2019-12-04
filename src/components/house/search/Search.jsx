@@ -244,7 +244,7 @@ class Search extends React.Component {
                             <p>
                                 검색 하우스&nbsp;&nbsp;<span>&nbsp;40</span>개
                             </p>
-                            <button onClick={() => this.ShowCompare()}>
+                            <button>
                                 <img src={folder_add} alt="folder_add" />
                                 비교함 (2)
                             </button>

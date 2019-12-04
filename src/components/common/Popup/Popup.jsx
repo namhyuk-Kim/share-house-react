@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -15,8 +16,8 @@ const Popups = styled.div`
     z-index: 100;
 `;
 
-const Popup = ({ children, ...other }) => {
-    return <Popups {...other}>{children}</Popups>;
+const Popup = ({ children, closeModal, isModalOpen }) => {
+    return !isModalOpen ? null : <Popups>{children}</Popups>;
 };
 
 export default Popup;

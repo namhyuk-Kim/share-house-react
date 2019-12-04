@@ -1,3 +1,5 @@
+@import "styles/_Common.scss";
+
 header {
     width: 100%;
     background-color: #ffffff;
@@ -8,6 +10,40 @@ header {
         min-width: 1024px;
         margin: 0 auto;
         position: relative;
+
+        & > .ham-menu {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            float: left;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+            flex-wrap: wrap;
+            padding: 0 11px;
+
+            & > .line {
+                width: 18px;
+                margin: 2px 0;
+                border: 1px solid #323232;
+                height: 0px;
+            }
+        }
+        & > .ham-menu::after {
+            content: "";
+            position: absolute;
+            border: 1px solid #323232;
+        }
+        & > .ham-menu::before {
+            content: "";
+            position: absolute;
+            border: 1px solid #323232;
+        }
+
         & > nav {
             display: table;
             float: left;
@@ -45,6 +81,79 @@ header {
                 display: table-cell;
                 vertical-align: middle;
                 padding: 0 32px;
+            }
+        }
+    }
+}
+@include media("<=medium", ">=small") {
+    header {
+        max-width: 768px;
+        // min-width: 380px;
+        width: 100%;
+        & > .content {
+            height: 72px;
+            min-width: 380px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+
+            & > nav {
+                display: none;
+                float: left;
+                margin-left: 64px;
+                height: 100%;
+                & > a {
+                    display: table-cell;
+                    padding: 0 32px;
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+            }
+
+            & > .ham-menu {
+                display: flex;
+                left: 8px;
+            }
+
+            & > h2 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                float: left;
+                min-width: 143px;
+                height: auto;
+
+                & > a {
+                    max-width: 100%;
+                    display: block;
+                    & > img {
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+
+            & > .member-wrap {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: right;
+                margin-right: 0px;
+                & > a {
+                    display: none;
+                    vertical-align: middle;
+                    padding: 0 32px;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                }
+                & > a:nth-child(3) {
+                    display: block;
+                    padding: 0 32px;
+                }
             }
         }
     }
