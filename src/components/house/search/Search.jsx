@@ -119,7 +119,7 @@ class Search extends React.Component {
                         >
                             <div>
                                 <img src={filter} alt="filter" />
-                                필터
+                                <span>필터</span>
                             </div>
                         </label>
                         <div className={cx("clear")}></div>
