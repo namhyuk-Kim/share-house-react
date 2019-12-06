@@ -42,6 +42,7 @@ import twitter_share from "assets/images/twitter_share.png";
 import link_share from "assets/images/link_share.png";
 import caledar from "assets/images/caledar.png";
 import chat_profile from "assets/images/chat-profile.png";
+import m_event from "assets/images/m-event.png";
 
 const cx = classnames.bind(styles);
 
@@ -123,6 +124,10 @@ class Detail extends React.Component {
                                     <img
                                         src={event_banner}
                                         alt="event-banner"
+                                    />
+                                    <img
+                                        src={m_event}
+                                        alt="하우스 이벤트 2019년 하반기 플랜A 마지막 입주자 할인 내용: 마지막 남아있는 한자리를 3개월 이상 계약시 월세를 20% 할인!! 대상:3개월 이상계약자.(자세한 내용은 문의 바랍니다.) 기간: 2019-09-03~2019-09-30"
                                     />
                                 </div>
                             </div>

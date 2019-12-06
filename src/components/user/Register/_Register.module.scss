@@ -186,10 +186,12 @@
                 float: none;
                 min-height: 585px;
                 width: 100%;
+                display: flex;
+                justify-content: center;
                 & > div {
                     margin: 0 20px;
                     text-align: center;
-                    width: 100%;
+                    width: 360px;
                     margin-left: 0px;
                     margin-top: 0px;
                     & > h1 {

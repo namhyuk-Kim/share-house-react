@@ -1,3 +1,5 @@
+@import "styles/_Common.scss";
+
 .dictionary-contents {
     max-width: 1440px;
     min-width: 1024px;
@@ -52,6 +54,74 @@
                         }
                         & > span:last-child {
                             margin-left: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media("<=medium", ">=small") {
+    .dictionary-wrap {
+        display: flex;
+        justify-content: center;
+    }
+    .dictionary-contents {
+        max-width: 768px;
+        min-width: 320px;
+        width: 320px;
+        margin: 0 20px;
+        & > .contents-list {
+            max-width: 320px;
+            margin: 0 0;
+            & > .story {
+                margin-top: 32px;
+                & > div {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    & > .story-card:last-child {
+                        margin-right: 0;
+                    }
+                    & > .story-card {
+                        max-width: 320px;
+                        width: 100%;
+                        margin-right: 0px;
+                        & > .card-image {
+                            width: 100%;
+                            margin-bottom: 17px;
+                            & > img {
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+                        & > .card-title {
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 23px;
+                            margin-bottom: 10px;
+                        }
+
+                        & > .card-footer {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            & > span {
+                                font-weight: 300;
+                                font-size: 12px;
+                                vertical-align: middle;
+                                line-height: 16px;
+                                & > img {
+                                    margin-right: 2px;
+                                }
+                            }
+                            & > span:first-child {
+                                margin-right: 9px;
+                            }
+                            & > span:last-child {
+                                margin-left: 14px;
+                            }
                         }
                     }
                 }
