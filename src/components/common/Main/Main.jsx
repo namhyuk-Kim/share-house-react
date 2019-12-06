@@ -69,9 +69,7 @@ class Main extends React.Component {
         window.location.href = "/house/search";
     };
 
-    componentDidMount() {
-        // this.slicetext();
-    }
+    componentDidMount() {}
 
     render() {
         const { active } = this.state;
@@ -463,7 +461,6 @@ class Main extends React.Component {
                     <div className={cx("clear")}></div>
                 </div>
                 <InhabiMobile />
-                {/* <CloseAccount /> 모달창 테스트 */}
             </div>
         );
     }

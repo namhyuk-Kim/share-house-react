@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -31,6 +31,7 @@ const cx = classnames.bind(styles);
 class Search extends React.Component {
     constructor(props) {
         super(props);
+        this.mapRef = createRef();
         this.state = {
             value: { min: 0, max: 100000000 },
             ShowFlilter: false,
@@ -58,13 +59,21 @@ class Search extends React.Component {
         // 검색창에 값있으면 검색창 내용 한번에 지워주는 버튼 나오게함
         let NextValue = e.target.value;
         let reset_btn = document.getElementsByClassName(cx("search-clear"));
-        if (NextValue != "") {
+        if (NextValue !== "") {
             reset_btn[0].style.display = "flex";
         } else {
             reset_btn[0].style.display = "none";
         }
     };
 
+    componentDidMount() {
+        const options = {
+            center: new window.kakao.maps.LatLng(37.468532, 126.887356),
+            level: 3,
+            position: new window.kakao.maps.LatLng(37.468532, 126.887356)
+        };
+        this.map = new window.kakao.maps.Map(this.mapRef, options);
+    } //지도 생성 및 객체 리턴
     // ShowCompare = () => {
     // 작동안됨.. [html은 넣어주는데 변환안됨]
     //     var contents = document.getElementsByClassName(cx("search-wrap"))[0]
@@ -236,7 +245,10 @@ class Search extends React.Component {
                     </div>
                 </div>
                 <div className={cx("search-result")}>
-                    <div className={cx("search-result-left")}>
+                    <div
+                        className={cx("search-result-left")}
+                        ref={ref => (this.mapRef = ref)}
+                    >
                         {/* 지도 Api 들어갈자리임 */}
                     </div>
                     <div className={cx("search-result-right")}>
@@ -286,7 +298,7 @@ class Search extends React.Component {
                                         <span>아파트</span>
                                     </div>
                                     <span className={cx("item-title")}>
-                                        <Link to="/house/detail">
+                                        <Link to="/house/houseid">
                                             마이빌리지
                                         </Link>
                                     </span>
@@ -341,7 +353,9 @@ class Search extends React.Component {
                                         <span>아파트</span>
                                     </div>
                                     <span className={cx("item-title")}>
-                                        마이빌리지
+                                        <Link to="/house/houseid">
+                                            마이빌리지
+                                        </Link>
                                     </span>
                                     <span className={cx("item-location")}>
                                         성북구 길음동,길음역 도보5분
@@ -394,7 +408,9 @@ class Search extends React.Component {
                                         <span>아파트</span>
                                     </div>
                                     <span className={cx("item-title")}>
-                                        마이빌리지
+                                        <Link to="/house/houseid">
+                                            마이빌리지
+                                        </Link>
                                     </span>
                                     <span className={cx("item-location")}>
                                         성북구 길음동,길음역 도보5분
@@ -447,7 +463,9 @@ class Search extends React.Component {
                                         <span>아파트</span>
                                     </div>
                                     <span className={cx("item-title")}>
-                                        마이빌리지
+                                        <Link to="/house/houseid">
+                                            마이빌리지
+                                        </Link>
                                     </span>
                                     <span className={cx("item-location")}>
                                         성북구 길음동,길음역 도보5분
@@ -500,7 +518,9 @@ class Search extends React.Component {
                                         <span>아파트</span>
                                     </div>
                                     <span className={cx("item-title")}>
-                                        마이빌리지
+                                        <Link to="/house/houseid">
+                                            마이빌리지
+                                        </Link>
                                     </span>
                                     <span className={cx("item-location")}>
                                         성북구 길음동,길음역 도보5분

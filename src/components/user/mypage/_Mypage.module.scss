@@ -39,6 +39,7 @@
                 text-align: center;
                 margin: 0 auto;
                 & > li {
+                    padding-bottom: 16px;
                     display: inline-block;
                     max-width: 224px;
                     width: 100%;
@@ -52,7 +53,6 @@
                     }
                 }
                 & > li.primary-blue {
-                    padding-bottom: 13px;
                     & > a {
                         color: #16bdc6;
                         font-family: Noto Sans KR;

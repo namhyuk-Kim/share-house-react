@@ -30,12 +30,18 @@ class App extends React.Component {
             <Route exact path="/company/intro" component={Intro}></Route>
             <Route exact path="/company/terms" component={Terms}></Route>
             <Route exact path="/company/Privacy" component={Privacy}></Route>
-            <Route exact path="/house/search" component={Search}></Route>
-            <Route exact path="/house/detail" component={Detail}></Route>
-            <Route exact path="/dictionary" component={Dictionary}></Route>
+            <Route exact path="/search" component={Search}></Route>
             <Route
               exact
-              path="/dictionary/post"
+              path="/house/houseid"
+              // params={{ houseid: 1 }}
+              component={Detail}
+            ></Route>
+            <Route exact path="/article" component={Dictionary}></Route>
+            <Route
+              exact
+              path="/article/articleid"
+              // params={{ articleid: 1 }}
               component={DictionaryPost}
             ></Route>
             <Route exact path="/user/mypage" component={Mypage}></Route>
