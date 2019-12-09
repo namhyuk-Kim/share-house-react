@@ -1,3 +1,4 @@
+@import "styles/_Common.scss";
 .mypage-user-data {
     padding-bottom: 50px;
     & > h1 {
@@ -160,6 +161,176 @@
                         font-weight: normal;
                         font-size: 15px;
                         color: rgba(0, 0, 0, 0.65);
+                    }
+                }
+            }
+        }
+    }
+}
+@include media("<=medium", ">=small") {
+    .mypage-user-data {
+        padding-bottom: 50px;
+        & > h1 {
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 36px;
+            margin-top: 48px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        & > span {
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 15px;
+            color: rgba(0, 0, 0, 0.65);
+            text-align: center;
+            display: block;
+        }
+    }
+
+    .mypage-category {
+        width: 100%;
+        padding-top: 15px;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        & > .main-category {
+            & > ul {
+                width: 100%;
+                text-align: center;
+                margin: 0 auto;
+                & > li {
+                    display: inline-block;
+                    max-width: 224px;
+                    width: 100%;
+                    margin-right: 24px;
+                    & > a {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 15px;
+                        color: rgba(0, 0, 0, 0.3);
+                    }
+                }
+                & > li.primary-blue {
+                    padding-bottom: 13px;
+                    & > a {
+                        color: #16bdc6;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 15px;
+                    }
+                    border-bottom: 3px solid #16bdc6;
+                }
+            }
+        }
+        & > .sub-category {
+            margin-top: 30px;
+            & > ul {
+                width: 100%;
+                text-align: center;
+                margin: 0 auto;
+                & > li {
+                    display: inline-block;
+                    width: 240px;
+                    margin-right: 24px;
+
+                    & > a {
+                        width: 100%;
+                        display: block;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        padding-bottom: 16px;
+                    }
+                    & > .primary_blue {
+                        border-bottom: 3px solid #16bdc6;
+                        color: #16bdc6;
+                    }
+                }
+            }
+        }
+    }
+
+    .Inquiry {
+        margin-bottom: 197px;
+        & > div {
+            max-width: 768px;
+            min-width: 320px;
+            width: 100%;
+            margin: 0 20px;
+            & > button {
+                margin-top: 24px;
+                border: 1px solid #e0e0e0;
+                box-sizing: border-box;
+                border-radius: 2px;
+                background: #ffffff;
+                padding: 14px 24px 13px 23px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 13px;
+            }
+            & > table {
+                margin-top: 22px;
+                border-collapse: collapse;
+                border-spacing: 0;
+                & > thead {
+                    & > tr {
+                        & > th {
+                            padding: 11.5px 0;
+                            text-align: left;
+                            & > label {
+                                display: block;
+                                border: 2px solid #e0e0e0;
+                                width: 24px;
+                                height: 24px;
+                                border-radius: 2px;
+                                background-color: #fff;
+                                & > input {
+                                    opacity: 0;
+                                }
+                            }
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 15px;
+                            color: rgba(0, 0, 0, 0.3);
+                        }
+                    }
+                }
+                & > tbody {
+                    & > tr {
+                        border-top: 1px solid #e0e0e0;
+                        border-bottom: 1px solid #e0e0e0;
+                        & > td {
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 15px;
+                            & > label {
+                                display: block;
+                                border: 2px solid #e0e0e0;
+                                width: 24px;
+                                height: 24px;
+                                border-radius: 2px;
+                                background-color: #fff;
+                                & > input {
+                                    opacity: 0;
+                                }
+                            }
+                        }
+                        & > td.content {
+                            padding: 16px 0;
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 15px;
+                            color: rgba(0, 0, 0, 0.65);
+                        }
                     }
                 }
             }

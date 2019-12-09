@@ -33,7 +33,8 @@ class Search extends React.Component {
         super(props);
         this.mapRef = createRef();
         this.state = {
-            value: { min: 0, max: 100000000 },
+            deposit: { min: 0, max: 10 },
+            monthly: { min: 0, max: 10 },
             ShowFlilter: false,
             Isfocus: false
         };
@@ -168,14 +169,19 @@ class Search extends React.Component {
                             <div className={cx("deposit")}>
                                 <h3>보증금</h3>
                                 <div>
-                                    <Slider min={0} max={10} />
+                                    <InputRange
+                                        value={this.state.deposit}
+                                        onChange={deposit =>
+                                            this.setState({ deposit })
+                                        }
+                                    />
                                 </div>
                                 <h3>월세</h3>
                                 <div>
                                     <InputRange
-                                        value={this.state.value}
-                                        onChange={value =>
-                                            this.setState({ value })
+                                        value={this.state.monthly}
+                                        onChange={monthly =>
+                                            this.setState({ monthly })
                                         }
                                     />
                                 </div>
@@ -248,9 +254,7 @@ class Search extends React.Component {
                     <div
                         className={cx("search-result-left")}
                         ref={ref => (this.mapRef = ref)}
-                    >
-                        {/* 지도 Api 들어갈자리임 */}
-                    </div>
+                    ></div>
                     <div className={cx("search-result-right")}>
                         <div className={cx("result-head")}>
                             <p>

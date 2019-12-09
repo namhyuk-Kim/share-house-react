@@ -271,12 +271,13 @@
 // 아래부터는 모바일 반응형 임
 @include media("<=medium", ">=small") {
     .mypage-wrap {
-        min-width: 768px;
-        max-width: 360px;
+        max-width: 768px;
+        min-width: 360px;
         width: 100%;
-        margin: 0 20px;
+        margin: 0 0px;
+
         & > .mypage-user-data {
-            width: 320px;
+            width: unset;
             padding-bottom: 32px;
             & > h1 {
                 font-family: Noto Sans KR;
@@ -299,16 +300,18 @@
         }
 
         & > .mypage-category {
-            margin-left: -20px;
-            width: 360px;
+            margin-left: 0px;
+            width: unset;
             padding-top: 0px;
             border-top: 1px solid #e0e0e0;
             border-bottom: 1px solid #e0e0e0;
             & > .main-category {
                 & > ul {
-                    width: 360px;
+                    width: unset;
                     text-align: left;
                     margin: 0 0;
+                    display: flex;
+                    justify-content: center;
                     & > li {
                         padding-top: 12px;
                         display: inline-block;
@@ -322,6 +325,9 @@
                             font-size: 13px;
                             color: rgba(0, 0, 0, 0.3);
                         }
+                    }
+                    & > li:last-child {
+                        margin-right: 0;
                     }
                     & > li.primary-blue {
                         padding-bottom: 5px;

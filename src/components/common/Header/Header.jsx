@@ -53,9 +53,9 @@ class Header extends React.Component {
                             <Link to="/search">하우스 검색</Link>
                             <Link to="/user/Register">회원가입</Link>
                             <Link to="/user/mypage">김문경님</Link>
-                            <a href="/" onClick={this.props.openModal}>
+                            {/* <a href="/" onClick={this.props.openModal}>
                                 로그인
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </header>
