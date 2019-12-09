@@ -69,15 +69,14 @@ class Main extends React.Component {
         window.location.href = "/house/search";
     };
 
-    componentDidMount() {
-        // this.slicetext();
-    }
+    componentDidMount() {}
 
     render() {
         const { active } = this.state;
 
         return (
-            <div className={cx("content")}>
+            <div>
+                <div className={cx("content")}></div>
                 <div className={cx("main-banner")}>
                     <div className={cx("title")}>
                         <h1>
@@ -86,6 +85,7 @@ class Main extends React.Component {
                             want to live?
                         </h1>
                     </div>
+
                     <div className={cx("tab")}>
                         <div className={cx("tab-menu-wrap")}>
                             <ul>
@@ -123,264 +123,288 @@ class Main extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={cx("popularity")}>
-                    <div className={cx("content")}>
-                        <h2>Today's 인기하우스</h2>
-                        <div className={cx("popularity-items")}>
-                            <div>
+                <div className={cx("content")}>
+                    <div className={cx("popularity")}>
+                        <div className={cx("content")}>
+                            <h2>Today's 인기하우스</h2>
+                            <div className={cx("popularity-items")}>
                                 <div>
-                                    <img
-                                        src={star_yellow}
-                                        alt={"star_yellow"}
-                                    />
-                                    <div className={cx("image-box")}>
-                                        <img src={room1} alt={"room"} />
+                                    <div>
+                                        <img
+                                            src={star_yellow}
+                                            alt={"star_yellow"}
+                                        />
+                                        <div className={cx("image-box")}>
+                                            <img src={room1} alt={"room"} />
+                                        </div>
+                                        <div className={cx("types")}>
+                                            <button>쉐어하우스</button>
+                                            <span>아파트</span>
+                                        </div>
+                                        <div className={cx("title")}>
+                                            2019년 서울시 영구임대주택
+                                            예비입주자 모집
+                                        </div>
+                                        <div className={cx("location")}>
+                                            <span>
+                                                성북구 길음동, 길음역 도보 5분
+                                            </span>
+                                        </div>
+                                        <div className={cx("price")}>
+                                            <p>
+                                                <span>월세&nbsp;</span>
+                                                <span>38만원 ~ 55만원</span>
+                                            </p>
+                                            <p>
+                                                <span>보증금</span>
+                                                <span>150만원 ~ 150만원</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className={cx("types")}>
-                                        <button>쉐어하우스</button>
-                                        <span>아파트</span>
-                                    </div>
-                                    <div className={cx("title")}>
-                                        플랜A 길음성신여대점
-                                    </div>
-                                    <div className={cx("location")}>
-                                        <span>
-                                            성북구 길음동, 길음역 도보 5분
-                                        </span>
-                                    </div>
-                                    <div className={cx("price")}>
-                                        <p>
-                                            <span>월세&nbsp;</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
+                                    <div>
+                                        <img
+                                            src={star_gray}
+                                            alt={"star_gray"}
+                                        />
+                                        <div className={cx("image-box")}>
+                                            <img src={room2} alt={"room"} />
+                                        </div>
+                                        <div className={cx("types")}>
+                                            <button>청년주택</button>
+                                            <span>국민임대</span>
+                                        </div>
+                                        <div className={cx("title")}>
+                                            2019년 서울시 영구임대주택
+                                            예비입주자 모집
+                                        </div>
+                                        <div className={cx("location")}>
+                                            <span>
+                                                성북구 길음동, 길음역 도보 5분
+                                            </span>
+                                        </div>
+                                        <div className={cx("price")}>
+                                            <p>
+                                                <span>월세</span>
+                                                <span>38만원 ~ 55만원</span>
+                                            </p>
+                                            <p>
+                                                <span>보증금</span>
+                                                <span>150만원 ~ 150만원</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <img src={star_gray} alt={"star_gray"} />
-                                    <div className={cx("image-box")}>
-                                        <img src={room2} alt={"room"} />
+                                    <div>
+                                        <img
+                                            src={star_gray}
+                                            alt={"star_gray"}
+                                        />
+                                        <div className={cx("image-box")}>
+                                            <img src={room3} alt={"room"} />
+                                        </div>
+                                        <div className={cx("types")}>
+                                            <button>원룸</button>
+                                        </div>
+                                        <div className={cx("title")}>
+                                            2019년 서울시 영구임대주택
+                                            예비입주자 모집
+                                        </div>
+                                        <div className={cx("location")}>
+                                            <span>
+                                                성북구 길음동, 길음역 도보 5분
+                                            </span>
+                                        </div>
+                                        <div className={cx("price")}>
+                                            <p>
+                                                <span>월세</span>
+                                                <span>38만원 ~ 55만원</span>
+                                            </p>
+                                            <p>
+                                                <span>보증금</span>
+                                                <span>150만원 ~ 150만원</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className={cx("types")}>
-                                        <button>청년주택</button>
-                                        <span>국민임대</span>
-                                    </div>
-                                    <div className={cx("title")}>
-                                        2019년 서울시 영구임대주택 예비입주자
-                                        모집
-                                    </div>
-                                    <div className={cx("location")}>
-                                        <span>
-                                            성북구 길음동, 길음역 도보 5분
-                                        </span>
-                                    </div>
-                                    <div className={cx("price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <img src={star_gray} alt={"star_gray"} />
-                                    <div className={cx("image-box")}>
-                                        <img src={room3} alt={"room"} />
-                                    </div>
-                                    <div className={cx("types")}>
-                                        <button>원룸</button>
-                                    </div>
-                                    <div className={cx("title")}>
-                                        2019년 서울시 영구임대주택 예비입주자
-                                        모집
-                                    </div>
-                                    <div className={cx("location")}>
-                                        <span>
-                                            성북구 길음동, 길음역 도보 5분
-                                        </span>
-                                    </div>
-                                    <div className={cx("price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img src={star_gray} alt={"star_gray"} />
-                                    <div className={cx("image-box")}>
-                                        <img src={room4} alt={"room"} />
-                                    </div>
-                                    <div className={cx("types")}>
-                                        <button>청년주택</button>
-                                        <span>국민임대</span>
-                                    </div>
-                                    <div className={cx("title")}>
-                                        2019년 서울시 영구임대주택 예비입주자
-                                        모집
-                                    </div>
-                                    <div className={cx("location")}>
-                                        <span>
-                                            성북구 길음동, 길음역 도보 5분
-                                        </span>
-                                    </div>
-                                    <div className={cx("price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={cx("recently-viewed")}>
-                    <div className={cx("content")}>
-                        <h2>
-                            최근 본 하우스&nbsp;&nbsp;&nbsp;
-                            <span>|&nbsp;&nbsp;&nbsp; 관심 하우스</span>
-                            <Link to="/">더보기</Link>
-                        </h2>
-                        <div className={cx("recently-viewed-items")}>
-                            <div>
-                                <div>
-                                    <img src={star_gray} alt={"star_gray"} />
-                                    <div className={cx("image-box")}>
-                                        <img src={room7} alt={"room"} />
-                                    </div>
-                                    <div className={cx("types")}>
-                                        <button>청년주택</button>
-                                        <span>국민임대</span>
-                                    </div>
-                                    <div className={cx("title")}>
-                                        2019년 서울시 영구임대주택 예비입주자
-                                        모집
-                                    </div>
-                                    <div className={cx("location")}>
-                                        <span>
-                                            성북구 길음동, 길음역 도보 5분
-                                        </span>
-                                    </div>
-                                    <div className={cx("price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img src={star_gray} alt={"star_gray"} />
-                                    <div className={cx("image-box")}>
-                                        <img src={room6} alt={"room"} />
-                                    </div>
-                                    <div className={cx("types")}>
-                                        <button>청년주택</button>
-                                        <span>국민임대</span>
-                                    </div>
-                                    <div className={cx("title")}>
-                                        2019년 서울시 영구임대주택 예비입주자
-                                        모집
-                                    </div>
-                                    <div className={cx("location")}>
-                                        <span>
-                                            성북구 길음동, 길음역 도보 5분
-                                        </span>
-                                    </div>
-                                    <div className={cx("price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <img src={star_gray} alt={"star_gray"} />
-                                    <div className={cx("image-box")}>
-                                        <img src={room5} alt={"room"} />
-                                    </div>
-                                    <div className={cx("types")}>
-                                        <button>청년주택</button>
-                                        <span>국민임대</span>
-                                    </div>
-                                    <div className={cx("title")}>
-                                        2019년 서울시 영구임대주택 예비입주자
-                                        모집
-                                    </div>
-                                    <div className={cx("location")}>
-                                        <span>
-                                            성북구 길음동, 길음역 도보 5분
-                                        </span>
-                                    </div>
-                                    <div className={cx("price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className={cx("more-house")}>
-                                    <div className={cx("more-content")}>
-                                        <span>
-                                            아직 못 보신 더 많은 하우스가
-                                            있어요!
-                                        </span>
-                                        <button>
-                                            <img src={plus_icon} alt="plus" />
-                                        </button>
+                                    <div>
+                                        <img
+                                            src={star_gray}
+                                            alt={"star_gray"}
+                                        />
+                                        <div className={cx("image-box")}>
+                                            <img src={room4} alt={"room"} />
+                                        </div>
+                                        <div className={cx("types")}>
+                                            <button>청년주택</button>
+                                            <span>국민임대</span>
+                                        </div>
+                                        <div className={cx("title")}>
+                                            2019년 서울시 영구임대주택
+                                            예비입주자 모집
+                                        </div>
+                                        <div className={cx("location")}>
+                                            <span>
+                                                성북구 길음동, 길음역 도보 5분
+                                            </span>
+                                        </div>
+                                        <div className={cx("price")}>
+                                            <p>
+                                                <span>월세</span>
+                                                <span>38만원 ~ 55만원</span>
+                                            </p>
+                                            <p>
+                                                <span>보증금</span>
+                                                <span>150만원 ~ 150만원</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={cx("event-banner")}>
-                    <div className={cx("content")}>
-                        <div>
-                            <h3>
-                                10월 입주 대상자 할로윈 파티
-                                <br />
-                                플랜 A 이벤트
-                            </h3>
-                            <Link to="/">자세히 보기</Link>
+                    <div className={cx("recently-viewed")}>
+                        <div className={cx("content")}>
+                            <h2>
+                                최근 본 하우스&nbsp;&nbsp;&nbsp;
+                                <span>|&nbsp;&nbsp;&nbsp; 관심 하우스</span>
+                                <Link to="/">더보기</Link>
+                            </h2>
+                            <div className={cx("recently-viewed-items")}>
+                                <div>
+                                    <div>
+                                        <img
+                                            src={star_gray}
+                                            alt={"star_gray"}
+                                        />
+                                        <div className={cx("image-box")}>
+                                            <img src={room7} alt={"room"} />
+                                        </div>
+                                        <div className={cx("types")}>
+                                            <button>청년주택</button>
+                                            <span>국민임대</span>
+                                        </div>
+                                        <div className={cx("title")}>
+                                            2019년 서울시 영구임대주택
+                                            예비입주자 모집
+                                        </div>
+                                        <div className={cx("location")}>
+                                            <span>
+                                                성북구 길음동, 길음역 도보 5분
+                                            </span>
+                                        </div>
+                                        <div className={cx("price")}>
+                                            <p>
+                                                <span>월세</span>
+                                                <span>38만원 ~ 55만원</span>
+                                            </p>
+                                            <p>
+                                                <span>보증금</span>
+                                                <span>150만원 ~ 150만원</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img
+                                            src={star_gray}
+                                            alt={"star_gray"}
+                                        />
+                                        <div className={cx("image-box")}>
+                                            <img src={room6} alt={"room"} />
+                                        </div>
+                                        <div className={cx("types")}>
+                                            <button>청년주택</button>
+                                            <span>국민임대</span>
+                                        </div>
+                                        <div className={cx("title")}>
+                                            2019년 서울시 영구임대주택
+                                            예비입주자 모집
+                                        </div>
+                                        <div className={cx("location")}>
+                                            <span>
+                                                성북구 길음동, 길음역 도보 5분
+                                            </span>
+                                        </div>
+                                        <div className={cx("price")}>
+                                            <p>
+                                                <span>월세</span>
+                                                <span>38만원 ~ 55만원</span>
+                                            </p>
+                                            <p>
+                                                <span>보증금</span>
+                                                <span>150만원 ~ 150만원</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>
+                                        <img
+                                            src={star_gray}
+                                            alt={"star_gray"}
+                                        />
+                                        <div className={cx("image-box")}>
+                                            <img src={room5} alt={"room"} />
+                                        </div>
+                                        <div className={cx("types")}>
+                                            <button>청년주택</button>
+                                            <span>국민임대</span>
+                                        </div>
+                                        <div className={cx("title")}>
+                                            2019년 서울시 영구임대주택
+                                            예비입주자 모집
+                                        </div>
+                                        <div className={cx("location")}>
+                                            <span>
+                                                성북구 길음동, 길음역 도보 5분
+                                            </span>
+                                        </div>
+                                        <div className={cx("price")}>
+                                            <p>
+                                                <span>월세</span>
+                                                <span>38만원 ~ 55만원</span>
+                                            </p>
+                                            <p>
+                                                <span>보증금</span>
+                                                <span>150만원 ~ 150만원</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className={cx("more-house")}>
+                                        <div className={cx("more-content")}>
+                                            <span>
+                                                아직 못 보신 더 많은 하우스가
+                                                있어요!
+                                            </span>
+                                            <button>
+                                                <img
+                                                    src={plus_icon}
+                                                    alt="plus"
+                                                />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3>
-                                내 냥냥이의 건강한
-                                <br />
-                                여름나기 캠페인
-                            </h3>
-                            <Link to="/">자세히 보기</Link>
+                    </div>
+                    <div className={cx("event-banner")}>
+                        <div className={cx("content")}>
+                            <div>
+                                <h3>
+                                    10월 입주 대상자 할로윈 파티
+                                    <br />
+                                    플랜 A 이벤트
+                                </h3>
+                                <Link to="/">자세히 보기</Link>
+                            </div>
+                            <div>
+                                <h3>
+                                    내 냥냥이의 건강한
+                                    <br />
+                                    여름나기 캠페인
+                                </h3>
+                                <Link to="/">자세히 보기</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -463,7 +487,6 @@ class Main extends React.Component {
                     <div className={cx("clear")}></div>
                 </div>
                 <InhabiMobile />
-                {/* <CloseAccount /> 모달창 테스트 */}
             </div>
         );
     }

@@ -38,19 +38,21 @@ class AsideHam extends React.Component {
                                     <Link to="/user/Register">회원가입</Link>
                                 </span>
                                 &nbsp;|&nbsp;
-                                <span>로그인</span>
+                                <span onClick={this.props.openModal}>
+                                    로그인
+                                </span>
                             </p>
                             <p>
-                                <Link to="/house/search">하우스검색</Link>
+                                <Link to="/search">하우스검색</Link>
                             </p>
                             <p>
-                                <Link to="/">마이페이지</Link>
+                                <Link to="/user/mypage">마이페이지</Link>
                             </p>
                             <p>
                                 <Link to="/">문의메세지</Link>
                             </p>
                             <p>
-                                <Link to="/dictionary">청년주거백과</Link>
+                                <Link to="/article">청년주거백과</Link>
                             </p>
                             <p>
                                 <Link to="/">비즈페이지</Link>

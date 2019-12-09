@@ -1824,6 +1824,7 @@
         }
 
         & > .chat-body {
+            display: none;
             & > .user-chat {
                 margin: 24px 0;
                 position: relative;

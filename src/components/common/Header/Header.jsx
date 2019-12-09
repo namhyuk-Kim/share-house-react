@@ -41,7 +41,7 @@ class Header extends React.Component {
                             <div className={cx("line")}></div>
                         </button>
                         <nav className={cx("navigation")}>
-                            <Link to="/dictionary">청년주거 백과</Link>
+                            <Link to="/article">청년주거 백과</Link>
                             <Link to="/">비즈페이지</Link>
                         </nav>
                         <h2>
@@ -50,11 +50,12 @@ class Header extends React.Component {
                             </Link>
                         </h2>
                         <div className={cx("member-wrap")}>
-                            <Link to="/house/search">하우스 검색</Link>
+                            <Link to="/search">하우스 검색</Link>
                             <Link to="/user/Register">회원가입</Link>
-                            <a href="/" onClick={this.props.openModal}>
+                            <Link to="/user/mypage">김문경님</Link>
+                            {/* <a href="/" onClick={this.props.openModal}>
                                 로그인
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </header>

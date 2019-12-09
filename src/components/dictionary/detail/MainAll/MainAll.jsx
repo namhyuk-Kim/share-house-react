@@ -33,7 +33,11 @@ class MainAll extends React.Component {
                                         alt="게시물 이미지"
                                     />
                                 </div>
-                                <h3>쉐어하우스 입주자들과 함께하는 연말연시</h3>
+                                <h3>
+                                    <Link to="/article/articleid">
+                                        쉐어하우스 입주자들과 함께하는 연말연시
+                                    </Link>
+                                </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
                                         <img
@@ -61,7 +65,11 @@ class MainAll extends React.Component {
                                         alt="게시물 이미지"
                                     />
                                 </div>
-                                <h3>쉐어하우스 입주자들과 함께하는 연말연시</h3>
+                                <h3>
+                                    <Link to="/article/articleid">
+                                        쉐어하우스 입주자들과 함께하는 연말연시
+                                    </Link>
+                                </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
                                         <img
@@ -89,7 +97,11 @@ class MainAll extends React.Component {
                                         alt="게시물 이미지"
                                     />
                                 </div>
-                                <h3>쉐어하우스 입주자들과 함께하는 연말연시</h3>
+                                <h3>
+                                    <Link to="/article/articleid">
+                                        쉐어하우스 입주자들과 함께하는 연말연시
+                                    </Link>
+                                </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
                                         <img
@@ -123,7 +135,11 @@ class MainAll extends React.Component {
                                     <img src={comic_avata} alt="avata" />
                                 </div>
                                 <div className={cx("comic-info")}>
-                                    <h4>Vol 9 입주시즌의 쉐어하우스</h4>
+                                    <h4>
+                                        <Link to="/article/articleid">
+                                            Vol 9 입주시즌의 쉐어하우스
+                                        </Link>
+                                    </h4>
                                     <p>
                                         새로운 하우스 식구들과 함께하는 회식시
                                         <br />
@@ -155,7 +171,11 @@ class MainAll extends React.Component {
                                     <img src={comic_avata} alt="avata" />
                                 </div>
                                 <div className={cx("comic-info")}>
-                                    <h4>Vol 9 입주시즌의 쉐어하우스</h4>
+                                    <h4>
+                                        <Link to="/article/articleid">
+                                            Vol 9 입주시즌의 쉐어하우스
+                                        </Link>
+                                    </h4>
                                     <p>
                                         새로운 하우스 식구들과 함께하는 회식시
                                         <br />
@@ -195,8 +215,10 @@ class MainAll extends React.Component {
                                     <img src={stroy_image} alt="card" />
                                 </div>
                                 <div className={cx("card-title")}>
-                                    쉐어하우스에서는 별도의 가전을 살필요가
-                                    없어요.
+                                    <Link to="/article/articleid">
+                                        쉐어하우스에서는 별도의 가전을 살필요가
+                                        없어요.
+                                    </Link>
                                 </div>
                                 <div className={cx("card-footer")}>
                                     <span>2019.01.02</span>
@@ -214,8 +236,10 @@ class MainAll extends React.Component {
                                     <img src={stroy_image} alt="card" />
                                 </div>
                                 <div className={cx("card-title")}>
-                                    쉐어하우스에서는 별도의 가전을 살필요가
-                                    없어요.
+                                    <Link to="/article/articleid">
+                                        쉐어하우스에서는 별도의 가전을 살필요가
+                                        없어요.
+                                    </Link>
                                 </div>
                                 <div className={cx("card-footer")}>
                                     <span>2019.01.02</span>
@@ -233,8 +257,10 @@ class MainAll extends React.Component {
                                     <img src={stroy_image} alt="card" />
                                 </div>
                                 <div className={cx("card-title")}>
-                                    쉐어하우스에서는 별도의 가전을 살필요가
-                                    없어요.
+                                    <Link to="/article/articleid">
+                                        쉐어하우스에서는 별도의 가전을 살필요가
+                                        없어요.
+                                    </Link>
                                 </div>
                                 <div className={cx("card-footer")}>
                                     <span>2019.01.02</span>
@@ -252,8 +278,10 @@ class MainAll extends React.Component {
                                     <img src={stroy_image} alt="card" />
                                 </div>
                                 <div className={cx("card-title")}>
-                                    쉐어하우스에서는 별도의 가전을 살필요가
-                                    없어요.
+                                    <Link to="/article/articleid">
+                                        쉐어하우스에서는 별도의 가전을 살필요가
+                                        없어요.
+                                    </Link>
                                 </div>
                                 <div className={cx("card-footer")}>
                                     <span>2019.01.02</span>
@@ -281,7 +309,11 @@ class MainAll extends React.Component {
                                         alt="게시물 이미지"
                                     />
                                 </div>
-                                <h3>쉐어하우스 입주자들과 함께하는 연말연시</h3>
+                                <h3>
+                                    <Link to="/article/articleid">
+                                        쉐어하우스 입주자들과 함께하는 연말연시
+                                    </Link>
+                                </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
                                         <img
@@ -309,7 +341,11 @@ class MainAll extends React.Component {
                                         alt="게시물 이미지"
                                     />
                                 </div>
-                                <h3>쉐어하우스 입주자들과 함께하는 연말연시</h3>
+                                <h3>
+                                    <Link to="/article/articleid">
+                                        쉐어하우스 입주자들과 함께하는 연말연시
+                                    </Link>
+                                </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
                                         <img
@@ -337,7 +373,11 @@ class MainAll extends React.Component {
                                         alt="게시물 이미지"
                                     />
                                 </div>
-                                <h3>쉐어하우스 입주자들과 함께하는 연말연시</h3>
+                                <h3>
+                                    <Link to="/article/articleid">
+                                        쉐어하우스 입주자들과 함께하는 연말연시
+                                    </Link>
+                                </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
                                         <img
@@ -372,9 +412,11 @@ class MainAll extends React.Component {
                                 </div>
                                 <div className={cx("comic-info")}>
                                     <h4>
-                                        역세권 2030 청년주택 :
-                                        청년(층)편(공공임대,
-                                        <br /> 민간임대조건)
+                                        <Link to="/article/articleid">
+                                            역세권 2030 청년주택 :
+                                            청년(층)편(공공임대,
+                                            <br /> 민간임대조건)
+                                        </Link>
                                     </h4>
                                     <p>
                                         새로운 하우스 식구들과 함께하는 회식시
@@ -408,9 +450,11 @@ class MainAll extends React.Component {
                                 </div>
                                 <div className={cx("comic-info")}>
                                     <h4>
-                                        역세권 2030 청년주택 :
-                                        청년(층)편(공공임대,
-                                        <br /> 민간임대조건)
+                                        <Link to="/article/articleid">
+                                            역세권 2030 청년주택 :
+                                            청년(층)편(공공임대,
+                                            <br /> 민간임대조건)
+                                        </Link>
                                     </h4>
                                     <p>
                                         새로운 하우스 식구들과 함께하는 회식시
@@ -454,8 +498,10 @@ class MainAll extends React.Component {
                                     />
                                 </div>
                                 <h3>
-                                    행복주택 입주조건 알아보기
-                                    <br /> 서울시 청년주택과 다른 점은?
+                                    <Link to="/article/articleid">
+                                        행복주택 입주조건 알아보기
+                                        <br /> 서울시 청년주택과 다른 점은?
+                                    </Link>
                                 </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
@@ -485,8 +531,10 @@ class MainAll extends React.Component {
                                     />
                                 </div>
                                 <h3>
-                                    행복주택 입주조건 알아보기
-                                    <br /> 서울시 청년주택과 다른 점은?
+                                    <Link to="/article/articleid">
+                                        행복주택 입주조건 알아보기
+                                        <br /> 서울시 청년주택과 다른 점은?
+                                    </Link>
                                 </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
@@ -516,8 +564,10 @@ class MainAll extends React.Component {
                                     />
                                 </div>
                                 <h3>
-                                    행복주택 입주조건 알아보기
-                                    <br /> 서울시 청년주택과 다른 점은?
+                                    <Link to="/article/articleid">
+                                        행복주택 입주조건 알아보기
+                                        <br /> 서울시 청년주택과 다른 점은?
+                                    </Link>
                                 </h3>
                                 <div className={cx("publisher")}>
                                     <span className={cx("profile")}>
