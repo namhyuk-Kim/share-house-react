@@ -5,7 +5,7 @@
     margin: 0 auto;
     & > .popularity {
         & > .content {
-            max-width: 1122px;
+            max-width: 1120px;
             min-width: 1024px;
             margin: 0 auto;
             & > h2 {
@@ -14,6 +14,7 @@
                 font-weight: 500;
                 font-size: 20px;
                 line-height: 29px;
+                margin-left: 16px;
             }
 
             & > .popularity-items {
@@ -119,7 +120,7 @@
 
     & > .recently-viewed {
         & > .content {
-            max-width: 1122px;
+            max-width: 1120px;
             min-width: 1024px;
             margin: 0 auto;
             & > h2 {
@@ -129,6 +130,7 @@
                 font-weight: 500;
                 font-size: 20px;
                 line-height: 29px;
+                margin-left: 16px;
                 & > span {
                     color: #bdbdbd;
                     font-size: 20px;
@@ -139,7 +141,7 @@
                     line-height: 20px;
                     color: #828282;
                     position: absolute;
-                    right: 50px;
+                    right: 16px;
                     bottom: 23px;
                 }
             }
@@ -149,6 +151,16 @@
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
+                & > div:nth-child(even) {
+                    & > div:nth-child(even) {
+                        margin-right: 0;
+                    }
+                }
+                & > div:nth-child(odd) {
+                    & > div:nth-child(odd) {
+                        margin-left: 0;
+                    }
+                }
 
                 & > div {
                     display: inline-block;
@@ -190,7 +202,7 @@
                     & > div {
                         position: relative;
                         float: left;
-                        max-width: 246px;
+                        max-width: 245px;
                         height: calc(100% - 24px);
                         margin: 16px;
                         & > img {
@@ -516,7 +528,8 @@
                 background-image: url(../../../assets/images/tower.png);
                 background-repeat: no-repeat;
                 background-size: contain;
-                background-position-x: right;
+                background-position-x: 176px;
+                overflow-x: hidden;
             }
 
             & > div:nth-child(2) {

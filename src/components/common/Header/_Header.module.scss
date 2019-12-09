@@ -5,10 +5,9 @@ header {
     background-color: #ffffff;
     border-bottom: 1px solid #e8e8e8;
     & > .content {
-        max-width: 1080px;
         height: 72px;
         min-width: 1024px;
-        margin: 0 auto;
+        margin: 0 64px;
         position: relative;
 
         & > .ham-menu {
@@ -76,7 +75,7 @@ header {
             height: 100%;
             display: table;
             float: right;
-            margin-right: 64px;
+
             & > a {
                 display: table-cell;
                 vertical-align: middle;

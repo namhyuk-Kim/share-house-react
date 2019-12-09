@@ -28,70 +28,6 @@
         }
     }
 
-    & > .mypage-category {
-        width: 100%;
-        padding-top: 15px;
-        border-top: 1px solid #e0e0e0;
-        border-bottom: 1px solid #e0e0e0;
-        & > .main-category {
-            & > ul {
-                width: 100%;
-                text-align: center;
-                margin: 0 auto;
-                & > li {
-                    padding-bottom: 16px;
-                    display: inline-block;
-                    max-width: 224px;
-                    width: 100%;
-                    margin-right: 24px;
-                    & > button {
-                        font-family: Noto Sans KR;
-                        font-style: normal;
-                        font-weight: normal;
-                        font-size: 15px;
-                        color: rgba(0, 0, 0, 0.3);
-                    }
-                }
-                & > li.primary-blue {
-                    & > a {
-                        color: #16bdc6;
-                        font-family: Noto Sans KR;
-                        font-style: normal;
-                        font-weight: 500;
-                        font-size: 15px;
-                    }
-                    border-bottom: 3px solid #16bdc6;
-                }
-            }
-        }
-        & > .sub-category {
-            margin-top: 30px;
-            & > ul {
-                width: 100%;
-                text-align: center;
-                margin: 0 auto;
-                & > li {
-                    display: inline-block;
-                    width: 240px;
-                    margin-right: 24px;
-
-                    & > button {
-                        width: 100%;
-                        display: block;
-                        font-family: Noto Sans KR;
-                        font-style: normal;
-                        font-weight: normal;
-                        font-size: 16px;
-                        padding-bottom: 16px;
-                    }
-                    & > .primary_blue {
-                        border-bottom: 3px solid #16bdc6;
-                        color: #16bdc6;
-                    }
-                }
-            }
-        }
-    }
     & > .popularity {
         & > .content {
             max-width: 1122px;
@@ -268,6 +204,71 @@
     }
 }
 
+.mypage-category {
+    width: 100%;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    & > .main-category {
+        & > ul {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            & > li {
+                padding-bottom: 16px;
+                display: inline-block;
+                max-width: 224px;
+                width: 100%;
+                margin-right: 24px;
+                & > button {
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 15px;
+                    color: rgba(0, 0, 0, 0.3);
+                }
+            }
+            & > li.primary-blue {
+                & > a {
+                    color: #16bdc6;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 15px;
+                }
+                border-bottom: 3px solid #16bdc6;
+            }
+        }
+    }
+    & > .sub-category {
+        margin-top: 30px;
+        & > ul {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            & > li {
+                display: inline-block;
+                width: 240px;
+                margin-right: 24px;
+
+                & > button {
+                    width: 100%;
+                    display: block;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    padding-bottom: 16px;
+                }
+                & > .primary_blue {
+                    border-bottom: 3px solid #16bdc6;
+                    color: #16bdc6;
+                }
+            }
+        }
+    }
+}
+
 // 아래부터는 모바일 반응형 임
 @include media("<=medium", ">=small") {
     .mypage-wrap {
@@ -299,77 +300,6 @@
             }
         }
 
-        & > .mypage-category {
-            margin-left: 0px;
-            width: unset;
-            padding-top: 0px;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            & > .main-category {
-                & > ul {
-                    width: unset;
-                    text-align: left;
-                    margin: 0 0;
-                    display: flex;
-                    justify-content: center;
-                    & > li {
-                        padding-top: 12px;
-                        display: inline-block;
-                        max-width: 80px;
-                        width: unset;
-                        margin-right: 13px;
-                        & > button {
-                            font-family: Noto Sans KR;
-                            font-style: normal;
-                            font-weight: 500;
-                            font-size: 13px;
-                            color: rgba(0, 0, 0, 0.3);
-                        }
-                    }
-                    & > li:last-child {
-                        margin-right: 0;
-                    }
-                    & > li.primary-blue {
-                        padding-bottom: 5px;
-                        & > a {
-                            color: #16bdc6;
-                            font-family: Noto Sans KR;
-                            font-style: normal;
-                            font-weight: 500;
-                            font-size: 15px;
-                        }
-                        border-bottom: 3px solid #16bdc6;
-                    }
-                }
-            }
-            & > .sub-category {
-                margin-top: 30px;
-                & > ul {
-                    width: 100%;
-                    text-align: center;
-                    margin: 0 auto;
-                    & > li {
-                        display: inline-block;
-                        width: 240px;
-                        margin-right: 24px;
-
-                        & > a {
-                            width: 100%;
-                            display: block;
-                            font-family: Noto Sans KR;
-                            font-style: normal;
-                            font-weight: normal;
-                            font-size: 16px;
-                            padding-bottom: 16px;
-                        }
-                        & > .primary_blue {
-                            border-bottom: 3px solid #16bdc6;
-                            color: #16bdc6;
-                        }
-                    }
-                }
-            }
-        }
         & > .popularity {
             & > .content {
                 max-width: 1122px;
@@ -540,6 +470,77 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+    .mypage-category {
+        margin-left: 0px;
+        width: unset;
+        padding-top: 0px;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        & > .main-category {
+            & > ul {
+                width: unset;
+                text-align: left;
+                margin: 0 0;
+                display: flex;
+                justify-content: center;
+                & > li {
+                    padding-top: 12px;
+                    display: inline-block;
+                    max-width: 80px;
+                    width: unset;
+                    margin-right: 13px;
+                    & > button {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 13px;
+                        color: rgba(0, 0, 0, 0.3);
+                    }
+                }
+                & > li:last-child {
+                    margin-right: 0;
+                }
+                & > li.primary-blue {
+                    padding-bottom: 5px;
+                    & > a {
+                        color: #16bdc6;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 15px;
+                    }
+                    border-bottom: 3px solid #16bdc6;
+                }
+            }
+        }
+        & > .sub-category {
+            margin-top: 30px;
+            & > ul {
+                width: 100%;
+                text-align: center;
+                margin: 0 auto;
+                & > li {
+                    display: inline-block;
+                    width: 240px;
+                    margin-right: 24px;
+
+                    & > a {
+                        width: 100%;
+                        display: block;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        padding-bottom: 16px;
+                    }
+                    & > .primary_blue {
+                        border-bottom: 3px solid #16bdc6;
+                        color: #16bdc6;
                     }
                 }
             }
