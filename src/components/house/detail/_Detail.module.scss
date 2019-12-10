@@ -203,6 +203,8 @@
                     }
 
                     & > .room_infomation {
+                        margin-top: 64px;
+                        margin-bottom: 64px;
                         & > h1 {
                             font-size: 18px;
                             margin-bottom: 11px;
@@ -211,6 +213,10 @@
                                 vertical-align: unset;
                                 cursor: pointer;
                                 float: right;
+                                font-family: Noto Sans KR;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 13px;
                             }
                             & > span:last-child {
                                 margin-right: 12px;
@@ -427,6 +433,39 @@
                                 max-width: 100%;
                             }
                         }
+                        & > .map-icons {
+                            margin: 16px 0;
+                            h3 {
+                                font-family: Noto Sans KR;
+                                font-style: normal;
+                                font-weight: 500;
+                                font-size: 12px;
+                                line-height: 17px;
+                            }
+                            & > div {
+                                min-width: 224px;
+                                max-width: 510px;
+                                & > .icons {
+                                    width: 54px;
+                                    display: inline-block;
+                                    margin-right: 18px;
+                                    text-align: center;
+                                    & > img {
+                                        margin: 0 auto;
+                                        text-align: center;
+                                        display: block;
+                                    }
+                                    & > span {
+                                        font-family: Noto Sans KR;
+                                        font-style: normal;
+                                        font-weight: normal;
+                                        font-size: 10px;
+                                        line-height: 14px;
+                                        display: inline-block;
+                                    }
+                                }
+                            }
+                        }
 
                         & > .house-location-info {
                             & > .train-info {
@@ -453,13 +492,17 @@
                                 margin-bottom: 15px;
                             }
                             & > .house-info {
+                                font-family: Noto Sans KR;
+                                font-style: normal;
                                 font-weight: 300;
                                 font-size: 14px;
-                                line-height: 32px;
+                                line-height: 28px;
+                                color: #323232;
                             }
                         }
                     }
                     & > .master-info {
+                        margin-top: 64px;
                         max-width: 100%;
                         width: 100%;
                         border: 1px solid #e0e0e0;
@@ -500,11 +543,13 @@
                         }
                     }
                     & > .house-story {
+                        margin: 64px 0;
                         & > h1 {
                             font-weight: 500;
                             font-size: 20px;
                             line-height: 29px;
                             text-align: center;
+                            margin-bottom: 24px;
                         }
                         & > .story-cards-wrap {
                             display: flex;
@@ -772,7 +817,7 @@
 }
 
 .chating {
-    width: 344px;
+    width: 384px;
     border: 1px solid #e0e0e0;
     background: #fafafa;
     border-radius: 4px 4px 0px 0px;
@@ -909,7 +954,7 @@
         padding-top: 16px;
         & > input {
             margin-left: 12px;
-            width: 276px;
+            width: 300px;
             background: #ffffff;
             border: 1px solid #ecebed;
             border-radius: 18px;
@@ -1922,4 +1967,7 @@
             }
         }
     }
+}
+.dp-none {
+    display: none;
 }

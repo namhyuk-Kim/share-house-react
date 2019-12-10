@@ -43,6 +43,20 @@ import link_share from "assets/images/link_share.png";
 import caledar from "assets/images/caledar.png";
 import chat_profile from "assets/images/chat-profile.png";
 import m_event from "assets/images/m-event.png";
+import store24 from "assets/images/24store.png";
+import Bank from "assets/images/Bank.png";
+import Cafe from "assets/images/Cafe.png";
+import drug from "assets/images/drug.png";
+import fastfood from "assets/images/fastfood.png";
+import Hospital from "assets/images/Hospital.png";
+import Hot from "assets/images/Hot.png";
+import Landry from "assets/images/Landry.png";
+import Mart from "assets/images/Mart.png";
+import Movie from "assets/images/Movie.png";
+import office from "assets/images/office.png";
+import police from "assets/images/police.png";
+import Drugstore from "assets/images/Drugstore.png";
+import Daiso from "assets/images/Daiso.png";
 
 const cx = classnames.bind(styles);
 
@@ -560,13 +574,13 @@ class Detail extends React.Component {
                                                         />
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr className={cx("dp-none")}>
                                                     <td>방설명</td>
                                                     <td colSpan="6">
                                                         싱글침대 2개
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr className={cx("dp-none")}>
                                                     <td>제공시설</td>
                                                     <td colSpan="6">
                                                         책상,의자,스탠드,옷장,커튼,이불,배게,싱글침대,이층침대,벙커침대,화장대,롬에어컨,선풍기,수납장
@@ -589,13 +603,13 @@ class Detail extends React.Component {
                                                         />
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr className={cx("dp-none")}>
                                                     <td>방설명</td>
                                                     <td colSpan="6">
                                                         싱글침대 2개
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr className={cx("dp-none")}>
                                                     <td>제공시설</td>
                                                     <td colSpan="6">
                                                         책상,의자,스탠드,옷장,커튼,이불,배게,싱글침대,이층침대,벙커침대,화장대,롬에어컨,선풍기,수납장
@@ -605,7 +619,12 @@ class Detail extends React.Component {
                                         </table>
                                     </div>
                                 </div>
-                                <div className={cx("room_infomation-young")}>
+                                <div
+                                    className={cx([
+                                        "room_infomation-young",
+                                        "dp-none"
+                                    ])}
+                                >
                                     <h1>방정보</h1>
                                     <div className={cx("floor-infomation")}>
                                         <div className={cx("infomation-left")}>
@@ -743,7 +762,9 @@ class Detail extends React.Component {
                                         </table>
                                     </div>
                                 </div>
-                                <div className={cx("public-space")}>
+                                <div
+                                    className={cx(["public-space", "dp-none"])}
+                                >
                                     <h1>공용공간</h1>
                                     <div className={cx("space-info")}>
                                         <h1>북카페</h1>
@@ -791,7 +812,119 @@ class Detail extends React.Component {
                                             src={location_map}
                                             alt="location-map"
                                         />
-                                        {/* 네이버 지도 Api 들어갈 예정임 */}
+                                    </div>
+                                    <div className={cx("map-icons")}>
+                                        <h3>맵 아이콘</h3>
+                                        <div>
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Hospital}
+                                                    alt="map-icon"
+                                                />
+                                                <span>병원</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Bank}
+                                                    alt="map-icon"
+                                                />
+                                                <span>은행</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Daiso}
+                                                    alt="map-icon"
+                                                />
+                                                <span>다이소</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Drugstore}
+                                                    alt="map-icon"
+                                                />
+                                                <span>드럭스토어</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={fastfood}
+                                                    alt="map-icon"
+                                                />
+                                                <span>패스트푸드</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Cafe}
+                                                    alt="map-icon"
+                                                />
+                                                <span>카폐베이커리</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Landry}
+                                                    alt="map-icon"
+                                                />
+                                                <span>세탁소</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={drug}
+                                                    alt="map-icon"
+                                                />
+                                                <span>약국</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Mart}
+                                                    alt="map-icon"
+                                                />
+                                                <span>마트</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={store24}
+                                                    alt="map-icon"
+                                                />
+                                                <span>편의점</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={Movie}
+                                                    alt="map-icon"
+                                                />
+                                                <span>영화관</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={police}
+                                                    alt="map-icon"
+                                                />
+                                                <span>경찰서</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img
+                                                    src={office}
+                                                    alt="map-icon"
+                                                />
+                                                <span>주민센터</span>
+                                            </div>
+
+                                            <div className={cx("icons")}>
+                                                <img src={Hot} alt="map-icon" />
+                                                <span>핫플레이스</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className={cx("house-location-info")}>
                                         <div className={cx("train-info")}>
