@@ -99,6 +99,7 @@
             line-height: 29px;
             display: inline-block;
             vertical-align: middle;
+            margin-left: 16px;
         }
         & > button {
             width: 88px;
@@ -110,6 +111,7 @@
             vertical-align: middle;
             display: inline-block;
             margin-top: 72px;
+            margin-right: 16px;
         }
 
         & > .popularity-items {
@@ -117,10 +119,20 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-
+            & > div:nth-child(even) {
+                & > div:nth-child(even) {
+                    margin-right: 0;
+                }
+            }
+            & > div:nth-child(odd) {
+                & > div:nth-child(odd) {
+                    margin-left: 0;
+                }
+            }
             & > div {
                 display: inline-block;
                 min-height: 350px;
+
                 & > .more-house {
                     border: 1px solid #e0e0e0;
                     border-radius: 2px;
@@ -203,7 +215,7 @@
                     & > .image-box {
                         width: 100%;
                         max-height: 192px;
-                        border-radius: 6px;
+                        border-radius: 2px;
                         overflow: hidden;
                     }
                     & > .title {
@@ -477,7 +489,7 @@
                         & > .image-box {
                             width: 100%;
                             max-height: 192px;
-                            border-radius: 6px;
+                            border-radius: 2px;
                             overflow: hidden;
                             & > img {
                                 width: 320px;

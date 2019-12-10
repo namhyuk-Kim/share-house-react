@@ -70,59 +70,7 @@
             }
         }
     }
-    & > .dictionary-category {
-        width: 100%;
-        padding: 15px 0;
-        border-top: 1px solid #e0e0e0;
-        border-bottom: 1px solid #e0e0e0;
-        & > .main-category {
-            & > ul {
-                width: 100%;
-                text-align: center;
-                margin: 0 auto;
-                & > li {
-                    display: inline-block;
-                    margin-right: 24px;
-                    & > button {
-                        font-family: Noto Sans KR;
-                        font-style: normal;
-                        font-weight: normal;
-                        font-size: 16px;
-                    }
-                    & > button.primary_blue {
-                        color: #16bdc6;
-                    }
-                }
-            }
-        }
-        & > .sub-category {
-            margin-top: 30px;
-            & > ul {
-                width: 100%;
-                text-align: center;
-                margin: 0 auto;
-                & > li {
-                    display: inline-block;
-                    width: 240px;
-                    margin-right: 24px;
 
-                    & > button {
-                        width: 100%;
-                        display: block;
-                        font-family: Noto Sans KR;
-                        font-style: normal;
-                        font-weight: normal;
-                        font-size: 16px;
-                        padding-bottom: 16px;
-                    }
-                    & > button.primary_blue {
-                        border-bottom: 3px solid #16bdc6;
-                        color: #16bdc6;
-                    }
-                }
-            }
-        }
-    }
     & > .dictionary-contents {
         max-width: 1440px;
         min-width: 1024px;
@@ -576,6 +524,59 @@
         }
     }
 }
+.dictionary-category {
+    width: 100%;
+    padding: 15px 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    & > .main-category {
+        & > ul {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            & > li {
+                display: inline-block;
+                margin-right: 24px;
+                & > button {
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                }
+                & > button.primary_blue {
+                    color: #16bdc6;
+                }
+            }
+        }
+    }
+    & > .sub-category {
+        margin-top: 30px;
+        & > ul {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            & > li {
+                display: inline-block;
+                width: 240px;
+                margin-right: 24px;
+
+                & > button {
+                    width: 100%;
+                    display: block;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    padding-bottom: 16px;
+                }
+                & > button.primary_blue {
+                    border-bottom: 3px solid #16bdc6;
+                    color: #16bdc6;
+                }
+            }
+        }
+    }
+}
 
 @include media("<=medium", ">=small") {
     .dictionary-wrap {
@@ -645,84 +646,6 @@
                     left: 18px;
                     top: 50%;
                     transform: translateY(-50%);
-                }
-            }
-        }
-        & > .dictionary-category {
-            width: 100%;
-            padding: 0px 0;
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: center;
-            min-width: 320px;
-            max-width: 768px;
-            flex-wrap: wrap;
-            & > .main-category {
-                padding: 16px 0;
-                display: flex;
-                justify-content: space-between;
-                min-width: 320px;
-                max-width: 768px;
-                & > ul {
-                    width: 100%;
-                    text-align: center;
-                    display: flex;
-                    justify-content: space-between;
-                    & > li {
-                        display: inline-block;
-                        text-align: center;
-                        margin-right: 0;
-                        & > button {
-                            font-family: Noto Sans KR;
-                            font-style: normal;
-                            font-weight: normal;
-                            font-size: 16px;
-                        }
-                        & > button.primary_blue {
-                            color: #16bdc6;
-                        }
-                    }
-                }
-            }
-            & > .sub-category {
-                min-width: 320px;
-                max-width: 768px;
-                margin-top: 30px;
-                overflow: scroll;
-                display: flex;
-
-                border-top: 1px solid #e0e0e0;
-                overflow-x: scroll;
-                margin: 0 20px;
-                & > ul {
-                    width: 568px;
-                    display: flex;
-                    justify-content: flex-start;
-                    text-align: center;
-                    margin: 0 0;
-
-                    & > li {
-                        display: inline-block;
-                        width: 65px;
-                        width: 142px;
-                        float: left;
-                        margin-right: 0;
-
-                        & > button {
-                            width: 100%;
-                            display: block;
-                            font-family: Noto Sans KR;
-                            font-style: normal;
-                            font-weight: normal;
-                            font-size: 16px;
-                            padding: 12px 0;
-                        }
-                        & > button.primary_blue {
-                            border-bottom: 3px solid #16bdc6;
-                            color: #16bdc6;
-                        }
-                    }
                 }
             }
         }
@@ -1177,6 +1100,84 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+    .dictionary-category {
+        width: 100%;
+        padding: 0px 0;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: center;
+        min-width: 320px;
+        max-width: 768px;
+        flex-wrap: wrap;
+        & > .main-category {
+            padding: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            min-width: 320px;
+            max-width: 768px;
+            & > ul {
+                width: 100%;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                & > li {
+                    display: inline-block;
+                    text-align: center;
+                    margin-right: 0;
+                    & > button {
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                    }
+                    & > button.primary_blue {
+                        color: #16bdc6;
+                    }
+                }
+            }
+        }
+        & > .sub-category {
+            min-width: 320px;
+            max-width: 768px;
+            margin-top: 30px;
+            overflow: scroll;
+            display: flex;
+
+            border-top: 1px solid #e0e0e0;
+            overflow-x: scroll;
+            margin: 0 20px;
+            & > ul {
+                width: 568px;
+                display: flex;
+                justify-content: flex-start;
+                text-align: center;
+                margin: 0 0;
+
+                & > li {
+                    display: inline-block;
+                    width: 65px;
+                    width: 142px;
+                    float: left;
+                    margin-right: 0;
+
+                    & > button {
+                        width: 100%;
+                        display: block;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        padding: 12px 0;
+                    }
+                    & > button.primary_blue {
+                        border-bottom: 3px solid #16bdc6;
+                        color: #16bdc6;
                     }
                 }
             }

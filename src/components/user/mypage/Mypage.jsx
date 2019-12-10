@@ -60,10 +60,12 @@ class Mypage extends React.Component {
 
     render() {
         return (
-            <div className={cx("mypage-wrap")}>
-                <div className={cx("mypage-user-data")}>
-                    <h1>김문영</h1>
-                    <span>kimmy@naver.com</span>
+            <>
+                <div className={cx("mypage-wrap")}>
+                    <div className={cx("mypage-user-data")}>
+                        <h1>김문영</h1>
+                        <span>kimmy@naver.com</span>
+                    </div>
                 </div>
                 <div className={cx("mypage-category")}>
                     <div className={cx("main-category")}>
@@ -136,8 +138,8 @@ class Mypage extends React.Component {
                         </ul>
                     </div>
                 </div>
-                {this.splashComp()}
-            </div>
+                <div className={cx("mypage-wrap")}>{this.splashComp()}</div>
+            </>
         );
     }
 }

@@ -12,7 +12,8 @@ class MainTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            nowPagePath: ""
         };
     }
 
@@ -35,6 +36,7 @@ class MainTemplate extends React.Component {
                     isModalOpen={this.state.isModalOpen}
                 />
                 {this.props.children}
+
                 <Footer />
                 <MobileFooter />
             </div>

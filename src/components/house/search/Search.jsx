@@ -75,15 +75,6 @@ class Search extends React.Component {
         };
         this.map = new window.kakao.maps.Map(this.mapRef, options);
     } //지도 생성 및 객체 리턴
-    // ShowCompare = () => {
-    // 작동안됨.. [html은 넣어주는데 변환안됨]
-    //     var contents = document.getElementsByClassName(cx("search-wrap"))[0]
-    //         .innerHTML;
-    //     var newContents = (contents += "<Compare />");
-    //     document.getElementsByClassName(
-    //         cx("search-wrap")
-    //     )[0].innerHTML = newContents;
-    // };
 
     render() {
         return (
@@ -140,91 +131,98 @@ class Search extends React.Component {
                     data-filter_toggle={this.state.ShowFlilter}
                 >
                     <div>
-                        <div>
-                            <div className={cx("vrhouse")}>
-                                <h3>VR하우스 보기</h3>
-                                <div>
-                                    <img src={filter_vr} alt="vr" />
-                                </div>
-                            </div>
-                            <div className={cx("trade-type")}>
-                                <h3>거래 유형</h3>
-                                <div>
-                                    <label>
-                                        <input type="checkbox" defaultChecked />
-                                        <div>쉐어하우스</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>원룸/투룸</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>청년주택</div>
-                                    </label>
-                                </div>
+                        <div className={cx("vrhouse")}>
+                            <h3>VR하우스 보기</h3>
+                            <div>
+                                <img src={filter_vr} alt="vr" />
                             </div>
                         </div>
-                        <div>
-                            <div className={cx("deposit")}>
-                                <h3>보증금</h3>
-                                <div>
-                                    <InputRange
-                                        value={this.state.deposit}
-                                        onChange={deposit =>
-                                            this.setState({ deposit })
-                                        }
-                                    />
-                                </div>
-                                <h3>월세</h3>
-                                <div>
-                                    <InputRange
-                                        value={this.state.monthly}
-                                        onChange={monthly =>
-                                            this.setState({ monthly })
-                                        }
-                                    />
-                                </div>
+                        <div className={cx("trade-type")}>
+                            <h3>거래 유형</h3>
+                            <div>
+                                <label>
+                                    <input type="checkbox" defaultChecked />
+                                    <div>쉐어하우스</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>원룸/투룸</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>청년주택</div>
+                                </label>
                             </div>
-                            <div className={cx("residency")}>
-                                <h3>입주조건</h3>
-                                <div>
-                                    <label>
-                                        <input type="checkbox" defaultChecked />
-                                        <div>여성전용</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>남성전용</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>남여공통</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>신규오픈</div>
-                                    </label>
-                                </div>
-                                <h3>추가조건</h3>
-                                <div>
-                                    <label>
-                                        <input type="checkbox" defaultChecked />
-                                        <div>반려동물</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>보증금조절</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>외국인가능</div>
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        <div>즉시입주</div>
-                                    </label>
-                                </div>
+                        </div>
+
+                        <div className={cx("deposit")}>
+                            <h3>보증금</h3>
+                            <div>
+                                <InputRange
+                                    value={this.state.deposit}
+                                    onChange={deposit =>
+                                        this.setState({ deposit })
+                                    }
+                                />
+                            </div>
+                            <div className={cx("range-helper")}>
+                                <span>0</span>
+                                <span>5천만</span>
+                                <span>최대</span>
+                            </div>
+                            <h3>월세</h3>
+                            <div>
+                                <InputRange
+                                    value={this.state.monthly}
+                                    onChange={monthly =>
+                                        this.setState({ monthly })
+                                    }
+                                />
+                            </div>
+                            <div className={cx("range-helper")}>
+                                <span>0</span>
+                                <span>50만원</span>
+                                <span>최대</span>
+                            </div>
+                        </div>
+                        <div className={cx("residency")}>
+                            <h3>입주조건</h3>
+                            <div>
+                                <label>
+                                    <input type="checkbox" defaultChecked />
+                                    <div>여성전용</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>남성전용</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>남여공통</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>신규오픈</div>
+                                </label>
+                            </div>
+                            <h3>추가조건</h3>
+                            <div>
+                                <label>
+                                    <input type="checkbox" defaultChecked />
+                                    <div>반려동물</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>보증금조절</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>외국인가능</div>
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    <div>즉시입주</div>
+                                </label>
                             </div>
                         </div>
                     </div>

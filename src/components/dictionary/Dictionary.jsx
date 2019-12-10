@@ -97,22 +97,25 @@ class Dictionary extends React.Component {
         };
 
         return (
-            <div className={cx("dictionary-wrap")}>
-                <div className={cx("dictionary-search")}>
-                    <h1>청년주거 백과</h1>
-                    <p>
-                        청년들의 더 나은 주거환경과 올바른 주거문화 형성을 위한
-                        <br />
-                        다양한 정보를 제공해 드립니다.
-                    </p>
-                    <form>
-                        <input
-                            type="text"
-                            placeholder="검색어를 입력해주세요."
-                        ></input>
-                        <button>검색</button>
-                        <img src={search} alt={"search"} />
-                    </form>
+            <>
+                <div className={cx("dictionary-wrap")}>
+                    <div className={cx("dictionary-search")}>
+                        <h1>청년주거 백과</h1>
+                        <p>
+                            청년들의 더 나은 주거환경과 올바른 주거문화 형성을
+                            위한
+                            <br />
+                            다양한 정보를 제공해 드립니다.
+                        </p>
+                        <form>
+                            <input
+                                type="text"
+                                placeholder="검색어를 입력해주세요."
+                            ></input>
+                            <button>검색</button>
+                            <img src={search} alt={"search"} />
+                        </form>
+                    </div>
                 </div>
                 <div className={cx("dictionary-category")}>
                     <div className={cx("main-category")}>
@@ -214,8 +217,8 @@ class Dictionary extends React.Component {
                         </div>
                     ) : null}
                 </div>
-                {SelCategory()}
-            </div>
+                <div className={cx("dictionary-wrap")}>{SelCategory()}</div>
+            </>
         );
     }
 }
