@@ -1,0 +1,229 @@
+@import "styles/_Common.scss";
+
+.fixed-info {
+    display: none;
+    max-width: 384px;
+    width: 100%;
+    & > .tag-box {
+        & > span {
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.4);
+        }
+    }
+    & > h1 {
+        font-weight: 500;
+        font-size: 22px;
+        padding-bottom: 11px;
+        border-bottom: 1px solid #e0e0e0;
+        width: 344px;
+        border-bottom: 1px solid #e0e0e0;
+        margin-top: 10px;
+        margin-bottom: 31px;
+    }
+    & > .info-notice {
+        font-size: 14px;
+    }
+    & > form {
+        & > select {
+            margin-top: 24px;
+            width: 100%;
+            height: 36px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.3);
+            margin-bottom: 25px;
+        }
+        & > button {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            background: #4f4f4f;
+            border-radius: 4px;
+            height: 48px;
+            width: 100%;
+            color: #ffffff;
+        }
+    }
+    & > .util-buttons {
+        position: relative;
+        margin-top: 48px;
+        margin-bottom: 60px;
+        & > div {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: left;
+        }
+        & > div:nth-child(3):hover ~ .hover-util {
+            width: 100%;
+            transition: 0.5s all;
+            border: 1px solid #e0e0e0;
+        }
+        & > .hover-util {
+            border: none;
+            transition: 0.5s all;
+            background-color: #ffffff;
+            position: absolute;
+            max-width: 240px;
+            width: 0%;
+            overflow: hidden;
+            left: 144px;
+            & > a {
+                margin: 0 11.5px;
+            }
+        }
+        & > .hover-util:hover {
+            border: 1px solid #e0e0e0;
+            width: 100%;
+        }
+        & > div:not(last-child) {
+            margin-right: 8px;
+        }
+        & > button {
+            float: right;
+            width: 104px;
+            height: 36px;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            border-radius: 2px;
+            & > img {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.primary-blue-btn {
+    width: 58px;
+    height: 20px;
+    background: #16bdc6;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 11px;
+    margin-right: 8px;
+}
+
+.nomination-btn {
+    width: 30px;
+    height: 20px;
+    background: #fc9852;
+    opacity: 0.8;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 11px;
+    margin-right: 5px;
+}
+@include media("<=medium", ">=small") {
+    .fixed-info {
+        display: block;
+        max-width: 384px;
+        width: 100%;
+        & > .tag-box {
+            & > span {
+                font-size: 11px;
+                color: rgba(0, 0, 0, 0.4);
+            }
+        }
+        & > h1 {
+            font-weight: 500;
+            font-size: 22px;
+            padding-bottom: 11px;
+            border-bottom: none;
+            width: 344px;
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+        & > .info-notice {
+            font-size: 14px;
+        }
+        & > form {
+            & > select {
+                margin-top: 24px;
+                width: 100%;
+                height: 36px;
+                background-color: #ffffff;
+                border: 1px solid #e0e0e0;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.3);
+                margin-bottom: 25px;
+            }
+            & > button {
+                background: #4f4f4f;
+                border-radius: 4px;
+                height: 48px;
+                width: 100%;
+                color: #ffffff;
+            }
+        }
+        & > .util-buttons {
+            position: relative;
+            margin-top: 5px;
+            margin-bottom: 60 px;
+            & > div {
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #e0e0e0;
+                border-radius: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: left;
+            }
+            & > div:nth-child(3):hover ~ .hover-util {
+                width: 100%;
+                transition: 0.5s all;
+                border: 1px solid #e0e0e0;
+            }
+            & > .hover-util {
+                border: none;
+                transition: 0.5s all;
+                background-color: #ffffff;
+                position: absolute;
+                max-width: 240px;
+                width: 0%;
+                overflow: hidden;
+                left: 144px;
+                & > a {
+                    margin: 0 11.5px;
+                }
+            }
+            & > .hover-util:hover {
+                border: 1px solid #e0e0e0;
+                width: 100%;
+            }
+            & > div:not(last-child) {
+                margin-right: 8px;
+            }
+            & > button {
+                float: right;
+                width: 104px;
+                height: 36px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 13px;
+                border-radius: 2px;
+                & > img {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,193 @@
+@import "styles/_Common.scss";
+.fixed-info {
+    display: none;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 24px;
+
+    & > .primary_blue {
+        font-family: Noto Sans KR;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 13px;
+        color: #16bdc6;
+    }
+
+    & > h1 {
+        font-family: Noto Sans KR;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        padding-bottom: 11px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    & > .publisher {
+        float: left;
+        font-family: IBM Plex Sans;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        & > .profile {
+            width: 22px;
+            height: 22px;
+            overflow: hidden;
+            border: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            vertical-align: middle;
+            & > img {
+                text-align: center;
+            }
+        }
+    }
+    & > .write-date {
+        float: right;
+        display: block;
+        margin-top: 0px;
+        padding-bottom: 0px;
+        border-bottom: none;
+        font-family: IBM Plex Sans;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+
+    & > .like {
+        vertical-align: middle;
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        box-sizing: border-box;
+        border-radius: 2px;
+        width: 154px;
+        height: 40px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13px;
+        margin-right: 11px;
+        & > img {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+    }
+
+    & > .scrap {
+        vertical-align: middle;
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        box-sizing: border-box;
+        border-radius: 2px;
+        width: 154px;
+        height: 40px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13px;
+        & > img {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+    }
+
+    & > .info-notice {
+        font-size: 14px;
+    }
+    & > form {
+        & > select {
+            margin-top: 24px;
+            width: 100%;
+            height: 36px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.3);
+            margin-bottom: 25px;
+        }
+        & > button {
+            background: #4f4f4f;
+            border-radius: 4px;
+            height: 48px;
+            width: 100%;
+            color: #ffffff;
+        }
+    }
+    & > .util-buttons::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    & > .util-buttons {
+        position: relative;
+        margin-top: 24px;
+        padding-top: 19px;
+        margin-bottom: 15px;
+        & > div {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            float: left;
+        }
+        & > div:last-child::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        & > div:nth-child(3):hover ~ .hover-util {
+            width: 100%;
+            transition: 0.5s all;
+            border: 1px solid #e0e0e0;
+        }
+        & > .hover-util {
+            border: none;
+            transition: 0.5s all;
+            background-color: #ffffff;
+            position: absolute;
+            max-width: 240px;
+            width: 0%;
+            overflow: hidden;
+            left: 144px;
+            & > a {
+                margin: 0 11.5px;
+            }
+        }
+        & > .hover-util:hover {
+            border: 1px solid #e0e0e0;
+            width: 100%;
+        }
+        & > div:not(last-child) {
+            margin-right: 8px;
+        }
+        & > button {
+            float: right;
+            width: 104px;
+            height: 36px;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+            border-radius: 2px;
+            & > img {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+@include media("<=medium", ">=small") {
+    .fixed-info {
+        display: block;
+    }
+}

@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
-import styles from "./_Popup.module.scss";
+import React from "react";
+import styled from "styled-components";
 
 const Popups = styled.div`
     width: 100%;

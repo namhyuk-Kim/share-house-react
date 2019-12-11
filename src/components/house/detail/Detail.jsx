@@ -1,7 +1,6 @@
-import React from "react";
+import React, { createRef } from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import styles from "./_Detail.module.scss";
 import detail1 from "assets/images/detail1.png";
 import thumb1_s from "assets/images/thumb1_s.png";
@@ -26,21 +25,19 @@ import washer_stuff_on from "assets/images/washer-stuff-on.png";
 import tv_stuff_on from "assets/images/tv-stuff-on.png";
 import vr_see from "assets/images/vr-see.png";
 import Glass from "assets/images/Search.png";
-import location_map from "assets/images/location-map.png";
 import profile from "assets/images/profile.png";
 import comment from "assets/images/comment.png";
 import heart from "assets/images/heart.png";
 import card_image from "assets/images/card-image.png";
 import floor from "assets/images/floor.png";
 import star_yellow from "assets/images/star_yellow.png";
-import star_gray from "assets/images/Star_gray.png";
 import folder_add from "assets/images/folder_add.png";
 import share from "assets/images/share.png";
 import facebook_share from "assets/images/facebook_share.png";
 import kakao_share from "assets/images/kakao_share.png";
 import twitter_share from "assets/images/twitter_share.png";
 import link_share from "assets/images/link_share.png";
-import caledar from "assets/images/caledar.png";
+// import caledar from "assets/images/caledar.png";
 import chat_profile from "assets/images/chat-profile.png";
 import m_event from "assets/images/m-event.png";
 import store24 from "assets/images/24store.png";
@@ -57,10 +54,25 @@ import office from "assets/images/office.png";
 import police from "assets/images/police.png";
 import Drugstore from "assets/images/Drugstore.png";
 import Daiso from "assets/images/Daiso.png";
+import MobileDetailMenu from "./MobileDetailMenu/MobileDetailMenu.jsx";
 
 const cx = classnames.bind(styles);
 
 class Detail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.mapRef = createRef();
+    }
+
+    componentDidMount() {
+        const options = {
+            center: new window.kakao.maps.LatLng(37.468532, 126.887356),
+            level: 3,
+            position: new window.kakao.maps.LatLng(37.468532, 126.887356)
+        };
+        this.map = new window.kakao.maps.Map(this.mapRef, options);
+    } //지도 생성 및 객체 리턴
+
     render() {
         return (
             <div className={cx("detail-all-wrap")}>
@@ -126,6 +138,7 @@ class Detail extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <MobileDetailMenu />
                         <div className={cx("house-content")}>
                             <div className={cx("content-category")}>
                                 <button>하우스 상세정보</button>
@@ -807,12 +820,10 @@ class Detail extends React.Component {
                                 </div>
                                 <div className={cx("house-location")}>
                                     <h1>하우스 소개</h1>
-                                    <div className={cx("house-location-map")}>
-                                        <img
-                                            src={location_map}
-                                            alt="location-map"
-                                        />
-                                    </div>
+                                    <div
+                                        className={cx("house-location-map")}
+                                        ref={ref => (this.mapRef = ref)}
+                                    ></div>
                                     <div className={cx("map-icons")}>
                                         <h3>맵 아이콘</h3>
                                         <div>

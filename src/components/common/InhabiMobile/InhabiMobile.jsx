@@ -1,6 +1,5 @@
 import React from "react";
 import classnames from "classnames/bind";
-import { Link } from "react-router-dom";
 import styles from "./_InhabiMobile.module.scss";
 
 const cx = classnames.bind(styles);

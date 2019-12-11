@@ -1,7 +1,6 @@
 import React, { createRef } from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import InputRange from "react-input-range"; // input range 관련 패키지 받아옴
 import "react-input-range/lib/css/index.css"; // input range 관련 패키지 css
 import styles from "./_Search.module.scss";
@@ -23,8 +22,6 @@ import subway from "assets/images/subway.png";
 import school from "assets/images/school.png";
 import house from "assets/images/house.png";
 import pin from "assets/images/pin.png";
-import Compare from "components/house/compare/Compare";
-import Slider from "../slider/slider";
 
 const cx = classnames.bind(styles);
 

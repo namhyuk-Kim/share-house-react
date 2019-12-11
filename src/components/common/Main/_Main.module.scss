@@ -1017,11 +1017,10 @@
             padding-top: 20px;
             max-width: 768px;
             min-width: 320px;
+            margin: 0 20px;
 
             & > .tab-menu-wrap {
-                min-width: 320px;
-                max-width: 768px;
-                margin: 0 20px;
+                width: 100%;
                 & > ul {
                     display: table;
                     height: 40px;
