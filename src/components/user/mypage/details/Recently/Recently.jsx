@@ -5,9 +5,6 @@ import room1 from "assets/images/room1.png";
 import room2 from "assets/images/room2.png";
 import room3 from "assets/images/room3.png";
 import room4 from "assets/images/room4.png";
-import room5 from "assets/images/room5.png";
-import room6 from "assets/images/room6.png";
-import room7 from "assets/images/room7.png";
 import star_yellow from "assets/images/star_yellow.png";
 import star_gray from "assets/images/Star_gray.png";
 import check from "assets/images/check.png";
@@ -143,7 +140,6 @@ class Recently extends React.Component {
                 </div>
                 <div className={cx("popularity")}>
                     <div className={cx("content")}>
-                        <h2></h2>
                         <div className={cx("popularity-items")}>
                             <div>
                                 <div>

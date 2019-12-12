@@ -1,6 +1,5 @@
 import React from "react";
 import classnames from "classnames/bind";
-import PropTypes from "prop-types";
 import styles from "./_Login.module.scss";
 import { Link } from "react-router-dom";
 import sns_naver from "assets/images/Naver.png";

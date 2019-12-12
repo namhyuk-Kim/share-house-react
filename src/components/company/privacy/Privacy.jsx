@@ -1,7 +1,5 @@
 import React from "react";
 import classnames from "classnames/bind";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import styles from "./_Privacy.module.scss";
 
 const cx = classnames.bind(styles);

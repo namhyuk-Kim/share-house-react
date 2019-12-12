@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames/bind";
-import PropTypes from "prop-types";
 import styles from "./_Footer.module.scss";
 import apple from "assets/images/apple.png";
 import google from "assets/images/google_play.png";

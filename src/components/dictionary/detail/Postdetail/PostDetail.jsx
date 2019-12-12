@@ -1,32 +1,21 @@
 import React from "react";
 import styles from "./_PostDetail.module.scss";
 import classnames from "classnames/bind";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import Back from "assets/images/back.png";
 import main_image from "assets/images/main-image.png";
 import content_image1 from "assets/images/content-image1.png";
 import content_image2 from "assets/images/content-image2.png";
 import Dashed from "assets/images/dashed.png";
-import comment from "assets/images/comment.png";
 import heart from "assets/images/heart.png";
 import card_image from "assets/images/card-image.png";
-import floor from "assets/images/floor.png";
-import star_yellow from "assets/images/star_yellow.png";
-import star_gray from "assets/images/Star_gray.png";
-import folder_add from "assets/images/folder_add.png";
-import share from "assets/images/share.png";
-import facebook_share from "assets/images/facebook_share.png";
-import kakao_share from "assets/images/kakao_share.png";
-import twitter_share from "assets/images/twitter_share.png";
 import link_share from "assets/images/link_share.png";
-import caledar from "assets/images/caledar.png";
-import chat_profile from "assets/images/chat-profile.png";
+// import caledar from "assets/images/caledar.png";
 import user_avata from "assets/images/user-avata.png";
 import book_mark from "assets/images/bookmark.png";
 import color_kakao from "assets/images/color_kakao.png";
 import color_facebook from "assets/images/color_facebook.png";
 import color_blog from "assets/images/color_blog.png";
+import MobilePostDetailMenu from "./MobilePostDetailMenu/MobilePostDetailMenu";
 
 const cx = classnames.bind(styles);
 
@@ -43,6 +32,7 @@ class PostDetail extends React.Component {
                         <div className={cx("main-image")}>
                             <img src={main_image} alt="img" />
                         </div>
+                        <MobilePostDetailMenu />
                         <div className={cx("main-content")}>
                             <h2>
                                 바로바로,세탁기 사용후,조리도구 사용후,공용공간
@@ -127,14 +117,14 @@ class PostDetail extends React.Component {
                                 <p>
                                     입주 2달을 앞두고 있습니다. 정보를 찾던 와중
                                     자꾸 안좋은 소리만 듣게 되는데요. 방음이
-                                    너무 부실하다는 이야기가 많아서 실<br />
-                                    제로 임대주택 거주중인 분들은 그런 문제가
+                                    너무 부실하다는 이야기가 많아서 실 제로
+                                    임대주택 거주중인 분들은 그런 문제가
                                     없는지요?
                                 </p>
                                 <button>답글</button>
                                 <button>수정</button>
                                 <button>삭제</button>
-                                <div>
+                                <div className={cx("comment-data")}>
                                     <span className={cx("nickname")}>
                                         ser***
                                     </span>
@@ -147,8 +137,8 @@ class PostDetail extends React.Component {
                                 <p>
                                     입주 2달을 앞두고 있습니다. 정보를 찾던 와중
                                     자꾸 안좋은 소리만 듣게 되는데요. 방음이
-                                    너무 부실하다는 이야기가 많아서 실<br />
-                                    제로 임대주택 거주중인 분들은 그런 문제가
+                                    너무 부실하다는 이야기가 많아서 실 제로
+                                    임대주택 거주중인 분들은 그런 문제가
                                     없는지요?
                                 </p>
                                 <button>답글</button>
@@ -172,10 +162,9 @@ class PostDetail extends React.Component {
                                             입주 2달을 앞두고 있습니다. 정보를
                                             찾던 와중에 자꾸 안 좋은 소리만 듣게
                                             되는데요. 방음이 너무 부실하다는
-                                            이야기가
-                                            <br />
-                                            많아서 실제로 임대주택 거주중인
-                                            분들은 그런 문제가 없는지요?
+                                            이야기가 많아서 실제로 임대주택
+                                            거주중인 분들은 그런 문제가
+                                            없는지요?
                                         </p>
                                     </div>
                                     <button>수정</button>
@@ -195,8 +184,8 @@ class PostDetail extends React.Component {
                                 <p>
                                     입주 2달을 앞두고 있습니다. 정보를 찾던 와중
                                     자꾸 안좋은 소리만 듣게 되는데요. 방음이
-                                    너무 부실하다는 이야기가 많아서 실<br />
-                                    제로 임대주택 거주중인 분들은 그런 문제가
+                                    너무 부실하다는 이야기가 많아서 실 제로
+                                    임대주택 거주중인 분들은 그런 문제가
                                     없는지요?
                                 </p>
                                 <button>답글취소</button>
@@ -229,8 +218,8 @@ class PostDetail extends React.Component {
                                 <p>
                                     입주 2달을 앞두고 있습니다. 정보를 찾던 와중
                                     자꾸 안좋은 소리만 듣게 되는데요. 방음이
-                                    너무 부실하다는 이야기가 많아서 실<br />
-                                    제로 임대주택 거주중인 분들은 그런 문제가
+                                    너무 부실하다는 이야기가 많아서 실 제로
+                                    임대주택 거주중인 분들은 그런 문제가
                                     없는지요?
                                 </p>
                                 <button>답글</button>

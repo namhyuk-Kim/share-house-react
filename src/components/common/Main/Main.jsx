@@ -1,9 +1,7 @@
 import React from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import styles from "./_Main.module.scss";
-import banner from "assets/images/visaul_img01.png";
 import search from "assets/images/Search.png";
 import room1 from "assets/images/room1.png";
 import room2 from "assets/images/room2.png";
@@ -15,7 +13,6 @@ import room7 from "assets/images/room7.png";
 import star_yellow from "assets/images/star_yellow.png";
 import star_gray from "assets/images/Star_gray.png";
 import plus_icon from "assets/images/Union.png";
-import CloseAccount from "components/user/CloseAccount/CloseAccount";
 import InhabiMobile from "components/common/InhabiMobile/InhabiMobile";
 
 const cx = classnames.bind(styles);

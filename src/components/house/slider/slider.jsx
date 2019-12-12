@@ -2,9 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
-
 import styles from "./_slider.module.scss";
-
 import SliderButton from "assets/button/slider.png";
 
 const cx = classNames.bind(styles);
@@ -32,30 +30,17 @@ class Slider extends React.Component {
         e.preventDefault();
         if (this.state.status === "wait") return;
 
-        const startMin = 15;
         const width = this.wrap.clientWidth;
         const position = e.nativeEvent.pageX - this.wrap.offsetLeft;
 
-        // console.log(
-        //     position,
-        //     width,
-        //     position / width,
-        //     (position / width) * 100
-        // );
-
         let per = (position / width) * 100;
         per = per < 0 ? 0 : per > 100 ? 100 : per;
-
-        // console.log(per);
 
         this.setState({
             [type]: this.state.max * (per / 100)
         });
 
         console.log(this.state.max * (per / 100));
-
-        // e.nativeEvent.offsetX,
-        // e.nativeEvent.offsetY
     };
 
     onMouseUp = e => {

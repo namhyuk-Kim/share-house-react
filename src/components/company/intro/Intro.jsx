@@ -1,7 +1,6 @@
 import React from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import styles from "./_Intro.module.scss";
 import number1 from "assets/images/number01.png";
 import number2 from "assets/images/number02.png";

@@ -1,11 +1,6 @@
 import React from "react";
 import classnames from "classnames/bind";
-import PropTypes from "prop-types";
 import styles from "./_CloseAccount.module.scss";
-import { Link } from "react-router-dom";
-import sns_naver from "assets/images/Naver.png";
-import sns_kakao from "assets/images/kakao.png";
-import sns_facebook from "assets/images/facebook_login.png";
 
 const cx = classnames.bind(styles);
 

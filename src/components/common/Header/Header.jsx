@@ -1,14 +1,10 @@
 import React from "react";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import styles from "./_Header.module.scss";
 import logo from "assets/images/logo.png";
 import Popup from "components/common/Popup/Popup";
 import Login from "components/user/Login/Login";
-import PasswordFind from "components/user/PasswordFind/PasswordFind";
-import PasswordMod from "components/user/PasswordMod/PasswordMod";
-import Dormancy from "components/user/Dormancy/Dormancy";
 import AsideHam from "components/common/AsideHam/AsideHam";
 
 const cx = classNames.bind(styles);
@@ -51,7 +47,7 @@ class Header extends React.Component {
                         </h2>
                         <div className={cx("member-wrap")}>
                             <Link to="/search">하우스 검색</Link>
-                            <Link to="/user/Register">회원가입</Link>
+                            <Link to="/user/register">회원가입</Link>
                             <Link to="/user/mypage">김문경님</Link>
                             {/* <a href="/" onClick={this.props.openModal}>
                                 로그인

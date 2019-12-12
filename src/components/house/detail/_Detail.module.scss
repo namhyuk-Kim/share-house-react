@@ -429,9 +429,8 @@
                         }
                         & > .house-location-map {
                             margin-bottom: 34px;
-                            & > img {
-                                max-width: 100%;
-                            }
+                            width: 736px;
+                            height: 375px;
                         }
                         & > .map-icons {
                             margin: 16px 0;
@@ -441,6 +440,7 @@
                                 font-weight: 500;
                                 font-size: 12px;
                                 line-height: 17px;
+                                margin-bottom: 8px;
                             }
                             & > div {
                                 min-width: 224px;

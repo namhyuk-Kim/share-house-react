@@ -1,0 +1,185 @@
+@import "styles/_Common.scss";
+
+.inquery {
+    display: none;
+    max-width: 768px;
+    min-width: 320px;
+    margin: 0 20px;
+    & > .inquery_header {
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 13px;
+        padding-top: 12px;
+        & > div {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            & > label {
+                border: 2px solid #e0e0e0;
+                width: 24px;
+                height: 24px;
+                border-radius: 2px;
+                background-color: #fff;
+                & > input {
+                    opacity: 0;
+                }
+            }
+            & > button {
+                display: inline-block;
+                vertical-align: middle;
+                padding: 10px 12px 7px;
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                border-radius: 2px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 13px;
+            }
+        }
+    }
+    & > .inquery_body {
+        border-bottom: 1px solid #e0e0e0;
+        .inquery_left {
+            padding: 30px 0;
+            float: left;
+            & > div {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                & > label {
+                    border: 2px solid #e0e0e0;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 2px;
+                    background-color: #fff;
+                    & > input {
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+        .inquery_right {
+            padding: 14px 0;
+            padding-left: 15px;
+            float: left;
+            & > div:first-child {
+                & > span {
+                    display: inline-block;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 13px;
+                    margin-right: 16px;
+                }
+                & > span:last-child {
+                    max-width: 70px;
+                    min-width: 70px;
+                    text-align: right;
+                    margin-right: 0;
+                }
+            }
+            & > div:last-child {
+                margin-top: 10px;
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+@include media("<=medium", ">=small") {
+    .inquery {
+        max-width: 768px;
+        min-width: 320px;
+        margin: 0 20px;
+        display: block;
+        & > .inquery_header {
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 13px;
+            padding-top: 12px;
+            & > div {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                & > label {
+                    border: 2px solid #e0e0e0;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 2px;
+                    background-color: #fff;
+                    & > input {
+                        opacity: 0;
+                    }
+                }
+                & > button {
+                    display: inline-block;
+                    vertical-align: middle;
+                    padding: 10px 12px 7px;
+                    background-color: #fff;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 2px;
+                    font-family: Roboto;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 13px;
+                }
+            }
+        }
+        & > .inquery_body {
+            border-bottom: 1px solid #e0e0e0;
+            .inquery_left {
+                padding: 30px 0;
+                float: left;
+                & > div {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    & > label {
+                        border: 2px solid #e0e0e0;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 2px;
+                        background-color: #fff;
+                        & > input {
+                            opacity: 0;
+                        }
+                    }
+                }
+            }
+            .inquery_right {
+                padding: 14px 0;
+                padding-left: 15px;
+                float: left;
+                & > div:first-child {
+                    & > span {
+                        display: inline-block;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 13px;
+                        margin-right: 16px;
+                    }
+                    & > span:last-child {
+                        max-width: 70px;
+                        min-width: 70px;
+                        text-align: right;
+                        margin-right: 0;
+                    }
+                }
+                & > div:last-child {
+                    margin-top: 10px;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

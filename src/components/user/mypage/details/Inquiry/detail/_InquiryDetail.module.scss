@@ -1,3 +1,5 @@
+@import "styles/_Common.scss";
+
 .inquiryDetail-wrap {
     max-width: 1024px;
     min-width: 1024px;
@@ -21,6 +23,10 @@
     & > .Detail-left {
         float: left;
         & > .map {
+            max-width: 544px;
+            width: 100%;
+            max-height: 296px;
+            height: 296px;
         }
         & > .info-card {
             margin-top: 16px;
@@ -372,4 +378,398 @@
     color: #fff;
     line-height: 11px;
     margin-right: 5px;
+}
+
+@include media("<=medium", ">=small") {
+    .inquiryDetail-wrap {
+        max-width: 768px;
+        min-width: 360px;
+        width: 100%;
+        margin: 0 0px;
+        padding-bottom: 102px;
+        & > div {
+            width: 100%;
+            margin-top: 0px;
+            & > h1 {
+                text-align: center;
+                padding: 20px;
+                font-family: Noto Sans KR;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                color: rgba(0, 0, 0, 0.3);
+                & > span {
+                    color: #323232;
+                    font-weight: bold;
+                }
+            }
+        }
+        & > .Detail-left {
+            float: left;
+            & > .map {
+                display: none;
+            }
+            & > .info-card {
+                margin-top: 0px;
+                padding: 0px;
+                border: 1px solid #e0e0e0;
+                & > .result-item {
+                    display: none;
+                    margin-bottom: 23px;
+                    min-height: 120px;
+                    min-width: 416px;
+                    & > .item-img {
+                        float: left;
+                        position: relative;
+                        width: 160px;
+                        height: 120px;
+                        border-radius: 2px;
+                        overflow: hidden;
+                        margin-right: 13px;
+                        cursor: pointer;
+                        & > .star {
+                            position: absolute;
+                            right: 8px;
+                            top: 8px;
+                            cursor: pointer;
+                        }
+                        & > .vr {
+                            position: absolute;
+                            right: 39px;
+                            top: 7px;
+                            cursor: pointer;
+                        }
+
+                        & > .add-compare {
+                            position: absolute;
+                            bottom: -36px;
+                            width: 100%;
+                            height: 36px;
+                            border-radius: 2px;
+                            background-color: rgba(0, 0, 0, 0.3);
+                            color: #fff;
+                            transition: 0.5s all;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 13px;
+                            border-radius: 2px;
+                            & > img {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    & > .item-img:hover {
+                        & > .add-compare {
+                            bottom: 0;
+                            transition: 0.5s all;
+                        }
+                    }
+                    & > .item-content {
+                        float: left;
+                        position: relative;
+                        width: 209px;
+                        height: 120px;
+                        border-radius: 2px;
+                        overflow: hidden;
+                        & > .types {
+                            & > span {
+                                font-size: 11px;
+                                color: rgba(0, 0, 0, 0.3);
+                            }
+                        }
+                        & > .item-title {
+                            margin-top: 11px;
+                            font-size: 16px;
+                            height: 23px;
+                            font-weight: 500;
+                            color: #323232;
+                            display: block;
+                        }
+                        & > .item-location {
+                            font-size: 12px;
+                            font-weight: 300;
+                            color: #828282;
+                            height: 14px;
+                        }
+
+                        & > .item-price {
+                            font-size: 12px;
+                            font-weight: 300;
+                            line-height: 21px;
+                            color: #828282;
+                            & > p {
+                                font-size: 12px;
+                                font-weight: 300;
+                                line-height: 21px;
+                                color: #323232;
+                                & > span {
+                                    font-size: 12px;
+                                    font-weight: 300;
+                                    line-height: 21px;
+                                }
+                                & > span:first-child {
+                                    width: 58px;
+                                    display: inline-block;
+                                }
+                                & > span:last-child {
+                                    margin-left: 12px;
+                                    color: #828282;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                & > .phonecall {
+                    margin-top: 0px;
+                    width: 100%;
+                    padding: 20px 0;
+                    background-color: #fafafa;
+                    & > img {
+                        margin-left: 23px;
+                        display: inline-block;
+                    }
+                    & > p {
+                        display: inline-block;
+                        margin-left: 19px;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: 12px;
+                        & > span {
+                            display: inline-block;
+                            font-family: Noto Sans KR;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 14px;
+                            color: #16bdc6;
+                            padding-bottom: 12px;
+                            & > b {
+                                margin-left: 15px;
+                                color: #16bdc6;
+                            }
+                        }
+                    }
+                }
+                & > span {
+                    display: none;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 12px;
+                }
+            }
+        }
+        & > .Detail-right {
+            margin-left: 0px;
+            float: left;
+            & > .chating {
+                min-width: 360px;
+                width: unset;
+                border: none;
+                background: #fafafa;
+                border-radius: 4px 4px 0px 0px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+                & > .chating-head {
+                    border-radius: 4px 4px 0px 0px;
+                    width: 100%;
+                    height: 72px;
+                    background-color: #16bdc6;
+                    & > h1 {
+                        font-size: 18px;
+                        color: #ffffff;
+                        padding-top: 15px;
+                        text-align: center;
+                    }
+                    & > p {
+                        margin-top: 4px;
+                        font-size: 12px;
+                        color: #fafafa;
+                        text-align: center;
+                    }
+                }
+                & > .date-selector {
+                    padding: 0px 0;
+                    padding-top: 14px;
+                    background: #fafafa;
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    border-bottom: 1px solid #e0e0e0;
+                    & > span:nth-child(1) {
+                        display: inline-block;
+                        margin-right: 44px;
+                    }
+                    & > select:nth-child(2) {
+                        width: 224px;
+                        height: 34px;
+                        display: inline-block;
+                        margin-bottom: 14px;
+                        background-color: #fff;
+                        font-size: 14px;
+                        color: rgba(0, 0, 0, 0.3);
+                        border: 1px solid #e0e0e0;
+                        line-height: 36px;
+                        padding-left: 12px;
+                    }
+                    & > span {
+                        margin-bottom: 20px;
+                        margin-left: 33px;
+                        font-size: 13px;
+                        line-height: 22px;
+                        color: rgba(0, 0, 0, 0.65);
+                        margin-right: 10px;
+                    }
+                    & > input {
+                        width: 112px;
+                        height: 36px;
+                        background-color: #fff;
+                        font-size: 14px;
+                        color: rgba(0, 0, 0, 0.3);
+                        border: 1px solid #e0e0e0;
+                        line-height: 36px;
+                        padding-left: 12px;
+                        margin-bottom: 14px;
+                    }
+                    & > .start-date::before {
+                        content: attr(data-placeholder);
+                        width: 100%;
+                    }
+
+                    & > input[type="date"]:focus::before,
+                    & > input[type="date"]:valid::before {
+                        display: none;
+                    }
+                }
+
+                & > .chat-body {
+                    padding-bottom: 79px;
+                    & > .user-chat {
+                        margin: 24px 0;
+                        position: relative;
+
+                        & > .chat {
+                            position: relative;
+                            margin-right: 24px;
+                            float: right;
+                            max-width: 212px;
+                            width: 100%;
+                            background: #ffffff;
+                            border: 1px solid #e0e0e0;
+                            box-sizing: border-box;
+                            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+                            border-radius: 6px 6px 0px 6px;
+                            white-space: normal;
+                            padding: 16px 12px;
+                            font-size: 14px;
+                            line-height: 22px;
+                            & > .time-line {
+                                position: absolute;
+                                left: -52px;
+                                top: 40px;
+                                font-family: Noto Sans KR;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 12px;
+                                line-height: 22px;
+                                color: rgba(0, 0, 0, 0.3);
+                            }
+                        }
+                    }
+
+                    & > .admin-chat {
+                        margin: 24px 0;
+                        position: relative;
+                        & > .chat-profile {
+                            display: inline-block;
+                            margin-left: 16px;
+                            margin-right: 8px;
+                            vertical-align: top;
+                        }
+                        & > .chat {
+                            display: inline-block;
+                            position: relative;
+                            margin-right: 24px;
+                            max-width: 212px;
+                            width: 100%;
+                            background: #ffffff;
+                            border: 1px solid #e0e0e0;
+                            box-sizing: border-box;
+                            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+                            border-radius: 0px 6px 6px 6px;
+                            white-space: normal;
+                            padding: 16px 12px;
+                            font-size: 14px;
+                            line-height: 22px;
+                            & > .time-line {
+                                position: absolute;
+                                right: -52px;
+                                top: 40px;
+                                font-family: Noto Sans KR;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 12px;
+                                line-height: 22px;
+                                color: rgba(0, 0, 0, 0.3);
+                            }
+                        }
+                    }
+                }
+
+                & > .chat-sender {
+                    background: #fafafa;
+                    padding-bottom: 16px;
+                    padding-top: 16px;
+                    & > input {
+                        margin-left: 12px;
+                        min-width: 276px;
+                        width: calc(100% - 70px);
+                        background: #ffffff;
+                        border: 1px solid #ecebed;
+                        border-radius: 18px;
+                        height: 36px;
+                        float: left;
+                        display: inline-block;
+                        padding-left: 27px;
+                        margin-right: 9px;
+                    }
+                    & > .icon {
+                        width: 36px;
+                        height: 36px;
+                        background-image: url("../../../../../../assets/images/Send.png");
+                        display: inline-block;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .primary-blue-btn {
+        width: 58px;
+        height: 20px;
+        background: #16bdc6;
+        border-radius: 2px;
+        font-size: 11px;
+        font-weight: 500;
+        color: #fff;
+        line-height: 11px;
+        margin-right: 8px;
+    }
+
+    .nomination-btn {
+        width: 30px;
+        height: 20px;
+        background: #fc9852;
+        opacity: 0.8;
+        border-radius: 2px;
+        font-size: 11px;
+        font-weight: 500;
+        color: #fff;
+        line-height: 11px;
+        margin-right: 5px;
+    }
 }

@@ -1,15 +1,12 @@
 import React from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import styles from "./_Dictionary.module.scss";
-import search from "assets/images/Search.png";
 import heart from "assets/images/heart.png";
 import comment from "assets/images/comment.png";
 import dictionary_image from "assets/images/dictionary-item.png";
 import user_avata from "assets/images/user-avata.png";
 import comic_avata from "assets/images/comic-avata.png";
-import card_image from "assets/images/card-image.png";
 import stroy_image from "assets/images/stroy-image.png";
 import young_house from "assets/images/young-house.png";
 

@@ -1,15 +1,28 @@
-import React from "react";
+import React, { createRef } from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames/bind";
 import styled from "./_InquiryDetail.module.scss";
 import chat_profile from "assets/images/chat-profile.png";
-import map from "assets/images/map.png";
 import room from "assets/images/room7.png";
 import star from "assets/images/star_yellow.png";
 import call from "assets/images/call.png";
 const cx = classnames.bind(styled);
 
 class InquiryDetail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.mapRef = createRef();
+    }
+
+    componentDidMount() {
+        const options = {
+            center: new window.kakao.maps.LatLng(37.468532, 126.887356),
+            level: 3,
+            position: new window.kakao.maps.LatLng(37.468532, 126.887356)
+        };
+        this.map = new window.kakao.maps.Map(this.mapRef, options);
+    } //지도 생성 및 객체 리턴
+
     render() {
         return (
             <>
@@ -20,9 +33,11 @@ class InquiryDetail extends React.Component {
                         </h1>
                     </div>
                     <div className={cx("Detail-left")}>
-                        <div className={cx("map")}>
-                            {/* 지도 API 들어갈 위치 */}
-                            <img src={map} alt="지도" />
+                        <div
+                            className={cx("map")}
+                            ref={ref => (this.mapRef = ref)}
+                        >
+                            {/* <img src={map} alt="지도" /> */}
                         </div>
                         <div className={cx("info-card")}>
                             <div className={cx("result-item")}>
@@ -67,7 +82,7 @@ class InquiryDetail extends React.Component {
                                 <img src={call} alt="call" />
                                 <p>
                                     <span className={cx("primary-blue")}>
-                                        전화 문의 0504-777-7777
+                                        전화 문의 <b>0504-777-7777</b>
                                     </span>
                                     <br />
                                     컴앤스테이에서 제공하는 안심번호입니다.
