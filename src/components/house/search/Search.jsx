@@ -18,10 +18,10 @@ import vr from "assets/images/list_vr.png";
 import folder_add_w from "assets/images/folder_add_w.png";
 import remove from "assets/images/Remove.png";
 import filter_vr from "assets/images/filter_vr.png";
-import subway from "assets/images/subway.png";
-import school from "assets/images/school.png";
-import house from "assets/images/house.png";
-import pin from "assets/images/pin.png";
+import category2 from "assets/images/subway.png";
+import category1 from "assets/images/school.png";
+import category4 from "assets/images/house.png";
+import category3 from "assets/images/pin.png";
 
 const cx = classnames.bind(styles);
 
@@ -33,7 +33,9 @@ class Search extends React.Component {
             deposit: { min: 0, max: 10 },
             monthly: { min: 0, max: 10 },
             ShowFlilter: false,
-            Isfocus: false
+            Isfocus: false,
+            NowSearchKeyword: "",
+            NowSearchKeyHelper: []
         };
     }
 
@@ -50,6 +52,21 @@ class Search extends React.Component {
         this.setState({
             Isfocus: types === "Focus" ? true : false,
             ShowFlilter: types === "Focus" ? false : false
+        });
+    };
+
+    PullSearchHelper = e => {
+        let NextState = e.target.value;
+
+        if (!e.target.value) {
+            return;
+        }
+
+        this.setState({
+            NowSearchKeyword: NextState
+        });
+        this.props.SearchNomination(NextState).then(value => {
+            this.setState({ ...this.state, NowSearchKeyHelper: value });
         });
     };
 
@@ -74,6 +91,7 @@ class Search extends React.Component {
     } //지도 생성 및 객체 리턴
 
     render() {
+        const { NowSearchKeyHelper } = this.state;
         return (
             <div className={cx("search-wrap")}>
                 <div className={cx("search-bar")}>
@@ -84,11 +102,13 @@ class Search extends React.Component {
                                 placeholder="지역/지하철/대학교/하우스 명"
                                 onFocus={() => this.SearchHelp("Focus")}
                                 onBlur={() => this.SearchHelp("Blur")}
-                                onChange={e => this.ResetShow(e)}
+                                onChange={e => this.PullSearchHelper(e)}
                                 className={cx("search-input")}
                             />
                             <div>
-                                <img src={search_icon} alt="filter" />
+                                <button>
+                                    <img src={search_icon} alt="filter" />
+                                </button>
                             </div>
                             <div
                                 className={cx("search-clear")}
@@ -228,11 +248,39 @@ class Search extends React.Component {
                     className={cx("search-help")}
                     data-help-toggle={this.state.Isfocus}
                 >
-                    <div className={cx("help-content")}>
-                        <img src={subway} alt="지하철" />
-                        <p>회기역</p>
-                    </div>
-                    <div className={cx("help-content")}>
+                    {NowSearchKeyHelper.map(item => {
+                        if (item["CATEGORY"] === "1") {
+                            return (
+                                <div className={cx("help-content")}>
+                                    <img src={category1} alt="대학교" />
+                                    <p>{item["KEYWORD"]}</p>
+                                </div>
+                            );
+                        } else if (item["CATEGORY"] === "2") {
+                            return (
+                                <div className={cx("help-content")}>
+                                    <img src={category2} alt="지하철" />
+                                    <p>{item["KEYWORD"]}</p>
+                                </div>
+                            );
+                        } else if (item["CATEGORY"] === "3") {
+                            return (
+                                <div className={cx("help-content")}>
+                                    <img src={category3} alt="법정동 주소" />
+                                    <p>{item["KEYWORD"]}</p>
+                                </div>
+                            );
+                        } else if (item["CATEGORY"] === "4") {
+                            return (
+                                <div className={cx("help-content")}>
+                                    <img src={category4} alt="하우스명" />
+                                    <p>{item["KEYWORD"]}</p>
+                                </div>
+                            );
+                        }
+                    })}
+
+                    {/* <div className={cx("help-content")}>
                         <img src={school} alt="학교" />
                         <p>회기역</p>
                     </div>
@@ -243,7 +291,7 @@ class Search extends React.Component {
                     <div className={cx("help-content")}>
                         <img src={pin} alt="핀" />
                         <p>회기역</p>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={cx("search-result")}>
                     <div

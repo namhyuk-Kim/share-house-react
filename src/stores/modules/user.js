@@ -55,6 +55,12 @@ export default handleActions(
       onSuccess: () => {
         return;
       }
+    }),
+    ...pender({
+      type: REGISTER,
+      onSuccess: () => {
+        return;
+      }
     })
   },
   initialState

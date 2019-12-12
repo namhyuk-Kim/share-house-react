@@ -15,8 +15,39 @@ class UserRegisterContainer extends React.Component {
     }
   };
 
+  RegisterNormal = async ({
+    EMAIL,
+    MEMBER_NAME,
+    GENDER,
+    BIRTHYEAR,
+    NEW_PASSWORD,
+    NATION_CODE,
+    NOTICE_YN
+  }) => {
+    const { UserAction } = this.props;
+    try {
+      const res = await UserAction.RegisterNormal({
+        EMAIL,
+        MEMBER_NAME,
+        GENDER,
+        BIRTHYEAR,
+        NEW_PASSWORD,
+        NATION_CODE,
+        NOTICE_YN
+      });
+      return res;
+    } catch (e) {
+      console.dir(e);
+    }
+  };
+
   render() {
-    return <Register NationCodes={this.NationCodes} />;
+    return (
+      <Register
+        NationCodes={this.NationCodes}
+        RegisterNormal={this.RegisterNormal}
+      />
+    );
   }
 }
 

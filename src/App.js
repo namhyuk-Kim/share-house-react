@@ -7,7 +7,7 @@ import RegisterDone from "components/user/RegisterDone/RegisterDone";
 import Intro from "components/company/intro/Intro";
 import Terms from "components/company/terms/Terms";
 import Privacy from "components/company/privacy/Privacy";
-import Search from "components/house/search/Search";
+import Search from "containers/search/SearchContainer";
 import Detail from "components/house/detail/Detail";
 import Dictionary from "components/dictionary/Dictionary";
 import DictionaryPost from "components/dictionary/detail/Postdetail/PostDetail";

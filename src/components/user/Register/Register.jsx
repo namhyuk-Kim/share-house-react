@@ -41,12 +41,13 @@ class Register extends React.Component {
     hasAllValue = () => {
         let NexthasValue = false;
         if (
-            (!this.empty(this.state.EMAIL),
+            ((!this.empty(this.state.EMAIL),
             !this.empty(this.state.MEMBER_NAME),
             !this.empty(this.state.GENDER),
             !this.empty(this.state.BIRTHYEAR),
             !this.empty(this.state.NEW_PASSWORD),
-            !this.empty(this.state.RE_NEW_PASSWORD))
+            !this.empty(this.state.RE_NEW_PASSWORD)),
+            !this.empty(this.state.NATION_CODE))
         ) {
             NexthasValue = true;
             this.setState({
@@ -55,10 +56,25 @@ class Register extends React.Component {
         }
     };
 
-    onSubmit = () => {
+    register = e => {
+        e.preventDefault();
+        console.log("gg");
+
         if (!this.state.hasValue) {
             alert("필수 입력정보를 모두 입력해주십시오.");
+            return false;
         }
+
+        this.props.RegisterNormal({
+            EMAIL: this.state.EMAIL,
+            MEMBER_NAME: this.state.MEMBER_NAME,
+            GENDER: this.state.GENDER,
+            BIRTHYEAR: this.state.BIRTHYEAR,
+            NEW_PASSWORD: this.state.NEW_PASSWORD,
+            NATION_CODE: this.state.NATION_CODE,
+            NOTICE_YN: this.state.NOTICE_YN
+        });
+        window.location.replace("/user/registerDone");
     };
 
     onClick = e => {
@@ -208,7 +224,7 @@ class Register extends React.Component {
                                 </p>
                                 <input
                                     type="submit"
-                                    onClick={this.onSubmit}
+                                    onClick={e => this.register(e)}
                                     value="회원가입"
                                 />
                                 <div>
