@@ -49,7 +49,6 @@ class Main extends React.Component {
     SearchHasData = e => {
         // 글자수 확인하고 1자리 이상이면 입력이 된것으로 판단하고 x 자 띄워 줄거임 입력마다 확인이니 자리수가 0 이면 숨겨줌
         let Inputdata = e.target.value;
-        console.log(Inputdata);
     };
 
     Search = e => {

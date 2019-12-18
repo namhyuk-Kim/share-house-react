@@ -47,7 +47,6 @@ const LoginNomal_API = ({ userId, userPw }) => {
 
 // -------------------------- 세션 새로고침
 const Session_RefreshAPI = ({ refresh_token }) => {
-  console.log(refresh_token);
   return client.post(`/rest/token/refresh?REFRESH_TOKEN=${refresh_token}`);
 };
 
@@ -106,7 +105,7 @@ export default handleActions(
       type: LOGIN, // 유저 로그인
       onSuccess: (state, action) => {
         const res = action.payload;
-        console.log(res);
+
         client.defaults.headers.common["x-access-token"] =
           res["headers"]["x-access-tokken"];
         client.defaults.headers.common["x-refresh-token"] =
@@ -128,15 +127,10 @@ export default handleActions(
       onSuccess: (state, action) => {
         const ACCESS_TOKEN = action.payload.data.result.data.ACCESS_TOKEN;
 
-        console.log(ACCESS_TOKEN);
-
         let nextState = state;
         const NowEcode = action["payload"]["data"]["result"]["resCode"];
         const NowEmsg = action["payload"]["data"]["result"]["resMessage"];
         if (NowEcode !== "0000") {
-          console.log(ACCESS_TOKEN);
-          console.log(NowEcode);
-          console.log(NowEmsg);
           nextState["auth"]["user"]["isLogined"] = false;
         } else {
           nextState["auth"]["user"]["isLogined"] = true;

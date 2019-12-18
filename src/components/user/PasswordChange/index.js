@@ -1,1 +1,1 @@
-export {default} "./PasswordChange";
+export { default } from "./PasswordChange";
