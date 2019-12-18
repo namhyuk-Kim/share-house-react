@@ -38,7 +38,7 @@ class MainContainer extends React.Component {
 
       return;
     } catch (e) {
-      console.dir(e);
+      console.log(e);
     }
   };
 

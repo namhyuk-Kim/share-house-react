@@ -13,7 +13,7 @@ class ReportContainer extends React.Component {
       const res = await UserAction.ArticleContent();
       return res.data.result.data.articleList;
     } catch (e) {
-      console.dir(e);
+      console.log(e);
     }
   };
 

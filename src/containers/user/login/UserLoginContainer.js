@@ -40,7 +40,7 @@ class UserLoginContainer extends React.Component {
         return LoginData;
       }
     } catch (e) {
-      console.dir(e);
+      console.log(e);
     }
   };
 

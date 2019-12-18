@@ -11,7 +11,7 @@ class SearchContainer extends React.Component {
       const res = await UserAction.SearchHelp(search_keyword);
       return res.data.result.data.kewordList;
     } catch (e) {
-      console.dir(e);
+      console.log(e);
     }
   };
 
