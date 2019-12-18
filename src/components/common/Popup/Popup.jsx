@@ -12,7 +12,9 @@ const Popups = styled.div`
 `;
 
 const Popup = ({ children, closeModal, isModalOpen }) => {
-    return !isModalOpen ? null : <Popups>{children}</Popups>;
+    return !isModalOpen ? null : (
+        <Popups closeModal={closeModal}>{children}</Popups>
+    );
 };
 
 export default Popup;

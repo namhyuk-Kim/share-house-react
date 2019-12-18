@@ -9,6 +9,38 @@ import sns_facebook from "assets/images/facebook_login.png";
 const cx = classnames.bind(styles);
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userId: "",
+            userPw: ""
+        };
+    }
+
+    onChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    };
+
+    Login = e => {
+        e.preventDefault();
+
+        if (this.state.userId === "") {
+            alert("아이디 를 입력해주세요");
+            return false;
+        }
+        if (this.state.userPw === "") {
+            alert("비밀번호를 입력해주세요");
+            return false;
+        }
+
+        this.props.LoginNormal({
+            userId: this.state.userId,
+            userPw: this.state.userPw
+        });
+    };
+
     render() {
         return (
             <div className={cx("Login")}>
@@ -47,15 +79,23 @@ class Login extends React.Component {
                             <input
                                 type="email"
                                 placeholder="이메일 주소 입력"
+                                name="userId"
+                                onChange={e => this.onChange(e)}
                             />
                         </label>
                         <label>
                             <input
                                 type="password"
                                 placeholder="비밀번호 입력"
+                                name="userPw"
+                                onChange={e => this.onChange(e)}
                             />
                         </label>
-                        <input type="submit" value="로그인" />
+                        <input
+                            type="submit"
+                            value="로그인"
+                            onClick={e => this.Login(e)}
+                        />
                         <div>
                             <label>
                                 <input type="checkbox" />

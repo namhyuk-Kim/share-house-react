@@ -228,8 +228,8 @@
                     color: rgba(0, 0, 0, 0.3);
                 }
             }
-            & > li.primary-blue {
-                & > a {
+            & > .primary-blue {
+                & > button {
                     color: #16bdc6;
                     font-family: Noto Sans KR;
                     font-style: normal;
@@ -507,14 +507,14 @@
                 }
                 & > li.primary-blue {
                     padding-bottom: 5px;
-                    & > a {
+                    border-bottom: 3px solid #16bdc6;
+                    & > button {
                         color: #16bdc6;
                         font-family: Noto Sans KR;
                         font-style: normal;
                         font-weight: 500;
                         font-size: 15px;
                     }
-                    border-bottom: 3px solid #16bdc6;
                 }
             }
         }

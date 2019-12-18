@@ -66,8 +66,6 @@ class Main extends React.Component {
         window.location.href = "/house/search";
     };
 
-    componentDidMount() {}
-
     render() {
         const { active } = this.state;
 
@@ -121,144 +119,100 @@ class Main extends React.Component {
                     </div>
                 </div>
                 <div className={cx("content")}>
-                    <div className={cx("popularity")}>
-                        <div className={cx("content")}>
-                            <h2>Today's 인기하우스</h2>
-                            <div className={cx("popularity-items")}>
-                                <div>
-                                    <div>
-                                        <img
-                                            src={star_yellow}
-                                            alt={"star_yellow"}
-                                        />
-                                        <div className={cx("image-box")}>
-                                            <img src={room1} alt={"room"} />
-                                        </div>
-                                        <div className={cx("types")}>
-                                            <button>쉐어하우스</button>
-                                            <span>아파트</span>
-                                        </div>
-                                        <div className={cx("title")}>
-                                            2019년 서울시 영구임대주택
-                                            예비입주자 모집
-                                        </div>
-                                        <div className={cx("location")}>
-                                            <span>
-                                                성북구 길음동, 길음역 도보 5분
-                                            </span>
-                                        </div>
-                                        <div className={cx("price")}>
-                                            <p>
-                                                <span>월세&nbsp;</span>
-                                                <span>38만원 ~ 55만원</span>
-                                            </p>
-                                            <p>
-                                                <span>보증금</span>
-                                                <span>150만원 ~ 150만원</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img
-                                            src={star_gray}
-                                            alt={"star_gray"}
-                                        />
-                                        <div className={cx("image-box")}>
-                                            <img src={room2} alt={"room"} />
-                                        </div>
-                                        <div className={cx("types")}>
-                                            <button>청년주택</button>
-                                            <span>국민임대</span>
-                                        </div>
-                                        <div className={cx("title")}>
-                                            2019년 서울시 영구임대주택
-                                            예비입주자 모집
-                                        </div>
-                                        <div className={cx("location")}>
-                                            <span>
-                                                성북구 길음동, 길음역 도보 5분
-                                            </span>
-                                        </div>
-                                        <div className={cx("price")}>
-                                            <p>
-                                                <span>월세</span>
-                                                <span>38만원 ~ 55만원</span>
-                                            </p>
-                                            <p>
-                                                <span>보증금</span>
-                                                <span>150만원 ~ 150만원</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <img
-                                            src={star_gray}
-                                            alt={"star_gray"}
-                                        />
-                                        <div className={cx("image-box")}>
-                                            <img src={room3} alt={"room"} />
-                                        </div>
-                                        <div className={cx("types")}>
-                                            <button>원룸</button>
-                                        </div>
-                                        <div className={cx("title")}>
-                                            2019년 서울시 영구임대주택
-                                            예비입주자 모집
-                                        </div>
-                                        <div className={cx("location")}>
-                                            <span>
-                                                성북구 길음동, 길음역 도보 5분
-                                            </span>
-                                        </div>
-                                        <div className={cx("price")}>
-                                            <p>
-                                                <span>월세</span>
-                                                <span>38만원 ~ 55만원</span>
-                                            </p>
-                                            <p>
-                                                <span>보증금</span>
-                                                <span>150만원 ~ 150만원</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img
-                                            src={star_gray}
-                                            alt={"star_gray"}
-                                        />
-                                        <div className={cx("image-box")}>
-                                            <img src={room4} alt={"room"} />
-                                        </div>
-                                        <div className={cx("types")}>
-                                            <button>청년주택</button>
-                                            <span>국민임대</span>
-                                        </div>
-                                        <div className={cx("title")}>
-                                            2019년 서울시 영구임대주택
-                                            예비입주자 모집
-                                        </div>
-                                        <div className={cx("location")}>
-                                            <span>
-                                                성북구 길음동, 길음역 도보 5분
-                                            </span>
-                                        </div>
-                                        <div className={cx("price")}>
-                                            <p>
-                                                <span>월세</span>
-                                                <span>38만원 ~ 55만원</span>
-                                            </p>
-                                            <p>
-                                                <span>보증금</span>
-                                                <span>150만원 ~ 150만원</span>
-                                            </p>
-                                        </div>
-                                    </div>
+                    {this.props.todayHouse_len !== 0 && (
+                        <div className={cx("popularity")}>
+                            <div className={cx("content")}>
+                                <h2>Today's 인기하우스</h2>
+                                <div className={cx("popularity-items")}>
+                                    {this.props.todayHouseArr.map(item => {
+                                        return (
+                                            <div ley={item["HOUSE_ID"]}>
+                                                <div>
+                                                    <img
+                                                        src={star_yellow}
+                                                        alt={"star_yellow"}
+                                                    />
+                                                    <div
+                                                        className={cx(
+                                                            "image-box"
+                                                        )}
+                                                    >
+                                                        <img
+                                                            src={
+                                                                item[
+                                                                    "INFO_THUMB_URL"
+                                                                ]
+                                                            }
+                                                            alt={"room"}
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        className={cx("types")}
+                                                    >
+                                                        <button>
+                                                            {
+                                                                item[
+                                                                    "RENT_TYPE_NAME"
+                                                                ]
+                                                            }
+                                                        </button>
+                                                        <span>
+                                                            {
+                                                                item[
+                                                                    "HOUSE_TYPE_NAME"
+                                                                ]
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        className={cx("title")}
+                                                    >
+                                                        {item["BRAND_NAME"] +
+                                                            item["HOUSE_NAME"]}
+                                                    </div>
+                                                    <div
+                                                        className={cx(
+                                                            "location"
+                                                        )}
+                                                    >
+                                                        <span>
+                                                            {item["ADDRESS"]}
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        className={cx("price")}
+                                                    >
+                                                        <p>
+                                                            <span>
+                                                                월세&nbsp;
+                                                            </span>
+                                                            <span>
+                                                                {
+                                                                    item[
+                                                                        "RENTFEE"
+                                                                    ]
+                                                                }
+                                                            </span>
+                                                        </p>
+                                                        <p>
+                                                            <span>보증금</span>
+                                                            <span>
+                                                                {
+                                                                    item[
+                                                                        "DEPOSIT"
+                                                                    ]
+                                                                }
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                     <div className={cx("recently-viewed")}>
                         <div className={cx("content")}>
                             <h2>
@@ -413,8 +367,8 @@ class Main extends React.Component {
                             청년주거 백과
                         </h1>
                     </div>
-                    <div className={cx("inhabi-grid-content")}>
-                        <div className={cx("inhabi-grid")}>
+                    <div className={cx("inhabi-content")}>
+                        <div className={cx("inhabi-contents-left")}>
                             <div>
                                 <h3>
                                     서울시 청년주택
@@ -439,18 +393,6 @@ class Main extends React.Component {
                                     관한다양한 정보를
                                     <br />
                                     알고 싶다면
-                                </p>
-                            </div>
-                            <div>
-                                <h3>
-                                    쉐어하우스
-                                    <br />
-                                    <span>스토리</span>
-                                </h3>
-                                <p>
-                                    쉐어하우스 반려동물
-                                    <br />
-                                    밍키의 쉐어라이프
                                 </p>
                             </div>
                             <div>
@@ -480,6 +422,21 @@ class Main extends React.Component {
                                 </p>
                             </div>
                         </div>
+                        <div className={cx("inhabi-contents-right")}>
+                            <div>
+                                <h3>
+                                    쉐어하우스
+                                    <br />
+                                    <span>스토리</span>
+                                </h3>
+                                <p>
+                                    쉐어하우스 반려동물
+                                    <br />
+                                    밍키의 쉐어라이프
+                                </p>
+                            </div>
+                        </div>
+                        <div className={cx("clear")}></div>
                     </div>
                     <div className={cx("clear")}></div>
                 </div>

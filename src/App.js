@@ -1,7 +1,16 @@
 import React from "react";
 import MainTemplate from "./components/base/MainTemplate/MainTemplate";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Main from "components/common/Main/Main";
+
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as UserActions from "stores/modules/user";
+import { withCookies } from "react-cookie";
+import { withRouter } from "react-router-dom";
+
+import { decode } from "lib/encrypt";
+
+import Main from "containers/common/main/MainContainer";
 import Register from "containers/user/register/UserRegsterContainer";
 import RegisterDone from "components/user/RegisterDone/RegisterDone";
 import Intro from "components/company/intro/Intro";
@@ -17,10 +26,44 @@ import inquiryDetail from "components/user/mypage/details/Inquiry/detail/Inquiry
 import "./App.css";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      member_name: ""
+    };
+  }
+
+  async componentDidMount() {
+    await this.Session_Refresh();
+  }
+
+  Session_Refresh = async () => {
+    const token = this.props.cookies.get("auth");
+
+    if (token !== undefined && token !== null) {
+      const access = JSON.parse(decode(token))["refresh_token"];
+      const refresh_token = access;
+      const res = await this.props.UserActions.Session_Refresh({
+        refresh_token
+      });
+
+      if (res["data"]["result"]["resCode"] !== "0000") {
+        this.props.cookies.remove("auth");
+        this.props.history.replace("/");
+      }
+
+      const member_name = await this.props.UserActions.Myinfo();
+      this.setState({
+        member_name:
+          member_name["data"]["result"]["data"]["member"]["MEMBER_NAME"]
+      });
+    }
+  };
+
   render() {
     return (
       <BrowserRouter>
-        <MainTemplate>
+        <MainTemplate member_name={this.state.member_name}>
           <Switch>
             <Route exact path="/" component={Main}></Route>
             <Route exact path="/user/register" component={Register}></Route>
@@ -59,4 +102,11 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withCookies(
+  connect(
+    state => ({}),
+    dispatch => ({
+      UserActions: bindActionCreators(UserActions, dispatch)
+    })
+  )(withRouter(App))
+);
