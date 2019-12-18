@@ -58,7 +58,6 @@ class Register extends React.Component {
 
     register = e => {
         e.preventDefault();
-        console.log("gg");
 
         if (!this.state.hasValue) {
             alert("필수 입력정보를 모두 입력해주십시오.");

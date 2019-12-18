@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 class Slider extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this);
+
         this.state = {
             status: "wait",
             min: this.props.min,
@@ -39,8 +39,6 @@ class Slider extends React.Component {
         this.setState({
             [type]: this.state.max * (per / 100)
         });
-
-        console.log(this.state.max * (per / 100));
     };
 
     onMouseUp = e => {

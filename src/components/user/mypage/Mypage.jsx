@@ -60,7 +60,7 @@ class Mypage extends React.Component {
                             <li
                                 className={
                                     this.state.nowMypage === "recent"
-                                        ? cx("primary_blue")
+                                        ? cx("primary-blue")
                                         : null
                                 }
                             >
@@ -73,7 +73,7 @@ class Mypage extends React.Component {
                             <li
                                 className={
                                     this.state.nowMypage === "interest"
-                                        ? cx("primary_blue")
+                                        ? cx("primary-blue")
                                         : null
                                 }
                             >
@@ -86,7 +86,7 @@ class Mypage extends React.Component {
                             <li
                                 className={
                                     this.state.nowMypage === "scraps"
-                                        ? cx("primary_blue")
+                                        ? cx("primary-blue")
                                         : null
                                 }
                             >
@@ -99,7 +99,7 @@ class Mypage extends React.Component {
                             <li
                                 className={
                                     this.state.nowMypage === "inquiry"
-                                        ? cx("primary_blue")
+                                        ? cx("primary-blue")
                                         : null
                                 }
                             >
@@ -112,7 +112,7 @@ class Mypage extends React.Component {
                             <li
                                 className={
                                     this.state.nowMypage === "privacy"
-                                        ? cx("primary_blue")
+                                        ? cx("primary-blue")
                                         : null
                                 }
                             >

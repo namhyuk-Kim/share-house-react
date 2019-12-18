@@ -11,7 +11,7 @@ class UserRegisterContainer extends React.Component {
       const res = await UserAction.Nation_Codes();
       return res.data.result.data.nationList;
     } catch (e) {
-      console.dir(e);
+      console.log(e);
     }
   };
 
@@ -37,7 +37,7 @@ class UserRegisterContainer extends React.Component {
       });
       return res;
     } catch (e) {
-      console.dir(e);
+      console.log(e);
     }
   };
 

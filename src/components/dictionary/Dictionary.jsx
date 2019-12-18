@@ -2,11 +2,11 @@ import React from "react";
 import classnames from "classnames/bind";
 import styles from "./_Dictionary.module.scss";
 import search from "assets/images/Search.png";
-import MainAll from "./detail/MainAll/MainAll";
-import HouseLife from "./detail/House_life/HouseLife";
+import MainAll from "containers/common/dictionary/detail/MainAllContainer/MainAllContainer";
+import HouseLife from "containers/common/dictionary/detail/HouseLifeContainer/HouseLifeContainer";
 import Comic from "./detail/Comic/Comic";
-import Story from "./detail/Story/Story";
-import Report from "./detail/Report/Report";
+import Story from "containers/common/dictionary/detail/StoryContainer/StoryContainer";
+import Report from "containers/common/dictionary/detail/ReportContainer/ReportContainer";
 
 const cx = classnames.bind(styles);
 

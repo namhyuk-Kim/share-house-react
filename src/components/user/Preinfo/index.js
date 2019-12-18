@@ -1,1 +1,1 @@
-export { default } "./Preinfo"
+export { default } from "./Preinfo";

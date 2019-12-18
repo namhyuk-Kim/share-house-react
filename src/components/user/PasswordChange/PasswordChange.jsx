@@ -1,38 +1,33 @@
 import React from "react";
-import classnames from "classnames/bind";
-import PropTypes from "prop-types";
 import styles from "./_PasswordChange.module.scss";
-import { Link } from "react-router-dom";
-import sns_naver from "assets/images/Naver.png";
-import sns_kakao from "assets/images/kakao.png";
-import sns_facebook from "assets/images/facebook_login.png";
+import classnames from "classnames/bind";
 
 const cx = classnames.bind(styles);
 
 class PasswordChange extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
     render() {
         return (
-            <div className={cx("modp")}>
-                <button className={cx("close")}></button>
-                <div className={cx("modp-wrap")}>
+            <div>
+                <div classNames={cx("chpw-wrap")}>
                     <h1>비밀번호 변경</h1>
-                    <span>비밀번호를 변경해 주세요.</span>
-
+                    <p>비밀번호를 변경해 주세요.</p>
                     <form>
-                        <label>
-                            <input type="text" placeholder="비밀번호 변경" />
-                        </label>
-                        <label>
-                            <input
-                                type="text"
-                                placeholder="신규  비밀번호 입력(8자리 이상)"
-                            />
-                        </label>
-                        <label>
-                            <input type="text" placeholder="비밀번호 재학인" />
-                        </label>
-                        <input type="cancel" value="다음에 변경하기" />
-                        <input type="submit" value="발송하기" />
+                        <input
+                            type="password"
+                            placeholder="새 비밀번호를 입력(8자리 이상)"
+                            name="newpassword"
+                        />
+                        <input
+                            type="password"
+                            placeholder="비밀번호 확인"
+                            name="re_newpassword"
+                        />
+                        <button>비밀번호 변경</button>
                     </form>
                 </div>
             </div>
