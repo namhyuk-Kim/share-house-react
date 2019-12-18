@@ -12,8 +12,8 @@ class PasswordChange extends React.Component {
 
     render() {
         return (
-            <div>
-                <div classNames={cx("chpw-wrap")}>
+            <div className={cx("chpw-wrap")}>
+                <div>
                     <h1>비밀번호 변경</h1>
                     <p>비밀번호를 변경해 주세요.</p>
                     <form>

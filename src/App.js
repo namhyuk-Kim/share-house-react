@@ -22,6 +22,9 @@ import Dictionary from "components/dictionary/Dictionary";
 import DictionaryPost from "components/dictionary/detail/Postdetail/PostDetail";
 import Mypage from "components/user/mypage/Mypage";
 import inquiryDetail from "components/user/mypage/details/Inquiry/detail/InquiryDetail";
+import PasswordChange from "components/user/PasswordChange/PasswordChange";
+import EmailOk from "components/user/EmailOk/EmailOk";
+import ExpiredEmail from "components/user/ExpiredEmail/ExpiredEmail";
 
 import "./App.css";
 
@@ -94,6 +97,17 @@ class App extends React.Component {
               exact
               path="/user/mypage/inquiry/detail"
               component={inquiryDetail}
+            ></Route>
+            <Route
+              exact
+              path="/user/passwordchange"
+              component={PasswordChange}
+            ></Route>
+            <Route exact path="/user/emailok" component={EmailOk}></Route>
+            <Route
+              exact
+              path="/user/expiredemail"
+              component={ExpiredEmail}
             ></Route>
           </Switch>
         </MainTemplate>

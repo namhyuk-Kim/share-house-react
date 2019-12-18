@@ -1,0 +1,41 @@
+.chpw-wrap {
+    margin: 0 auto;
+    & > div {
+        padding-top: 184px;
+        padding-bottom: 253px;
+
+        & > h1 {
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 32px;
+            display: block;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+        & > p {
+            display: block;
+            text-align: center;
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            margin-bottom: 70px;
+        }
+
+        & > button {
+            margin: 0 auto;
+            width: 352px;
+            margin-top: 24px;
+            background: #4f4f4f;
+            border-radius: 3px;
+            display: block;
+            height: 48px;
+            color: #fff;
+            font-family: Noto Sans KR;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+        }
+    }
+}
