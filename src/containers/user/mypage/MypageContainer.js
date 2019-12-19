@@ -17,17 +17,21 @@ class MypageContainer extends React.Component {
   }
 
   async componentDidMount() {
-    const token = this.props.cookies.get("auth");
+    const token = this.props.cookies.get("auth"); // 쿠키가져옴
+
     if (token === undefined || token === null || token === "") {
-      alert("로그인 후 이용해주십시오");
-      window.location.replace("/");
+      // 쿠키에 엑세스 토큰값이 없으면 로그인하지 않은 회원이라 판단
+      alert("로그인 후 이용해주십시오"); // 로그인 후 이용해주십시오라는 경고메세지를 띄워줌
+      window.location.replace("/"); // 페이지를 메인페이지로 돌려보내줌
     } else {
-      await this.Myinfo();
-      await this.Nation_Codes();
+      // 쿠키에 엑세스 토큰값이 존재하는 로그인된 회원이라면
+      await this.Myinfo(); // 회원의 정보를 가져옴
+      await this.Nation_Codes(); // 사용할 국가코드를 받아옴
     }
   }
 
   Nation_Codes = async () => {
+    // 마이페이지 계정정보 카테고리에서 사용 할 국가코드불러옴 ...
     const { UserAction } = this.props;
     try {
       const res = await this.props.UserAction.Nation_Codes();
@@ -41,14 +45,16 @@ class MypageContainer extends React.Component {
   };
 
   Myinfo = async () => {
+    // 나의 회원정보 받아옴
     const { UserAction } = this.props;
     try {
-      const res = await this.props.UserAction.Myinfo();
-      const NextMemberData = res.data.result.data.member;
-      let NextState = this.state;
+      const res = await this.props.UserAction.Myinfo(); // 회원정보를 포함한 api 통신 내용 받아 변수에 넣음
+      const NextMemberData = res.data.result.data.member; // 회원정보만 빼서 받아옴 ..
+      let NextState = this.state; // 현재 state 동기식으로 변경
       NextState["MemberData"] = NextMemberData;
       this.setState(NextState);
     } catch (e) {
+      // 통신중 에러가 있다면
       console.log(e);
     }
   };
@@ -57,6 +63,7 @@ class MypageContainer extends React.Component {
     let NextState = this.state;
     console.log(NextState);
     return (
+      // 마이페이지에 state 값을 포함시켜 반환함
       <Mypage
         Myinfo={this.Myinfo}
         MemberData={NextState["MemberData"]}

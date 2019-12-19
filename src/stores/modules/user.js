@@ -3,13 +3,13 @@ import { pender } from "redux-pender";
 import client from "lib/client";
 import qs from "querystring";
 
-const LOGIN = "LOGIN";
-const REGISTER = "REGISTER";
-const NATION_CODES = "NATION_CODES";
-const SESSION_REFRESH = "SESSION_REFRESH";
-const LOGOUT = "LOGOUT";
-const MYINFO = "MYINFO";
-const CLOSEACCOUNT = "CLOSEACCOUNT";
+const LOGIN = "LOGIN"; // 로그인
+const REGISTER = "REGISTER"; // 일반회원 회원가입
+const NATION_CODES = "NATION_CODES"; // 국가코드
+const SESSION_REFRESH = "SESSION_REFRESH"; // 토큰 세션 리프레시
+const LOGOUT = "LOGOUT"; // 로그아웃
+const MYINFO = "MYINFO"; // 나의 회원 정보
+const CLOSEACCOUNT = "CLOSEACCOUNT"; // 회원 탈퇴
 
 //-------------일반회원가입 json --------------//
 const RegisterNormal_API = ({
@@ -123,8 +123,9 @@ export default handleActions(
     ...pender({
       type: SESSION_REFRESH,
       onPending: state => {
+        // 리프레시 시도시 엑세스 토큰 지워줌
         let nextState = state;
-        nextState["auth"]["user"]["isLogined"] = false;
+        nextState["auth"]["user"]["isLogined"] = false; // 로그인 true false -> false 로 변경
 
         delete client.defaults.headers.common["x-access-id"];
         delete client.defaults.headers.common["x-access-token"];
@@ -132,16 +133,17 @@ export default handleActions(
         return nextState;
       },
       onSuccess: (state, action) => {
+        // 리프레시 성공시
         const ACCESS_TOKEN = action.payload.data.result.data.ACCESS_TOKEN;
 
         let nextState = state;
         const NowEcode = action["payload"]["data"]["result"]["resCode"];
         const NowEmsg = action["payload"]["data"]["result"]["resMessage"];
         if (NowEcode !== "0000") {
-          nextState["auth"]["user"]["isLogined"] = false;
+          nextState["auth"]["user"]["isLogined"] = false; // 만약 오류가 있다면 .. -> 로그인 상태 -> false
         } else {
-          nextState["auth"]["user"]["isLogined"] = true;
-          client.defaults.headers.common["x-access-token"] = ACCESS_TOKEN;
+          nextState["auth"]["user"]["isLogined"] = true; // 오류가 없다면 -> 로그안상테 -> true
+          client.defaults.headers.common["x-access-token"] = ACCESS_TOKEN; // 엑세스 토큰 지정
         }
 
         return nextState;
