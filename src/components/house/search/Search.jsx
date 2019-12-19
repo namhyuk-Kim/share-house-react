@@ -1,18 +1,15 @@
 import React, { createRef } from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
+import _ from "lodash";
 import InputRange from "react-input-range"; // input range 관련 패키지 받아옴
 import "react-input-range/lib/css/index.css"; // input range 관련 패키지 css
+
 import styles from "./_Search.module.scss";
 import filter from "assets/images/filter.png";
 import refresh from "assets/images/refesh.png";
 import search_icon from "assets/images/Search.png";
 import folder_add from "assets/images/folder_add.png";
-import room1 from "assets/images/result-room1.png";
-import room2 from "assets/images/result-room2.png";
-import room3 from "assets/images/result-room3.png";
-import room4 from "assets/images/result-room4.png";
-import room5 from "assets/images/result-room5.png";
 import star from "assets/images/star_yellow.png";
 import vr from "assets/images/list_vr.png";
 import folder_add_w from "assets/images/folder_add_w.png";
@@ -30,6 +27,10 @@ class Search extends React.Component {
         super(props);
         this.mapRef = createRef();
         this.state = {
+            NORTH: 0,
+            SOUTH: 0,
+            EAST: 0,
+            WEST: 0,
             deposit: { min: 0, max: 10 },
             monthly: { min: 0, max: 10 },
             ShowFlilter: false,
@@ -38,6 +39,20 @@ class Search extends React.Component {
             NowSearchKeyHelper: []
         };
     }
+
+    componentDidMount() {
+        this.PullSearchHelper = _.debounce(this.PullSearchHelper, 500, {
+            maxWait: 1000
+        });
+
+        const options = {
+            center: new window.kakao.maps.LatLng(37.5837, 127.009393),
+            level: 3,
+            position: new window.kakao.maps.LatLng(37.5837, 127.009393)
+        };
+
+        this.map = new window.kakao.maps.Map(this.mapRef, options);
+    } //지도 생성 및 객체 리턴
 
     filter_toggle = () => {
         // 필터버튼 눌러서 나오게함
@@ -55,7 +70,7 @@ class Search extends React.Component {
         });
     };
 
-    PullSearchHelper = e => {
+    onChange = e => {
         let NextState = e.target.value;
 
         if (!e.target.value) {
@@ -65,9 +80,93 @@ class Search extends React.Component {
         this.setState({
             NowSearchKeyword: NextState
         });
-        this.props.SearchNomination(NextState).then(value => {
+
+        this.PullSearchHelper();
+    };
+
+    PullSearchHelper = e => {
+        this.props.SearchNomination(this.state.NowSearchKeyword).then(value => {
             this.setState({ ...this.state, NowSearchKeyHelper: value });
         });
+    };
+
+    SearchKeyword = async key => {
+        let nextState = this.state;
+
+        const array = nextState["NowSearchKeyHelper"][key];
+
+        const juso = new window.kakao.maps.LatLng(
+            array["LATITUDE"],
+            array["LONGITUDE"]
+        );
+
+        this.map.setCenter(juso);
+
+        const bounds = this.map.getBounds();
+
+        const swLatLng = bounds.getSouthWest();
+
+        // 영역의 북동쪽 좌표를 얻어옵니다
+        const neLatLng = bounds.getNorthEast();
+
+        // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+
+        nextState["SOUTH"] = swLatLng.getLat();
+        nextState["WEST"] = swLatLng.getLng();
+        nextState["NORTH"] = neLatLng.getLat();
+        nextState["EAST"] = neLatLng.getLng();
+
+        this.setState(nextState);
+
+        const { SearchList } = this.props;
+        const {
+            page,
+            rows,
+            NORTH,
+            SOUTH,
+            EAST,
+            WEST,
+            SHAREHOUSE,
+            HOUSE2030,
+            PREMIUM_HOUSE
+        } = this.state;
+
+        await SearchList({
+            page,
+            rows,
+            NORTH,
+            SOUTH,
+            EAST,
+            WEST,
+            SHAREHOUSE,
+            HOUSE2030,
+            PREMIUM_HOUSE
+        });
+
+        const { houseLoad, houseList } = this.props;
+
+        if (!houseLoad) {
+            let marker = [];
+
+            houseList.forEach(item => {
+                if (item === null || "") return null;
+                marker.push({
+                    title: item["HOUSE_NAME"],
+                    latlng: new window.kakao.maps.LatLng(
+                        item["LATITUDE"],
+                        item["LONGITUDE"]
+                    )
+                });
+            });
+
+            for (let item of marker) {
+                new window.kakao.maps.Marker({
+                    map: this.map,
+                    position: item["latlng"],
+                    title: item["title"]
+                });
+            }
+        }
     };
 
     ResetShow = e => {
@@ -81,28 +180,19 @@ class Search extends React.Component {
         }
     };
 
-    componentDidMount() {
-        const options = {
-            center: new window.kakao.maps.LatLng(37.468532, 126.887356),
-            level: 3,
-            position: new window.kakao.maps.LatLng(37.468532, 126.887356)
-        };
-        this.map = new window.kakao.maps.Map(this.mapRef, options);
-    } //지도 생성 및 객체 리턴
-
     render() {
         const { NowSearchKeyHelper } = this.state;
         return (
             <div className={cx("search-wrap")}>
                 <div className={cx("search-bar")}>
-                    <form>
+                    <form onSubmit={null}>
                         <label className={cx("search")}>
                             <input
                                 type="text"
                                 placeholder="지역/지하철/대학교/하우스 명"
                                 onFocus={() => this.SearchHelp("Focus")}
                                 onBlur={() => this.SearchHelp("Blur")}
-                                onChange={e => this.PullSearchHelper(e)}
+                                onChange={this.onChange}
                                 className={cx("search-input")}
                             />
                             <div>
@@ -248,50 +338,53 @@ class Search extends React.Component {
                     className={cx("search-help")}
                     data-help-toggle={this.state.Isfocus}
                 >
-                    {NowSearchKeyHelper.map(item => {
+                    {NowSearchKeyHelper.map((item, index) => {
                         if (item["CATEGORY"] === "1") {
                             return (
-                                <div className={cx("help-content")}>
+                                <div
+                                    className={cx("help-content")}
+                                    key={index}
+                                    onClick={() => this.SearchKeyword(index)}
+                                >
                                     <img src={category1} alt="대학교" />
                                     <p>{item["KEYWORD"]}</p>
                                 </div>
                             );
                         } else if (item["CATEGORY"] === "2") {
                             return (
-                                <div className={cx("help-content")}>
+                                <div
+                                    className={cx("help-content")}
+                                    key={index}
+                                    onClick={() => this.SearchKeyword(index)}
+                                >
                                     <img src={category2} alt="지하철" />
                                     <p>{item["KEYWORD"]}</p>
                                 </div>
                             );
                         } else if (item["CATEGORY"] === "3") {
                             return (
-                                <div className={cx("help-content")}>
+                                <div
+                                    className={cx("help-content")}
+                                    key={index}
+                                    onClick={() => this.SearchKeyword(index)}
+                                >
                                     <img src={category3} alt="법정동 주소" />
                                     <p>{item["KEYWORD"]}</p>
                                 </div>
                             );
                         } else if (item["CATEGORY"] === "4") {
                             return (
-                                <div className={cx("help-content")}>
+                                <div
+                                    className={cx("help-content")}
+                                    key={index}
+                                    onClick={() => this.SearchKeyword(index)}
+                                >
                                     <img src={category4} alt="하우스명" />
                                     <p>{item["KEYWORD"]}</p>
                                 </div>
                             );
                         }
                     })}
-
-                    {/* <div className={cx("help-content")}>
-                        <img src={school} alt="학교" />
-                        <p>회기역</p>
-                    </div>
-                    <div className={cx("help-content")}>
-                        <img src={house} alt="집" />
-                        <p>회기역</p>
-                    </div>
-                    <div className={cx("help-content")}>
-                        <img src={pin} alt="핀" />
-                        <p>회기역</p>
-                    </div> */}
                 </div>
                 <div className={cx("search-result")}>
                     <div
@@ -301,7 +394,8 @@ class Search extends React.Component {
                     <div className={cx("search-result-right")}>
                         <div className={cx("result-head")}>
                             <p>
-                                검색 하우스&nbsp;&nbsp;<span>&nbsp;40</span>개
+                                검색 하우스&nbsp;&nbsp;
+                                <span>&nbsp;{this.props.totalCount}</span>개
                             </p>
                             <button>
                                 <img src={folder_add} alt="folder_add" />
@@ -309,281 +403,87 @@ class Search extends React.Component {
                             </button>
                         </div>
                         <div className={cx("result-body")}>
-                            <div className={cx("result-item")}>
-                                <div className={cx("item-img")}>
-                                    <img src={room1} alt="room" />
-                                    <img
-                                        src={star}
-                                        alt="star"
-                                        className={cx("star")}
-                                    />
-                                    <img
-                                        src={vr}
-                                        alt="vr"
-                                        className={cx("vr")}
-                                    />
-                                    <div className={cx("add-compare")}>
-                                        <img
-                                            src={folder_add_w}
-                                            alt="folder_add_w"
-                                        />
-                                        비교함담기
+                            {!this.props.houseLoad &&
+                                this.props.houseList.map((item, index) => (
+                                    <div
+                                        className={cx("result-item")}
+                                        key={index}
+                                    >
+                                        <div className={cx("item-img")}>
+                                            <img
+                                                src={item["INFO_THUMB_URL"]}
+                                                alt={item["HOUSE_NAME"]}
+                                            />
+                                            {item["IS_FAVORITED_YN"] ===
+                                                "Y" && (
+                                                <img
+                                                    src={star}
+                                                    alt="star"
+                                                    className={cx("star")}
+                                                />
+                                            )}
+                                            {item["VR_HOUSE_YN"] === "Y" && (
+                                                <img
+                                                    src={vr}
+                                                    alt="vr"
+                                                    className={cx("vr")}
+                                                />
+                                            )}
+                                            <div className={cx("add-compare")}>
+                                                <img
+                                                    src={folder_add_w}
+                                                    alt="folder_add_w"
+                                                />
+                                                비교함담기
+                                            </div>
+                                        </div>
+                                        <div className={cx("item-content")}>
+                                            <div className={cx("types")}>
+                                                <button
+                                                    className={cx(
+                                                        "nomination-btn"
+                                                    )}
+                                                >
+                                                    추천
+                                                </button>
+                                                <button
+                                                    className={cx(
+                                                        "primary-blue-btn"
+                                                    )}
+                                                >
+                                                    {item["RENT_TYPE_NAME"]}
+                                                </button>
+                                                <span>
+                                                    {item["HOUSE_TYPE_NAME"]}
+                                                </span>
+                                            </div>
+                                            <span className={cx("item-title")}>
+                                                <Link to="/house/houseid">
+                                                    {item["HOUSE_NAME"]}
+                                                </Link>
+                                            </span>
+                                            <span
+                                                className={cx("item-location")}
+                                            >
+                                                {item["ADDRESS"]}
+                                            </span>
+                                            <div className={cx("item-price")}>
+                                                <p>
+                                                    <span>월세</span>
+                                                    <span>
+                                                        {item["RENTFEE"]}
+                                                    </span>
+                                                </p>
+                                                <p>
+                                                    <span>보증금</span>
+                                                    <span>
+                                                        {item["DEPOSIT"]}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className={cx("item-content")}>
-                                    <div className={cx("types")}>
-                                        <button
-                                            className={cx("nomination-btn")}
-                                        >
-                                            추천
-                                        </button>
-                                        <button
-                                            className={cx("primary-blue-btn")}
-                                        >
-                                            쉐어하우스
-                                        </button>
-                                        <span>아파트</span>
-                                    </div>
-                                    <span className={cx("item-title")}>
-                                        <Link to="/house/houseid">
-                                            마이빌리지
-                                        </Link>
-                                    </span>
-                                    <span className={cx("item-location")}>
-                                        성북구 길음동,길음역 도보5분
-                                    </span>
-                                    <div className={cx("item-price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={cx("result-item")}>
-                                <div className={cx("item-img")}>
-                                    <img src={room2} alt="room" />
-                                    <img
-                                        src={star}
-                                        alt="star"
-                                        className={cx("star")}
-                                    />
-                                    <img
-                                        src={vr}
-                                        alt="vr"
-                                        className={cx("vr")}
-                                    />
-                                    <div className={cx("add-compare")}>
-                                        <img
-                                            src={folder_add_w}
-                                            alt="folder_add_w"
-                                        />
-                                        비교함담기
-                                    </div>
-                                </div>
-                                <div className={cx("item-content")}>
-                                    <div className={cx("types")}>
-                                        <button
-                                            className={cx("nomination-btn")}
-                                        >
-                                            추천
-                                        </button>
-                                        <button
-                                            className={cx("primary-blue-btn")}
-                                        >
-                                            쉐어하우스
-                                        </button>
-                                        <span>아파트</span>
-                                    </div>
-                                    <span className={cx("item-title")}>
-                                        <Link to="/house/houseid">
-                                            마이빌리지
-                                        </Link>
-                                    </span>
-                                    <span className={cx("item-location")}>
-                                        성북구 길음동,길음역 도보5분
-                                    </span>
-                                    <div className={cx("item-price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={cx("result-item")}>
-                                <div className={cx("item-img")}>
-                                    <img src={room3} alt="room" />
-                                    <img
-                                        src={star}
-                                        alt="star"
-                                        className={cx("star")}
-                                    />
-                                    <img
-                                        src={vr}
-                                        alt="vr"
-                                        className={cx("vr")}
-                                    />
-                                    <div className={cx("add-compare")}>
-                                        <img
-                                            src={folder_add_w}
-                                            alt="folder_add_w"
-                                        />
-                                        비교함담기
-                                    </div>
-                                </div>
-                                <div className={cx("item-content")}>
-                                    <div className={cx("types")}>
-                                        <button
-                                            className={cx("nomination-btn")}
-                                        >
-                                            추천
-                                        </button>
-                                        <button
-                                            className={cx("primary-blue-btn")}
-                                        >
-                                            쉐어하우스
-                                        </button>
-                                        <span>아파트</span>
-                                    </div>
-                                    <span className={cx("item-title")}>
-                                        <Link to="/house/houseid">
-                                            마이빌리지
-                                        </Link>
-                                    </span>
-                                    <span className={cx("item-location")}>
-                                        성북구 길음동,길음역 도보5분
-                                    </span>
-                                    <div className={cx("item-price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={cx("result-item")}>
-                                <div className={cx("item-img")}>
-                                    <img src={room4} alt="room" />
-                                    <img
-                                        src={star}
-                                        alt="star"
-                                        className={cx("star")}
-                                    />
-                                    <img
-                                        src={vr}
-                                        alt="vr"
-                                        className={cx("vr")}
-                                    />
-                                    <div className={cx("add-compare")}>
-                                        <img
-                                            src={folder_add_w}
-                                            alt="folder_add_w"
-                                        />
-                                        비교함담기
-                                    </div>
-                                </div>
-                                <div className={cx("item-content")}>
-                                    <div className={cx("types")}>
-                                        <button
-                                            className={cx("nomination-btn")}
-                                        >
-                                            추천
-                                        </button>
-                                        <button
-                                            className={cx("primary-blue-btn")}
-                                        >
-                                            쉐어하우스
-                                        </button>
-                                        <span>아파트</span>
-                                    </div>
-                                    <span className={cx("item-title")}>
-                                        <Link to="/house/houseid">
-                                            마이빌리지
-                                        </Link>
-                                    </span>
-                                    <span className={cx("item-location")}>
-                                        성북구 길음동,길음역 도보5분
-                                    </span>
-                                    <div className={cx("item-price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={cx("result-item")}>
-                                <div className={cx("item-img")}>
-                                    <img src={room5} alt="room" />
-                                    <img
-                                        src={star}
-                                        alt="star"
-                                        className={cx("star")}
-                                    />
-                                    <div className={cx("add-compare")}>
-                                        <img
-                                            src={folder_add_w}
-                                            alt="folder_add_w"
-                                        />
-                                        비교함담기
-                                    </div>
-                                    <img
-                                        src={vr}
-                                        alt="vr"
-                                        className={cx("vr")}
-                                    />
-                                </div>
-                                <div className={cx("item-content")}>
-                                    <div className={cx("types")}>
-                                        <button
-                                            className={cx("nomination-btn")}
-                                        >
-                                            추천
-                                        </button>
-                                        <button
-                                            className={cx("primary-blue-btn")}
-                                        >
-                                            쉐어하우스
-                                        </button>
-                                        <span>아파트</span>
-                                    </div>
-                                    <span className={cx("item-title")}>
-                                        <Link to="/house/houseid">
-                                            마이빌리지
-                                        </Link>
-                                    </span>
-                                    <span className={cx("item-location")}>
-                                        성북구 길음동,길음역 도보5분
-                                    </span>
-                                    <div className={cx("item-price")}>
-                                        <p>
-                                            <span>월세</span>
-                                            <span>38만원 ~ 55만원</span>
-                                        </p>
-                                        <p>
-                                            <span>보증금</span>
-                                            <span>150만원 ~ 150만원</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                                ))}
                         </div>
                     </div>
                     <div className={cx("clear'")}></div>
