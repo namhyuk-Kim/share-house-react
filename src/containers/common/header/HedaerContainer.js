@@ -19,7 +19,7 @@ class HeaderContainer extends React.Component {
     const { cookies } = this.props;
 
     cookies.remove("auth");
-    return window.location.reload();
+    return window.location.replace("/");
   };
 
   render() {

@@ -9,6 +9,7 @@ const NATION_CODES = "NATION_CODES";
 const SESSION_REFRESH = "SESSION_REFRESH";
 const LOGOUT = "LOGOUT";
 const MYINFO = "MYINFO";
+const CLOSEACCOUNT = "CLOSEACCOUNT";
 
 //-------------일반회원가입 json --------------//
 const RegisterNormal_API = ({
@@ -64,7 +65,12 @@ const Logout_API = () => {
 
 //-------------- 나의 회원정보 조회
 const Myinfo_API = () => {
-  return client.get(`/rest/my/info`);
+  return client.get("/rest/my/info");
+};
+
+//-------------- 일반회원 회원탈퇴
+const CloseAccount_API = () => {
+  return client.post("/rest/my/leave");
 };
 
 export const RegisterNormal = createAction(REGISTER, RegisterNormal_API); //일반회원가입
@@ -76,6 +82,7 @@ export const Session_Refresh = createAction(
 ); // 세션 리프레쉬
 export const Logout = createAction(LOGOUT, Logout_API); // 로그아웃
 export const Myinfo = createAction(MYINFO, Myinfo_API); // 나의 회원정보 조회
+export const CloseAccount = createAction(CLOSEACCOUNT, CloseAccount_API); // 일반회원 회원탈퇴
 
 const initialState = {
   auth: {
@@ -156,6 +163,12 @@ export default handleActions(
         member_info["auth"]["user"]["member_name"] = member_data["MEMBER_NAME"];
 
         return member_info;
+      }
+    }),
+    ...pender({
+      type: CLOSEACCOUNT, // 회원탈퇴
+      onSuccess: () => {
+        return;
       }
     })
   },
