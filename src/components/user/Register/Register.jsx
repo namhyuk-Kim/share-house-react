@@ -195,14 +195,14 @@ class Register extends React.Component {
                                 </select>
                                 <input
                                     name="NEW_PASSWORD"
-                                    type="text"
+                                    type="password"
                                     placeholder="비밀번호 입력(8자리 이상) *"
                                     required
                                     onChange={this.handleChange}
                                 />
                                 <input
                                     name="RE_NEW_PASSWORD"
-                                    type="text"
+                                    type="password"
                                     placeholder="비밀번호 확인 *"
                                     required
                                     onChange={this.handleChange}

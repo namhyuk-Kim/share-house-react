@@ -32,7 +32,7 @@
             text-align: center;
         }
 
-        & > form:nth-child(3) {
+        & > div:nth-child(3) {
             margin-top: 24px;
             margin-bottom: 63px;
 
@@ -88,7 +88,7 @@
                 color: #ffffff;
             }
 
-            & > input[type="submit"] {
+            & > input[type="button"] {
                 margin-right: 8px;
                 background-color: #fff;
                 border: 1px solid #e0e0e0;

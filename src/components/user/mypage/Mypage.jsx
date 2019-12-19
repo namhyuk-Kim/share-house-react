@@ -15,6 +15,7 @@ class Mypage extends React.Component {
             nowMypage: "recent"
         };
     }
+
     ChangeView = e => {
         let nextState = e;
         this.setState({
@@ -38,7 +39,12 @@ class Mypage extends React.Component {
                 return <Inquiry />;
 
             case "privacy":
-                return <UserAccount />;
+                return (
+                    <UserAccount
+                        MemberData={this.props.MemberData}
+                        NationCodes={this.props.NationCodes}
+                    />
+                );
 
             default:
                 return null;
@@ -46,12 +52,13 @@ class Mypage extends React.Component {
     };
 
     render() {
+        console.log(this.props);
         return (
             <>
                 <div className={cx("mypage-wrap")}>
                     <div className={cx("mypage-user-data")}>
-                        <h1>김문영</h1>
-                        <span>kimmy@naver.com</span>
+                        <h1>{this.props.MemberData["MEMBER_NAME"]}</h1>
+                        <span>{this.props.MemberData["EMAIL"]}</span>
                     </div>
                 </div>
                 <div className={cx("mypage-category")}>
