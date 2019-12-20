@@ -98,7 +98,6 @@ class App extends React.Component {
 
             <Route // 하우스 상세페이지
               path="/house/"
-              // params={{ houseid: 1 } 하우스 상세페이지 아이디로 보낼때 사용할것}
               component={Detail}
             ></Route>
 
