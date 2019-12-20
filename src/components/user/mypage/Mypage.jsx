@@ -52,7 +52,6 @@ class Mypage extends React.Component {
     };
 
     render() {
-        console.log(this.props);
         return (
             <>
                 <div className={cx("mypage-wrap")}>

@@ -62,6 +62,19 @@ class Detail extends React.Component {
     constructor(props) {
         super(props);
         this.mapRef = createRef();
+        this.state = {
+            HouseDetail: [],
+            articleList: [],
+            brand: [],
+            facility1List: [],
+            facility2List: [],
+            house: [],
+            pictureList: [],
+            placeList: [],
+            roomList: [],
+            subwayList: [],
+            universityList: []
+        };
     }
 
     componentDidMount() {
@@ -71,6 +84,21 @@ class Detail extends React.Component {
             position: new window.kakao.maps.LatLng(37.468532, 126.887356)
         };
         this.map = new window.kakao.maps.Map(this.mapRef, options);
+        this.props.HouseDetail().then(value => {
+            let NextState = this.state;
+            NextState["HouseDetail"] = value;
+            NextState["articleList"] = value.articleList;
+            NextState["brand"] = value.brand;
+            NextState["facility1List"] = value.facility1List;
+            NextState["facility2List"] = value.facility2List;
+            NextState["house"] = value.house;
+            NextState["pictureList"] = value.pictureList;
+            NextState["placeList"] = value.placeList;
+            NextState["roomList"] = value.roomList;
+            NextState["subwayList"] = value.subwayList;
+            NextState["universityList"] = value.universityList;
+            this.setState(NextState);
+        });
     } //지도 생성 및 객체 리턴
 
     render() {
@@ -86,16 +114,40 @@ class Detail extends React.Component {
                                 전경(평면도)
                             </button>
                             <select className={cx("room-selector")}>
-                                <option>방F</option>
+                                {this.state.roomList.map(items => {
+                                    return (
+                                        <option
+                                            key={items["ROOM_CODE"]}
+                                            value={items["ROOM_CODE"]}
+                                        >
+                                            {items["ROOM_NAME"]}
+                                        </option>
+                                    );
+                                })}
                             </select>
-                            <button className={cx("vr-see")}>
-                                <img src={vr_see} alt="vr-see" />
-                                VR보기
-                            </button>
+                            {this.state.house["VR_HOUSE_YN"] === "Y" && (
+                                <button className={cx("vr-see")}>
+                                    <img src={vr_see} alt="vr-see" />
+                                    VR보기
+                                </button>
+                            )}
                             <div className={cx("detail-slider-inner")}>
-                                <div className={cx("inner-item")}>
-                                    <img src={detail1} alt="room" />
-                                </div>
+                                {this.state.pictureList
+                                    .filter(
+                                        (value, index) =>
+                                            value["CAPTION"] === "공용공간" &&
+                                            index < 10
+                                    )
+                                    .map(items => {
+                                        return (
+                                            <div className={cx("inner-item")}>
+                                                <img
+                                                    src={items["PIC_URL"]}
+                                                    alt="thumb1_s"
+                                                />
+                                            </div>
+                                        );
+                                    })}
                             </div>
                         </div>
                         <div className={cx("thumb-changer")}>
@@ -106,36 +158,20 @@ class Detail extends React.Component {
                                 <img src={arrow_left} alt="arrow_left" />
                             </div>
                             <div className={cx("thumb-changer-slider")}>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
-                                <div>
-                                    <img src={thumb1_s} alt="thumb1_s" />
-                                </div>
+                                {this.state.pictureList
+                                    .filter(
+                                        value => value["CAPTION"] === "공용공간"
+                                    )
+                                    .map(items => {
+                                        return (
+                                            <div>
+                                                <img
+                                                    src={items["THUMB_URL"]}
+                                                    alt="thumb1_s"
+                                                />
+                                            </div>
+                                        );
+                                    })}
                             </div>
                         </div>
                         <MobileDetailMenu />
@@ -170,21 +206,29 @@ class Detail extends React.Component {
                                     <div>
                                         <div>
                                             <span>하우스오픈일</span>
-                                            <h1>2019년</h1>
+                                            <h1>
+                                                {this.state.brand["OPEN_DATE"]}
+                                            </h1>
                                         </div>
                                         <div>
                                             <span>지역</span>
-                                            <h1>서울시 용산구</h1>
+                                            <h1>
+                                                {this.state.house["ADDRESS"]}
+                                            </h1>
                                         </div>
                                     </div>
                                     <div>
                                         <div>
                                             <span>보증금</span>
-                                            <h1>300만원~300만원</h1>
+                                            <h1>
+                                                {this.state.house["DEPOSIT"]}
+                                            </h1>
                                         </div>
                                         <div>
                                             <span>월임대료</span>
-                                            <h1>21.9만원~61.9만원</h1>
+                                            <h1>
+                                                {this.state.house["RENTFEE"]}
+                                            </h1>
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +238,7 @@ class Detail extends React.Component {
                                             <span>고정관리비/광열비</span>
                                         </div>
                                         <div className={cx("t-cell")}>
-                                            5만원 / 1/N
+                                            {this.state.house["MANAGE_FEE_AMT"]}
                                         </div>
                                     </div>
 
@@ -203,7 +247,9 @@ class Detail extends React.Component {
                                             <span>방수</span>
                                         </div>
                                         <div className={cx("t-cell")}>
-                                            1인실 13개<span>|</span> 화장실6개
+                                            {this.state.house["ROOM_CNT"]}
+                                            <span>|</span> 화장실
+                                            {this.state.house["BATHROOM_CNT"]}개
                                         </div>
                                     </div>
 
@@ -212,8 +258,11 @@ class Detail extends React.Component {
                                             <span>입주조건</span>
                                         </div>
                                         <div className={cx("t-cell")}>
-                                            최소 계약기간 90일,외국인 환영,학생
-                                            환영,직장인 환영
+                                            {
+                                                this.state.house[
+                                                    "MOVEIN_CONDITION"
+                                                ]
+                                            }
                                         </div>
                                     </div>
 
@@ -222,9 +271,7 @@ class Detail extends React.Component {
                                             <span>제공서비스</span>
                                         </div>
                                         <div className={cx("t-cell")}>
-                                            공유공간 청소,주방세제 제공,빨래세제
-                                            제공,화장지 제공,전구 등 기타 소모품
-                                            교체, 방역/방충,보안/안전
+                                            {this.state.house["HOUSE_SERVICE"]}
                                         </div>
                                     </div>
 
@@ -278,127 +325,39 @@ class Detail extends React.Component {
                                                 <div className={cx("t-cell")}>
                                                     공용
                                                 </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={sofa_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={desktop_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={chair_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={table_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={bookshelf_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            internet_stuff_icon
+                                                <div>
+                                                    {this.state.facility1List.map(
+                                                        items => {
+                                                            return (
+                                                                <div
+                                                                    className={cx(
+                                                                        "t-cell"
+                                                                    )}
+                                                                    key={
+                                                                        items[
+                                                                            "FA_CODE"
+                                                                        ]
+                                                                    }
+                                                                >
+                                                                    <img
+                                                                        src={
+                                                                            items[
+                                                                                "ICON_FILE_URL"
+                                                                            ]
+                                                                        }
+                                                                        alt="stuff"
+                                                                    />
+                                                                    <span>
+                                                                        {
+                                                                            items[
+                                                                                "FA_NAME"
+                                                                            ]
+                                                                        }
+                                                                    </span>
+                                                                </div>
+                                                            );
                                                         }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            stand_light_stuff_on
-                                                        }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className={cx("t-row")}>
-                                                <div
-                                                    className={cx("t-cell")}
-                                                ></div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={tv_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            air_conditioner_stuff_on
-                                                        }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={curtain_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={iron_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            shoe_closet_stuff_on
-                                                        }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={bidet_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={washer_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className={cx("t-row")}>
-                                                <div
-                                                    className={cx("t-cell")}
-                                                ></div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={dryer_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            Clothes_dryer_stuff_on
-                                                        }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={cleaner_stuff_on}
-                                                        alt="stuff"
-                                                    />
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -412,103 +371,39 @@ class Detail extends React.Component {
                                                 <div className={cx("t-cell")}>
                                                     주방
                                                 </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={sofa_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={desktop_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={chair_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={table_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={bookshelf_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            internet_stuff_icon
+                                                <div>
+                                                    {this.state.facility2List.map(
+                                                        items => {
+                                                            return (
+                                                                <div
+                                                                    className={cx(
+                                                                        "t-cell"
+                                                                    )}
+                                                                    key={
+                                                                        items[
+                                                                            "FA_CODE"
+                                                                        ]
+                                                                    }
+                                                                >
+                                                                    <img
+                                                                        src={
+                                                                            items[
+                                                                                "ICON_FILE_URL"
+                                                                            ]
+                                                                        }
+                                                                        alt="stuff"
+                                                                    />
+                                                                    <span>
+                                                                        {
+                                                                            items[
+                                                                                "FA_NAME"
+                                                                            ]
+                                                                        }
+                                                                    </span>
+                                                                </div>
+                                                            );
                                                         }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            stand_light_stuff_on
-                                                        }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className={cx("t-row")}>
-                                                <div
-                                                    className={cx([
-                                                        "t-cell",
-                                                        "appender"
-                                                    ])}
-                                                ></div>
-                                                <div
-                                                    className={cx([
-                                                        "t-cell",
-                                                        "appender"
-                                                    ])}
-                                                >
-                                                    <img
-                                                        src={dryer_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={
-                                                            Clothes_dryer_stuff_on
-                                                        }
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={cleaner_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={cleaner_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={cleaner_stuff_on}
-                                                        alt="stuff"
-                                                    />
-                                                </div>
-                                                <div className={cx("t-cell")}>
-                                                    <img
-                                                        src={cleaner_stuff_on}
-                                                        alt="stuff"
-                                                    />
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -543,92 +438,78 @@ class Detail extends React.Component {
                                                     <th>제공시설</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Room E</td>
-                                                    <td>2인실</td>
-                                                    <td>100만원 ~ 150만원</td>
-                                                    <td>42만원 ~ 45만원</td>
-                                                    <td>즉시</td>
-                                                    <td>공실</td>
-                                                    <td>
-                                                        <img
-                                                            src={Glass}
-                                                            alt="more"
-                                                        />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>방설명</td>
-                                                    <td colSpan="6">
-                                                        싱글침대 2개
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>제공시설</td>
-                                                    <td colSpan="6">
-                                                        책상,의자,스탠드,옷장,커튼,이불,배게,싱글침대,이층침대,벙커침대,화장대,롬에어컨,선풍기,수납장
-                                                    </td>
-                                                </tr>
-                                            </tbody>
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>Room E</td>
-                                                    <td>2인실</td>
-                                                    <td>100만원 ~ 150만원</td>
-                                                    <td>42만원 ~ 45만원</td>
-                                                    <td>즉시</td>
-                                                    <td>공실</td>
-                                                    <td>
-                                                        <img
-                                                            src={Glass}
-                                                            alt="more"
-                                                        />
-                                                    </td>
-                                                </tr>
-                                                <tr className={cx("dp-none")}>
-                                                    <td>방설명</td>
-                                                    <td colSpan="6">
-                                                        싱글침대 2개
-                                                    </td>
-                                                </tr>
-                                                <tr className={cx("dp-none")}>
-                                                    <td>제공시설</td>
-                                                    <td colSpan="6">
-                                                        책상,의자,스탠드,옷장,커튼,이불,배게,싱글침대,이층침대,벙커침대,화장대,롬에어컨,선풍기,수납장
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>Room E</td>
-                                                    <td>2인실</td>
-                                                    <td>100만원 ~ 150만원</td>
-                                                    <td>42만원 ~ 45만원</td>
-                                                    <td>즉시</td>
-                                                    <td>공실</td>
-                                                    <td>
-                                                        <img
-                                                            src={Glass}
-                                                            alt="more"
-                                                        />
-                                                    </td>
-                                                </tr>
-                                                <tr className={cx("dp-none")}>
-                                                    <td>방설명</td>
-                                                    <td colSpan="6">
-                                                        싱글침대 2개
-                                                    </td>
-                                                </tr>
-                                                <tr className={cx("dp-none")}>
-                                                    <td>제공시설</td>
-                                                    <td colSpan="6">
-                                                        책상,의자,스탠드,옷장,커튼,이불,배게,싱글침대,이층침대,벙커침대,화장대,롬에어컨,선풍기,수납장
-                                                    </td>
-                                                </tr>
-                                            </tbody>
+                                            {this.state.roomList.map(items => {
+                                                return (
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                {
+                                                                    items[
+                                                                        "ROOM_NAME"
+                                                                    ]
+                                                                }
+                                                                }
+                                                            </td>
+                                                            <td>2인실</td>
+                                                            <td>
+                                                                {
+                                                                    items[
+                                                                        "DEPOSIT"
+                                                                    ]
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                {
+                                                                    items[
+                                                                        "RENTFEE"
+                                                                    ]
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                {
+                                                                    items[
+                                                                        "FREE_DATE"
+                                                                    ]
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                {
+                                                                    items[
+                                                                        "ROOM_STATUS_NAME"
+                                                                    ]
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                <img
+                                                                    src={Glass}
+                                                                    alt="more"
+                                                                />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>방설명</td>
+                                                            <td colSpan="6">
+                                                                {
+                                                                    items[
+                                                                        "DESCRIPTION"
+                                                                    ]
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>제공시설</td>
+                                                            <td colSpan="6">
+                                                                {
+                                                                    items[
+                                                                        "facilities"
+                                                                    ]
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                );
+                                            })}
                                         </table>
                                     </div>
                                 </div>
@@ -939,68 +820,119 @@ class Detail extends React.Component {
                                     </div>
                                     <div className={cx("house-location-info")}>
                                         <div className={cx("train-info")}>
-                                            <div className={cx("info-items")}>
-                                                <span
-                                                    className={cx(
-                                                        "train-number1"
-                                                    )}
-                                                >
-                                                    1
-                                                </span>
-                                                외대 앞
-                                            </div>
+                                            {this.state.subwayList.map(
+                                                items => {
+                                                    return (
+                                                        <div
+                                                            className={cx(
+                                                                "info-items"
+                                                            )}
+                                                        >
+                                                            {items[
+                                                                "lineList"
+                                                            ].map(item => {
+                                                                if (
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "1" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "2" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "3" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "4" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "5" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "6" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "7" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "8" &&
+                                                                    item[
+                                                                        "NAME"
+                                                                    ] !== "9"
+                                                                ) {
+                                                                    return (
+                                                                        <span
+                                                                            className={cx(
+                                                                                [
+                                                                                    "train-number",
+                                                                                    "string-train"
+                                                                                ]
+                                                                            )}
+                                                                        >
+                                                                            {
+                                                                                item[
+                                                                                    "NAME"
+                                                                                ]
+                                                                            }
+                                                                        </span>
+                                                                    );
+                                                                } else {
+                                                                    return (
+                                                                        <span
+                                                                            className={cx(
+                                                                                "train-number"
+                                                                            )}
+                                                                        >
+                                                                            {
+                                                                                item[
+                                                                                    "NAME"
+                                                                                ]
+                                                                            }
+                                                                        </span>
+                                                                    );
+                                                                }
+                                                            })}
+                                                            {items["SUB_NAME"] +
+                                                                "역 " +
+                                                                items[
+                                                                    "DISTANCE"
+                                                                ]}
+                                                        </div>
+                                                    );
+                                                }
+                                            )}
                                         </div>
-                                        <div className={cx("walk-info")}>
-                                            <p>창신역 6호선 도보 3분</p>
-                                            <p>한성대입구역 4호선 도보 5분</p>
-                                        </div>
+
                                         <div className={cx("house-info")}>
-                                            모던한 북유럽스타일로 천장산 아래
-                                            위치해 있어 산책하기 좋고, 공기가
-                                            깨끗합니다.
-                                            <br /> 아파트 7층으로 이문동의
-                                            야경을 한 눈에 감상할 수 있습니다.
-                                            한국어대학교, 경희대학교,
-                                            <br /> 한국예술종합학교의 후문이
-                                            만나는 곳으로, 각 대학 모두 도보
-                                            5분이면 입구에 도착합니다.
+                                            {this.state.house["INTRODUCE"]}
                                         </div>
                                     </div>
                                 </div>
                                 <div className={cx("master-info")}>
                                     <div className={cx("profile")}>
                                         <div>
-                                            <img src={profile} alt="profile" />
+                                            <img
+                                                src={
+                                                    this.state.brand[
+                                                        "LOGO_PIC_URL"
+                                                    ]
+                                                }
+                                                alt="profile"
+                                            />
                                         </div>
                                     </div>
                                     <div className={cx("info-content")}>
-                                        <h1>팸하우스</h1>
+                                        <h1>
+                                            {this.state.brand["BRAND_NAME_KO"]}
+                                        </h1>
                                         <p>
                                             <b>
-                                                20개 하우스 운영중 │ 운영시작
-                                                2015년
+                                                {this.state.brand["HOUSE_CNT"]}│
+                                                {this.state.brand["OPEN_DATE"]}
                                             </b>
                                         </p>
                                         <span>
-                                            서울 및 수도권 지역의 전월세 비용
-                                            증가 현상으로 인하여 수도권 대학에
-                                            진학 및 취업 대상인 청년들의 삶의
-                                            터전에 대한 사회적 문제가 고조되고
-                                            있습니다. 그러나 대학 및 지자체에서
-                                            운영하는 기숙사의 수용률은 현저하게
-                                            낮게 평가되어 문제 해결에 대한
-                                            근본적인 대안은 될 수 없는
-                                            상태입니다. 또한, 이러한 청년들의
-                                            보금자리에 관한 사회적 문제들을
-                                            해결하기 위하여 정부 및 지차체에서
-                                            다양한 정책을 펼치고 있으나 수도권
-                                            및 주요 대학 주변에 기숙사 설립과
-                                            보금자리 구축 사업은 한계가 있어
-                                            보입니다. 당 회사는 이러한 문제점
-                                            해결을 위한 대안으로 공유경제에
-                                            입각한 주거 사업모델인 쉐어 하우스를
-                                            운영함에 따라 청년들의 주거와 관련된
-                                            사회적 문제들을 해결하겠습니다.
+                                            {this.state.brand["INTRODUCE"]}
                                         </span>
                                     </div>
                                 </div>
@@ -1104,19 +1036,32 @@ class Detail extends React.Component {
                     <div className={cx("tag-box")}>
                         <button className={cx("nomination-btn")}>추천</button>
                         <button className={cx("primary-blue-btn")}>
-                            쉐어하우스
+                            {this.state.house["RENT_TYPE_NAME_KO"]}
                         </button>
-                        <span>아파트</span>
+                        <span> {this.state.house["HOUSE_TYPE"]}</span>
                     </div>
-                    <h1>단비 쉐어하우스 숙대입구 4호점</h1>
+                    <h1>
+                        {this.state.house["HOUSE_NAME_KO"] +
+                            " " +
+                            this.state.house["ADDRESS"] +
+                            " 점"}
+                    </h1>
                     <p className={"info-notice"}>
                         공실 확인은 아래 집주인과 상의하기를 클릭해주세요.
                     </p>
                     <form>
                         <select defaultValue="">
-                            <option value="">
-                                이 하우스는 현재 만실입니다.
-                            </option>
+                            <option value="">하우스를 선택해주세요</option>
+                            {this.state.roomList.map(item => {
+                                return (
+                                    <option
+                                        value={item["ROOM_CODE"]}
+                                        key={item["ROOM_CODE"]}
+                                    >
+                                        {item["ROOM_NAME"]}
+                                    </option>
+                                );
+                            })}
                         </select>
                         <button>집주인과 상담하기</button>
                     </form>

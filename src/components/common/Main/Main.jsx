@@ -57,7 +57,7 @@ class Main extends React.Component {
             .value.length;
         if (CountChar < 2) {
             alert(
-                "두 자리 이상 검색어를 입력하셔야 합니다. 검색어를 다시 입력해 주세요."
+                "두 자리 이상 검색어를 입력하셔야 합니다.\n검색어를 다시 입력해 주세요."
             );
             return false;
         }
@@ -125,7 +125,7 @@ class Main extends React.Component {
                                 <div className={cx("popularity-items")}>
                                     {this.props.todayHouseArr.map(item => {
                                         return (
-                                            <div ley={item["HOUSE_ID"]}>
+                                            <div key={item["HOUSE_ID"]}>
                                                 <div>
                                                     <img
                                                         src={star_yellow}
@@ -166,8 +166,20 @@ class Main extends React.Component {
                                                     <div
                                                         className={cx("title")}
                                                     >
-                                                        {item["BRAND_NAME"] +
-                                                            item["HOUSE_NAME"]}
+                                                        <Link
+                                                            to={
+                                                                item[
+                                                                    "HOUSE_URL"
+                                                                ]
+                                                            }
+                                                        >
+                                                            {item[
+                                                                "BRAND_NAME"
+                                                            ] +
+                                                                item[
+                                                                    "HOUSE_NAME"
+                                                                ]}
+                                                        </Link>
                                                     </div>
                                                     <div
                                                         className={cx(
