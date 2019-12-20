@@ -221,6 +221,10 @@
                             max-height: 192px;
                             border-radius: 2px;
                             overflow: hidden;
+                            & > img {
+                                width: 100%;
+                                height: auto;
+                            }
                         }
                         & > .title {
                             margin-top: 6px;
@@ -462,6 +466,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
     & > .inhabi-text {
         float: left;
         max-width: 415px;
@@ -483,7 +488,7 @@
         max-width: 1024px;
         max-height: 560px;
         padding-top: 82px;
-        padding-left: 26px;
+        padding-left: 16px;
         & > .inhabi-contents-left {
             float: left;
             height: 100%;

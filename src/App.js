@@ -19,7 +19,7 @@ import Privacy from "components/company/privacy/Privacy";
 import Search from "containers/search/SearchContainer";
 import Detail from "containers/house/housecontainer";
 import Dictionary from "components/dictionary/Dictionary";
-import DictionaryPost from "components/dictionary/detail/Postdetail/PostDetail";
+import DictionaryPost from "containers/dictionary/PostDetailContainer";
 import Mypage from "containers/user/mypage/MypageContainer";
 import inquiryDetail from "components/user/mypage/details/Inquiry/detail/InquiryDetail";
 import PasswordChange from "components/user/PasswordChange/PasswordChange";
@@ -33,11 +33,17 @@ class App extends React.Component {
     super();
     this.state = {
       isLoading: true,
-      member_name: ""
+      member_name: "",
+      created: false
     };
   }
 
   async componentDidMount() {
+    const myStorage = window.localStorage;
+    console.log(myStorage);
+    if (myStorage.viewdhouse === "") {
+      myStorage.setItem("viewdhouse", "");
+    }
     await this.Session_Refresh();
   }
 

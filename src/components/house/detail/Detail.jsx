@@ -6,6 +6,11 @@ import detail1 from "assets/images/detail1.png";
 import thumb1_s from "assets/images/thumb1_s.png";
 import arrow_left from "assets/images/arrow_left.png";
 import event_banner from "assets/images/Event.png";
+import ReactHtmlParser, {
+    processNodes,
+    convertNodeToElement,
+    htmlparser2
+} from "react-html-parser";
 import air_conditioner_stuff_on from "assets/images/air-conditioner-stuff-on.png";
 import bidet_stuff_on from "assets/images/bidet-stuff-on.png";
 import bookshelf_stuff_on from "assets/images/bookshelf-stuff-on.png";
@@ -63,6 +68,7 @@ class Detail extends React.Component {
         super(props);
         this.mapRef = createRef();
         this.state = {
+            isLoading: true,
             HouseDetail: [],
             articleList: [],
             brand: [],
@@ -99,9 +105,45 @@ class Detail extends React.Component {
             NextState["universityList"] = value.universityList;
             this.setState(NextState);
         });
+        this.setState({
+            isLoading: false
+        });
     } //지도 생성 및 객체 리턴
 
     render() {
+        if (!this.state.isLoading) {
+            if (JSON.stringify(this.state.HouseDetail) !== "{}") {
+                const myStorage = localStorage;
+                const viewdhouse = myStorage.getItem("viewdhouse");
+                if (viewdhouse !== "") {
+                    const update_viewdhouse =
+                        this.state.house["HOUSE_ID"] + "|" + viewdhouse;
+                    if (
+                        this.state.house["HOUSE_ID"] !== undefined &&
+                        this.state.house["HOUSE_ID"] !== null &&
+                        this.state.house["HOUSE_ID"] !== ""
+                    ) {
+                        if (
+                            viewdhouse.indexOf(this.state.house["HOUSE_ID"]) ===
+                            -1
+                        ) {
+                            myStorage.setItem("viewdhouse", update_viewdhouse);
+                        }
+                    }
+                } else {
+                    const update_viewdhouse = this.state.house["HOUSE_ID"];
+                    if (
+                        this.state.house["HOUSE_ID"] !== undefined &&
+                        this.state.house["HOUSE_ID"] !== null &&
+                        this.state.house["HOUSE_ID"] !== ""
+                    ) {
+                        if (viewdhouse.indexOf(update_viewdhouse) === -1) {
+                            myStorage.setItem("viewdhouse", update_viewdhouse);
+                        }
+                    }
+                }
+            }
+        }
         return (
             <div className={cx("detail-all-wrap")}>
                 <div className={cx("detail-wrap")}>
@@ -138,9 +180,12 @@ class Detail extends React.Component {
                                             value["CAPTION"] === "공용공간" &&
                                             index < 10
                                     )
-                                    .map(items => {
+                                    .map((items, index) => {
                                         return (
-                                            <div className={cx("inner-item")}>
+                                            <div
+                                                className={cx("inner-item")}
+                                                key={index}
+                                            >
                                                 <img
                                                     src={items["PIC_URL"]}
                                                     alt="thumb1_s"
@@ -162,9 +207,9 @@ class Detail extends React.Component {
                                     .filter(
                                         value => value["CAPTION"] === "공용공간"
                                     )
-                                    .map(items => {
+                                    .map((items, index) => {
                                         return (
-                                            <div>
+                                            <div key={index}>
                                                 <img
                                                     src={items["THUMB_URL"]}
                                                     alt="thumb1_s"
@@ -441,14 +486,15 @@ class Detail extends React.Component {
 
                                             {this.state.roomList.map(items => {
                                                 return (
-                                                    <tbody>
+                                                    <tbody
+                                                        key={items["ROOM_CODE"]}
+                                                    >
                                                         <tr>
                                                             <td>
                                                                 {
                                                                     items[
                                                                         "ROOM_NAME"
                                                                     ]
-                                                                }
                                                                 }
                                                             </td>
                                                             <td>2인실</td>
@@ -547,7 +593,7 @@ class Detail extends React.Component {
                                                         <br />
                                                         (㎡)
                                                     </th>
-                                                    <th colspan="3">
+                                                    <th colSpan="3">
                                                         보증금 및 월세
                                                     </th>
                                                     <th rowSpan="2">관리비</th>
@@ -821,77 +867,95 @@ class Detail extends React.Component {
                                     <div className={cx("house-location-info")}>
                                         <div className={cx("train-info")}>
                                             {this.state.subwayList.map(
-                                                items => {
+                                                (items, index) => {
                                                     return (
                                                         <div
                                                             className={cx(
                                                                 "info-items"
                                                             )}
+                                                            key={index}
                                                         >
                                                             {items[
                                                                 "lineList"
-                                                            ].map(item => {
-                                                                if (
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "1" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "2" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "3" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "4" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "5" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "6" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "7" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "8" &&
-                                                                    item[
-                                                                        "NAME"
-                                                                    ] !== "9"
-                                                                ) {
-                                                                    return (
-                                                                        <span
-                                                                            className={cx(
-                                                                                [
-                                                                                    "train-number",
-                                                                                    "string-train"
-                                                                                ]
-                                                                            )}
-                                                                        >
-                                                                            {
-                                                                                item[
-                                                                                    "NAME"
-                                                                                ]
-                                                                            }
-                                                                        </span>
-                                                                    );
-                                                                } else {
-                                                                    return (
-                                                                        <span
-                                                                            className={cx(
-                                                                                "train-number"
-                                                                            )}
-                                                                        >
-                                                                            {
-                                                                                item[
-                                                                                    "NAME"
-                                                                                ]
-                                                                            }
-                                                                        </span>
-                                                                    );
+                                                            ].map(
+                                                                (
+                                                                    item,
+                                                                    index
+                                                                ) => {
+                                                                    if (
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "1" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "2" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "3" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "4" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "5" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "6" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "7" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "8" &&
+                                                                        item[
+                                                                            "NAME"
+                                                                        ] !==
+                                                                            "9"
+                                                                    ) {
+                                                                        return (
+                                                                            <span
+                                                                                className={cx(
+                                                                                    [
+                                                                                        "train-number",
+                                                                                        "string-train"
+                                                                                    ]
+                                                                                )}
+                                                                                key={
+                                                                                    index
+                                                                                }
+                                                                            >
+                                                                                {
+                                                                                    item[
+                                                                                        "NAME"
+                                                                                    ]
+                                                                                }
+                                                                            </span>
+                                                                        );
+                                                                    } else {
+                                                                        return (
+                                                                            <span
+                                                                                className={cx(
+                                                                                    "train-number"
+                                                                                )}
+                                                                            >
+                                                                                {
+                                                                                    item[
+                                                                                        "NAME"
+                                                                                    ]
+                                                                                }
+                                                                            </span>
+                                                                        );
+                                                                    }
                                                                 }
-                                                            })}
+                                                            )}
                                                             {items["SUB_NAME"] +
                                                                 "역 " +
                                                                 items[
@@ -904,7 +968,9 @@ class Detail extends React.Component {
                                         </div>
 
                                         <div className={cx("house-info")}>
-                                            {this.state.house["INTRODUCE"]}
+                                            {ReactHtmlParser(
+                                                this.state.house["INTRODUCE"]
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -932,7 +998,9 @@ class Detail extends React.Component {
                                             </b>
                                         </p>
                                         <span>
-                                            {this.state.brand["INTRODUCE"]}
+                                            {ReactHtmlParser(
+                                                this.state.brand["INTRODUCE"]
+                                            )}
                                         </span>
                                     </div>
                                 </div>

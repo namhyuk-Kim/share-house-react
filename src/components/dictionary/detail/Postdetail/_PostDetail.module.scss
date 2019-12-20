@@ -54,10 +54,19 @@
                     font-size: 15px;
                     line-height: 28px;
                     color: rgba(0, 0, 0, 0.65);
+                    & > img {
+                        width: 100%;
+                        height: auto;
+                        margin: 40px 0;
+                    }
+                    & > span {
+                        & > img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
                 }
-                & > img {
-                    margin: 40px 0;
-                }
+
                 & > .post-tags {
                     margin-top: 32px;
                     margin-bottom: 86px;

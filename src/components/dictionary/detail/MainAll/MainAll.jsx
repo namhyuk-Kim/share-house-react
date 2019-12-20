@@ -71,8 +71,7 @@ class MainAll extends React.Component {
                                                 ) : (
                                                     <Link
                                                         to={
-                                                            "/article/" +
-                                                            items["ARTICLE_ID"]
+                                                            items["ARTICLE_URL"]
                                                         }
                                                     >
                                                         {items["TITLE"]}

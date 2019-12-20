@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./_PostDetail.module.scss";
 import classnames from "classnames/bind";
+import ReactHtmlParser, {
+    processNodes,
+    convertNodeToElement,
+    htmlparser2
+} from "react-html-parser";
 import Back from "assets/images/back.png";
 import main_image from "assets/images/main-image.png";
 import content_image1 from "assets/images/content-image1.png";
@@ -20,68 +25,41 @@ import MobilePostDetailMenu from "./MobilePostDetailMenu/MobilePostDetailMenu";
 const cx = classnames.bind(styles);
 
 class PostDetail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            commentList: [],
+            article: []
+        };
+    }
+
+    componentDidMount() {
+        this.props.ContentDetail().then(value => {
+            this.setState({
+                commentList: value["commentList"],
+                article: value["article"]
+            });
+        });
+    }
+
     render() {
         return (
             <div className={cx("Postdetail-wrap")}>
                 <div className={cx("post-top-nav")}>
                     <img src={Back} alt="back-to-page" />
-                    <span>슬기로운 하우스생활</span>
+                    <span>{this.state.article["CATEGORY_NAME"]}</span>
                 </div>
                 <div className={cx("post-wrap")}>
                     <div className={cx("post-content")}>
                         <div className={cx("main-image")}>
-                            <img src={main_image} alt="img" />
+                            <img
+                                src={this.state.article["INFO_PIC_URL"]}
+                                alt="img"
+                            />
                         </div>
-                        <MobilePostDetailMenu />
+                        <MobilePostDetailMenu article={this.state.article} />
                         <div className={cx("main-content")}>
-                            <h2>
-                                바로바로,세탁기 사용후,조리도구 사용후,공용공간
-                                사용 후 바로
-                                <br />
-                                정리해 주세요. 그래야 해요.
-                            </h2>
-                            <p>
-                                안녕하세요. 컴앤스테이 입니다.
-                                <br />
-                                서울시 역세권 청년주택 청년층 임대는 공공과
-                                민간, 민간도 특별공급과 일반공급으로 나뉘는데요.
-                                <br />
-                                <br />
-                                기본 조건만 맞는 미혼의 청년이라면 누구든지
-                                입주대상자랍니다.
-                                <br /> 궁금한 키워드가 있다면 CTRL+F눌러
-                                확인해보세요.
-                                <br />
-                                <br />
-                                현재 대학생이라면 여기를 눌러 공공임대 전형을
-                                확인하거나
-                                <br /> 아래로 스크롤해 민한임대 영역을
-                                확인해주세요.
-                            </p>
-                            <img src={content_image1} alt="image1" />
-                            <p>
-                                기본 조건만 맞는 미혼의 청년이라면 누구든지
-                                입주대상자랍니다.
-                                <br /> 궁금한 키워드가 있다면 CTRL+F눌러
-                                확인해보세요.
-                                <br />
-                                <br />
-                                현재 대학생이라면 여기를 눌러 공공임대 전형을
-                                확인하거나 아래로 스크롤해 민한임대 영역을
-                                확인해주세요.
-                            </p>
-                            <img src={content_image2} alt="image2" />
-                            <p>
-                                청년층 공공임대는 대학생과 분리되어 딱!
-                                사회초년생들을 대상으로 진행되는데요. 아직은
-                                조금 낮선 사회, 내집 없는 설움도 버티며 서울에서
-                                열심히 살고 있는 청년들에게 힘을 실어줄수 있을지
-                                기<br />
-                                대가 되는 부분입니다.
-                                <br />
-                                <br />
-                                어떤 기준들이 있는지 한번 살펴볼까요?
-                            </p>
+                            {ReactHtmlParser(this.state.article["CONTENTS"])}
                             <div className={cx("post-tags")}>
                                 <span className={cx("post-tag")}># SH</span>
                                 <span className={cx("post-tag")}>
@@ -283,20 +261,22 @@ class PostDetail extends React.Component {
                     </div>
                 </div>
                 <div className={cx("fixed-info")}>
-                    <h3 className={cx("primary_blue")}>슬기로운 하우스 생활</h3>
-                    <h1>
-                        바로바로,세탁기 사용 후,조리도구
-                        <br />
-                        &nbsp;사용후, 공용공간 사용 후 바로 정리
-                    </h1>
+                    <h3 className={cx("primary_blue")}>
+                        {this.state.article["CATEGORY_NAME"]}
+                    </h3>
+                    <h1>{this.state.article["TITLE"]}</h1>
 
-                    <div className={cx("publisher")}>
-                        <span className={cx("profile")}>
-                            <img src={user_avata} alt="user-avata" />
-                        </span>
-                        쉐어하우스 플랜 A
-                    </div>
-                    <span className={cx("write-date")}>2019.01.02</span>
+                    {this.state.article["WRITER"] !== "" && (
+                        <div className={cx("publisher")}>
+                            <span className={cx("profile")}>
+                                <img src={user_avata} alt="user-avata" />
+                            </span>
+                            {this.state.article["WRITER"]}
+                        </div>
+                    )}
+                    <span className={cx("write-date")}>
+                        {this.state.article["CREATE_DT"]}
+                    </span>
 
                     <button className={cx("like")}>
                         <img src={heart} alt="icon" /> 좋아요&nbsp;{"1"}

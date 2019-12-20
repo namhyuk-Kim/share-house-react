@@ -458,7 +458,7 @@ class Search extends React.Component {
                                                 </span>
                                             </div>
                                             <span className={cx("item-title")}>
-                                                <Link to="/house/houseid">
+                                                <Link to={item["HOUSE_URL"]}>
                                                     {item["HOUSE_NAME"]}
                                                 </Link>
                                             </span>
