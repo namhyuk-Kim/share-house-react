@@ -30,8 +30,9 @@
                         height: 100%;
                         float: left;
                         & > img {
-                            max-width: 100%;
-                            height: auto;
+                            width: 100%;
+                            max-height: 488px;
+                            min-height: 488px;
                         }
                     }
                 }
@@ -193,9 +194,38 @@
                                 font-size: 14px;
                                 & > .t-row {
                                     width: 100%;
-                                    & > .t-cell:first-child {
+                                    & > div:first-child {
+                                        font-family: Noto Sans KR;
+                                        font-style: normal;
+                                        font-weight: normal;
+                                        font-size: 14px;
+                                        line-height: 20px;
+                                        color: #000000;
                                         vertical-align: top;
                                         padding-right: 32px;
+                                        text-align: center;
+                                        width: 57px;
+                                    }
+                                    & > div:last-child {
+                                        display: flex;
+                                        flex-wrap: wrap;
+                                        & > div {
+                                            & > img {
+                                                width: 64px;
+                                                display: block;
+                                                height: auto;
+                                            }
+                                            & > span {
+                                                display: block;
+                                                width: 100%;
+                                                text-align: center;
+                                                font-family: Noto Sans KR;
+                                                font-style: normal;
+                                                font-weight: 300;
+                                                font-size: 13px;
+                                                color: #323232;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -473,14 +503,31 @@
                                     vertical-align: middle;
                                     & > span {
                                         text-align: center;
-                                        line-height: 26px;
-                                        font-size: 14px;
-                                        font-weight: 500px;
+                                        font-family: Noto Sans KR;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        font-size: 12px;
+                                        line-height: 20px;
                                         color: #ffffff;
                                         display: inline-block;
-                                        width: 26px;
-                                        height: 26px;
+                                        width: 20px;
+                                        height: 20px;
                                         border-radius: 50%;
+                                        margin-right: 6px;
+                                    }
+                                    & > .string-train {
+                                        text-align: center;
+                                        font-family: Noto Sans KR;
+                                        font-style: normal;
+                                        font-weight: 500;
+                                        font-size: 12px;
+                                        line-height: 20px;
+                                        width: unset;
+                                        color: #ffffff;
+                                        display: inline-block;
+                                        padding: 0 6px;
+                                        height: 20px;
+                                        border-radius: 10px;
                                         margin-right: 6px;
                                     }
                                 }
@@ -520,6 +567,13 @@
                                 width: 72px;
                                 height: 72px;
                                 border-radius: 50%;
+                                overflow: hidden;
+                                line-height: 72px;
+                                text-align: center;
+                                & > img {
+                                    width: 100%;
+                                    height: auto;
+                                }
                             }
                         }
                         & > .info-content {
@@ -787,7 +841,7 @@
     border: none;
 }
 
-.train-number1 {
+.train-number {
     background: #1c66ce;
 }
 

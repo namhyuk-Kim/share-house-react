@@ -17,7 +17,7 @@ import Intro from "components/company/intro/Intro";
 import Terms from "components/company/terms/Terms";
 import Privacy from "components/company/privacy/Privacy";
 import Search from "containers/search/SearchContainer";
-import Detail from "components/house/detail/Detail";
+import Detail from "containers/house/housecontainer";
 import Dictionary from "components/dictionary/Dictionary";
 import DictionaryPost from "components/dictionary/detail/Postdetail/PostDetail";
 import Mypage from "containers/user/mypage/MypageContainer";
@@ -97,8 +97,7 @@ class App extends React.Component {
             {/* 하우스검색 페이지 */}
 
             <Route // 하우스 상세페이지
-              exact
-              path="/house/houseid"
+              path="/house/"
               // params={{ houseid: 1 } 하우스 상세페이지 아이디로 보낼때 사용할것}
               component={Detail}
             ></Route>
@@ -107,8 +106,7 @@ class App extends React.Component {
             {/* 청년주거백과 */}
 
             <Route //  청년주거백과 자체제작 게시물 상세페이지
-              exact
-              path="/article/articleid"
+              path="/article/"
               // params={{ articleid: 1 } 상세페이지 게시물 아이디로 보낼때 사용할것 ..}
               component={DictionaryPost}
             ></Route>
