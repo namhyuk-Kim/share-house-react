@@ -5,6 +5,12 @@ import * as UserAction from "stores/modules/search";
 import Search from "components/house/search/Search";
 
 class SearchContainer extends React.Component {
+  state = {
+    houseLoad: true,
+    houseList: [],
+    totalCount: 0
+  };
+
   SearchHelp = async search_keyword => {
     const { UserAction } = this.props;
     try {
@@ -15,8 +21,66 @@ class SearchContainer extends React.Component {
     }
   };
 
+  // SearchList = () => {
+
+  // }
+
+  SearchList = async ({
+    page,
+    rows,
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST,
+    SHAREHOUSE,
+    HOUSE2030,
+    PREMIUM_HOUSE
+  }) => {
+    const { UserAction } = this.props;
+
+    try {
+      const res = await UserAction.SearchList({
+        page,
+        rows,
+        NORTH,
+        SOUTH,
+        EAST,
+        WEST,
+        SHAREHOUSE,
+        HOUSE2030,
+        PREMIUM_HOUSE
+      });
+
+      if (res["data"]["result"]["resCode"] !== "0000") {
+        alert("정보가 존재하지 않습니다");
+        return null;
+      }
+
+      let nextState = this.state;
+
+      console.log(res.data.result.data.houseList);
+      nextState["houseList"] = res.data.result.data.houseList;
+      nextState["totalCount"] = res.data.result.data.totalCount;
+      nextState["houseLoad"] = false;
+
+      await this.setState(nextState);
+      return;
+    } catch (e) {
+      console.log(e);
+      return;
+    }
+  };
+
   render() {
-    return <Search SearchNomination={this.SearchHelp} />;
+    return (
+      <Search
+        SearchNomination={this.SearchHelp}
+        SearchList={this.SearchList}
+        houseLoad={this.state.houseLoad}
+        houseList={this.state.houseList}
+        totalCount={this.state.totalCount}
+      />
+    );
   }
 }
 
