@@ -15,6 +15,8 @@ import star_gray from "assets/images/Star_gray.png";
 import plus_icon from "assets/images/Union.png";
 import InhabiMobile from "components/common/InhabiMobile/InhabiMobile";
 
+import Image from "assets/images/default-image.png";
+
 const cx = classnames.bind(styles);
 
 class Main extends React.Component {
@@ -80,6 +82,10 @@ class Main extends React.Component {
         }
         // 검색결과 가 나온 하우스 검색 페이지로 이동 + 값 post 방식으로 보낼거임
         window.location.href = "/house/search";
+    };
+
+    onImageError = e => {
+        e.currentTarget.src = Image;
     };
 
     render() {
@@ -159,6 +165,10 @@ class Main extends React.Component {
                                                                 item[
                                                                     "INFO_THUMB_URL"
                                                                 ]
+                                                            }
+                                                            onError={
+                                                                this
+                                                                    .onImageError
                                                             }
                                                             alt={"room"}
                                                         />

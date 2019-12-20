@@ -11,7 +11,7 @@ const TodayHouse_API = () => {
 };
 
 const ViewdHouse_API = house => {
-  return client.get(`/rest/recent/house?house=${house}`); // 메인페이지 오늘의 인기 하우스 조회 api
+  return client.get(`/rest/recent/house?house=${encodeURIComponent(house)}`); // 메인페이지 오늘의 인기 하우스 조회 api
 };
 
 export const TodayHouse = createAction(TODAYHOUSE, TodayHouse_API); // 오늘의 인기 하우스
