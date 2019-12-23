@@ -228,10 +228,12 @@
                     border: 1px solid #e0e0e0;
                     & > .comic-avata {
                         width: 192.8px;
+                        max-height: 197.8px;
                         height: 100%;
                         float: left;
                         & > img {
                             height: 100%;
+
                             max-width: 100%;
                         }
                     }

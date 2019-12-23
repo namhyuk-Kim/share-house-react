@@ -53,7 +53,7 @@ class Header extends React.Component {
                                 <Link to="/user/mypage">
                                     {this.props.member_name}님
                                 </Link>
-                                <a href="#" onClick={e => this.props.Logout(e)}>
+                                <a onClick={e => this.props.Logout(e)}>
                                     로그아웃
                                 </a>
                             </div>

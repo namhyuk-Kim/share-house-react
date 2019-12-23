@@ -72,6 +72,28 @@ class MainContainer extends React.Component {
     }
   };
 
+  AddFavHouse = async houseid => {
+    const { UserActions } = this.props;
+    try {
+      const res = await this.props.UserActions.AddFavHouse(houseid);
+
+      return res;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  SeeFavHouse = async () => {
+    const { UserActions } = this.props;
+    try {
+      const res = await this.props.UserActions.SeeFavHouse();
+      console.log(res);
+      return res.data.result.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
     return (
       // 메인 인덱스 페이지 컴포넌트 반환
@@ -82,6 +104,8 @@ class MainContainer extends React.Component {
         viewdhouse_len={this.state.viewdhouse_len}
         isLoading={this.state.isLoading}
         cookies={this.props.cookies.cookies}
+        AddFavHouse={this.AddFavHouse}
+        SeeFavHouse={this.SeeFavHouse}
       />
     );
   }

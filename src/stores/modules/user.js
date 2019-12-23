@@ -10,6 +10,9 @@ const SESSION_REFRESH = "SESSION_REFRESH"; // 토큰 세션 리프레시
 const LOGOUT = "LOGOUT"; // 로그아웃
 const MYINFO = "MYINFO"; // 나의 회원 정보
 const CLOSEACCOUNT = "CLOSEACCOUNT"; // 회원 탈퇴
+const FAVHOUSE = "FAVHOUSE"; // 관심하우스 등록
+const VIEWDHOUSE = "VIEWDHOUSE";
+const SEEFAVHOUSE = "SEEFAVHOUSE";
 
 //-------------일반회원가입 json --------------//
 const RegisterNormal_API = ({
@@ -73,6 +76,18 @@ const CloseAccount_API = () => {
   return client.post("/rest/my/leave");
 };
 
+const AddFavHouse_API = houseid => {
+  return client.post(`/rest/my/favorite/house${houseid}`);
+};
+
+const ViewdHouse_API = house => {
+  return client.get(`/rest/recent/house?house=${encodeURIComponent(house)}`); // 최근 본 하우스
+};
+
+const SeeFavHouse_API = () => {
+  return client.get("/rest/my/favorite/house");
+};
+
 export const RegisterNormal = createAction(REGISTER, RegisterNormal_API); //일반회원가입
 export const LoginNormal = createAction(LOGIN, LoginNomal_API); // 일반유저 로그인
 export const Nation_Codes = createAction(NATION_CODES, Nation_Codes_API); // 국가코드목록
@@ -83,6 +98,9 @@ export const Session_Refresh = createAction(
 export const Logout = createAction(LOGOUT, Logout_API); // 로그아웃
 export const Myinfo = createAction(MYINFO, Myinfo_API); // 나의 회원정보 조회
 export const CloseAccount = createAction(CLOSEACCOUNT, CloseAccount_API); // 일반회원 회원탈퇴
+export const AddFavHouse = createAction(FAVHOUSE, AddFavHouse_API); // 관심하우스 추가
+export const ViewdHouse = createAction(VIEWDHOUSE, ViewdHouse_API); // 최근 본 하우스
+export const SeeFavHouse = createAction(SEEFAVHOUSE, SeeFavHouse_API); // 나의 관심목록 하우스
 
 const initialState = {
   auth: {
@@ -169,6 +187,24 @@ export default handleActions(
     }),
     ...pender({
       type: CLOSEACCOUNT, // 회원탈퇴
+      onSuccess: () => {
+        return;
+      }
+    }),
+    ...pender({
+      type: FAVHOUSE, // 관심하우스 추가
+      onSuccess: () => {
+        return;
+      }
+    }),
+    ...pender({
+      type: VIEWDHOUSE,
+      onSuccess: () => {
+        return;
+      }
+    }),
+    ...pender({
+      type: SEEFAVHOUSE,
       onSuccess: () => {
         return;
       }

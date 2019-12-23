@@ -154,56 +154,17 @@
             & > .recently-viewed-items {
                 width: 100%;
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
                 flex-wrap: wrap;
                 & > div:nth-child(even) {
                     & > div:nth-child(even) {
                         margin-right: 0;
                     }
                 }
-                & > div:nth-child(odd) {
-                    & > div:nth-child(odd) {
-                        margin-left: 0;
-                    }
-                }
 
                 & > div {
-                    display: inline-block;
                     min-height: 350px;
-
-                    & > .more-house {
-                        border: 1px solid #e0e0e0;
-                        border-radius: 2px;
-                        min-width: 256px;
-                        min-height: 350px;
-                        max-width: 256px;
-                        max-height: 350px;
-                        cursor: pointer;
-
-                        & > .more-content {
-                            margin-top: 114px;
-                            & > span {
-                                display: block;
-                                font-size: 16px;
-                                line-height: 23px;
-                                max-width: 144px;
-                                margin: 0 auto;
-                                color: rgba(0, 0, 0, 0.3);
-                                text-align: center;
-                            }
-                            & > button {
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                width: 45px;
-                                height: 45px;
-                                background-color: #e0e0e0;
-                                border-radius: 50%;
-                                margin: 19px auto 0;
-                            }
-                        }
-                    }
-
+                    display: inline-block;
                     & > div {
                         position: relative;
                         float: left;
@@ -219,11 +180,13 @@
                         & > .image-box {
                             width: 100%;
                             max-height: 192px;
+                            min-height: 192px;
                             border-radius: 2px;
                             overflow: hidden;
                             & > img {
                                 width: 100%;
-                                height: auto;
+                                height: 100%;
+                                min-height: 192px;
                             }
                         }
                         & > .title {
@@ -291,6 +254,44 @@
                                     color: #323232;
                                 }
                             }
+                        }
+                    }
+                }
+
+                & > .more-house {
+                    border: 1px solid #e0e0e0;
+                    border-radius: 2px;
+                    min-width: 256px;
+                    min-height: 350px;
+                    max-width: 256px;
+                    max-height: 350px;
+
+                    cursor: pointer;
+
+                    & > .more-content {
+                        margin-top: 114px;
+                        height: calc(100% - 130px);
+                        width: 100%;
+                        margin-left: 0;
+                        margin-right: 0;
+                        & > span {
+                            display: block;
+                            font-size: 16px;
+                            line-height: 23px;
+                            max-width: 144px;
+                            margin: 0 auto;
+                            color: rgba(0, 0, 0, 0.3);
+                            text-align: center;
+                        }
+                        & > button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 45px;
+                            height: 45px;
+                            background-color: #e0e0e0;
+                            border-radius: 50%;
+                            margin: 19px auto 0;
                         }
                     }
                 }
@@ -375,6 +376,7 @@
             line-height: 64px;
             color: #27313b;
             text-align: left;
+            margin-left: -350px;
             font-family: "Lato", sans-serif;
         }
     }
@@ -1142,4 +1144,12 @@
             }
         }
     }
+}
+
+.seltype {
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px !important;
+    color: #323232 !important;
 }

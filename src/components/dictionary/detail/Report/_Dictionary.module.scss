@@ -18,6 +18,11 @@
                 & > .third-cols:nth-child(3n + 2) {
                     margin: 0 2.7%;
                 }
+
+                & > .third-cols:nth-child(n + 4) {
+                    margin-top: 64px;
+                }
+
                 & > .third-cols {
                     text-align: center;
                     max-width: 352px;

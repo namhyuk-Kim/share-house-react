@@ -14,6 +14,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 const store = configureStore();
 
+const myStorage = window.localStorage;
+
+if (
+  myStorage.viewdhouse === "" ||
+  myStorage.viewdhouse === null ||
+  myStorage.viewdhouse === undefined
+) {
+  myStorage.setItem("viewdhouse", "");
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>

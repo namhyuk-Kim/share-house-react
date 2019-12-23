@@ -12,7 +12,9 @@ class MypageContainer extends React.Component {
     super(props);
     this.state = {
       MemberData: "",
-      NationCodes: []
+      NationCodes: [],
+      viewdhouse_arr: [],
+      viewdhouse_len: ""
     };
   }
 
@@ -27,8 +29,32 @@ class MypageContainer extends React.Component {
       // 쿠키에 엑세스 토큰값이 존재하는 로그인된 회원이라면
       await this.Myinfo(); // 회원의 정보를 가져옴
       await this.Nation_Codes(); // 사용할 국가코드를 받아옴
+      await this.ViewdHouse(); // 최근 본 하우스
     }
   }
+
+  ViewdHouse = async () => {
+    // 최근본 하우스
+    const { UserAction } = this.props;
+    const myStorage = window.localStorage;
+    const viewdhouse = myStorage.getItem("viewdhouse");
+    try {
+      const res = await UserAction.ViewdHouse(viewdhouse);
+      console.log(res);
+      let nextState = this.state;
+
+      nextState["viewdhouse_arr"] = res.data.result.data.houseList;
+      nextState["viewdhouse_len"] = res.data.result.data.houseList.length;
+
+      this.setState(nextState);
+      console.log(res);
+
+      return;
+    } catch (e) {
+      // 통신중 오류가 생긴다면
+      console.log(e);
+    }
+  };
 
   Nation_Codes = async () => {
     // 마이페이지 계정정보 카테고리에서 사용 할 국가코드불러옴 ...
@@ -59,6 +85,17 @@ class MypageContainer extends React.Component {
     }
   };
 
+  SeeFavHouse = async () => {
+    const { UserAction } = this.props;
+    try {
+      const res = await UserAction.SeeFavHouse();
+      console.log(res);
+      return res.data.result.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
     let NextState = this.state;
     console.log(NextState);
@@ -68,6 +105,9 @@ class MypageContainer extends React.Component {
         Myinfo={this.Myinfo}
         MemberData={NextState["MemberData"]}
         NationCodes={NextState["NationCodes"]}
+        viewdhouse_arr={NextState["viewdhouse_arr"]}
+        viewdhouse_len={NextState["viewdhouse_len"]}
+        SeeFavHouse={this.SeeFavHouse}
       />
     );
   }

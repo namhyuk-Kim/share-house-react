@@ -60,6 +60,7 @@ import police from "assets/images/police.png";
 import Drugstore from "assets/images/Drugstore.png";
 import Daiso from "assets/images/Daiso.png";
 import MobileDetailMenu from "./MobileDetailMenu/MobileDetailMenu.jsx";
+import { string } from "prop-types";
 
 const cx = classnames.bind(styles);
 
@@ -79,17 +80,35 @@ class Detail extends React.Component {
             placeList: [],
             roomList: [],
             subwayList: [],
-            universityList: []
+            universityList: [],
+            NowCaption: "공용공간"
         };
     }
 
-    componentDidMount() {
+    onChange = e => {
+        const ori_RoomName = e.target.value;
+        const RoomName = ori_RoomName.split("(")[0].trim();
+        const Nextstate = this.state;
+        Nextstate["NowCaption"] = RoomName;
+        this.setState({ Nextstate });
+    };
+
+    rebuild_map = () => {
         const options = {
-            center: new window.kakao.maps.LatLng(37.468532, 126.887356),
+            center: new window.kakao.maps.LatLng(
+                this.state.house["LATITUDE"],
+                this.state.house["LONGITUDE"]
+            ),
             level: 3,
-            position: new window.kakao.maps.LatLng(37.468532, 126.887356)
+            position: new window.kakao.maps.LatLng(
+                this.state.house["LATITUDE"],
+                this.state.house["LONGITUDE"]
+            )
         };
         this.map = new window.kakao.maps.Map(this.mapRef, options);
+    };
+
+    componentWillMount() {
         this.props.HouseDetail().then(value => {
             let NextState = this.state;
             NextState["HouseDetail"] = value;
@@ -104,11 +123,31 @@ class Detail extends React.Component {
             NextState["subwayList"] = value.subwayList;
             NextState["universityList"] = value.universityList;
             this.setState(NextState);
+            const options = {
+                center: new window.kakao.maps.LatLng(
+                    value.house["LATITUDE"],
+                    value.house["LONGITUDE"]
+                ),
+                level: 3,
+                position: new window.kakao.maps.LatLng(
+                    value.house["LATITUDE"],
+                    value.house["LONGITUDE"]
+                )
+            };
+            this.map = new window.kakao.maps.Map(this.mapRef, options);
+            new window.kakao.maps.Marker({
+                map: this.map,
+                position: new window.kakao.maps.LatLng(
+                    value.house["LATITUDE"],
+                    value.house["LONGITUDE"]
+                ),
+                title: value.house["HOUSE_NAME"]
+            });
         });
         this.setState({
             isLoading: false
         });
-    } //지도 생성 및 객체 리턴
+    }
 
     render() {
         if (!this.state.isLoading) {
@@ -144,6 +183,7 @@ class Detail extends React.Component {
                 }
             }
         }
+
         return (
             <div className={cx("detail-all-wrap")}>
                 <div className={cx("detail-wrap")}>
@@ -155,12 +195,18 @@ class Detail extends React.Component {
                             <button className={cx("floor-button")}>
                                 전경(평면도)
                             </button>
-                            <select className={cx("room-selector")}>
+                            <select
+                                className={cx("room-selector")}
+                                onChange={e => this.onChange(e)}
+                                defaultValue="공용공간"
+                            >
+                                <option value="공용공간">방선택</option>
+
                                 {this.state.roomList.map(items => {
                                     return (
                                         <option
                                             key={items["ROOM_CODE"]}
-                                            value={items["ROOM_CODE"]}
+                                            value={items["ROOM_NAME"]}
                                         >
                                             {items["ROOM_NAME"]}
                                         </option>
@@ -175,11 +221,19 @@ class Detail extends React.Component {
                             )}
                             <div className={cx("detail-slider-inner")}>
                                 {this.state.pictureList
-                                    .filter(
-                                        (value, index) =>
-                                            value["CAPTION"] === "공용공간" &&
+                                    .filter((value, index) => {
+                                        if (
+                                            value["CAPTION"] ===
+                                                this.state.NowCaption &&
                                             index < 10
-                                    )
+                                        ) {
+                                            return (
+                                                value["CAPTION"] ===
+                                                    this.state.NowCaption &&
+                                                index < 10
+                                            );
+                                        }
+                                    })
                                     .map((items, index) => {
                                         return (
                                             <div
@@ -204,9 +258,19 @@ class Detail extends React.Component {
                             </div>
                             <div className={cx("thumb-changer-slider")}>
                                 {this.state.pictureList
-                                    .filter(
-                                        value => value["CAPTION"] === "공용공간"
-                                    )
+                                    .filter((value, index) => {
+                                        if (
+                                            value["CAPTION"] ===
+                                                this.state.NowCaption &&
+                                            index < 10
+                                        ) {
+                                            return (
+                                                value["CAPTION"] ===
+                                                    this.state.NowCaption &&
+                                                index < 10
+                                            );
+                                        }
+                                    })
                                     .map((items, index) => {
                                         return (
                                             <div key={index}>

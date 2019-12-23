@@ -9,6 +9,7 @@ import user_avata from "assets/images/user-avata.png";
 import comic_avata from "assets/images/comic-avata.png";
 import stroy_image from "assets/images/stroy-image.png";
 import young_house from "assets/images/young-house.png";
+import Image from "assets/images/default-image.png";
 
 const cx = classnames.bind(styles);
 
@@ -27,6 +28,10 @@ class MainAll extends React.Component {
             });
         });
     }
+
+    onImageError = e => {
+        e.currentTarget.src = Image;
+    };
 
     render() {
         return (
@@ -55,6 +60,7 @@ class MainAll extends React.Component {
                                                         items["INFO_THUMB_URL"]
                                                     }
                                                     alt="슬기로운 하우스생활"
+                                                    onError={this.onImageError}
                                                 />
                                             </div>
                                             <h3>
@@ -139,6 +145,7 @@ class MainAll extends React.Component {
                                                         items["INFO_THUMB_URL"]
                                                     }
                                                     alt="컴앤스테이툰"
+                                                    onError={this.onImageError}
                                                 />
                                             </div>
                                             <div className={cx("comic-info")}>
@@ -230,6 +237,7 @@ class MainAll extends React.Component {
                                                         items["INFO_THUMB_URL"]
                                                     }
                                                     alt="card"
+                                                    onError={this.onImageError}
                                                 />
                                             </div>
                                             <div className={cx("card-title")}>
@@ -288,6 +296,7 @@ class MainAll extends React.Component {
                                                         items["INFO_THUMB_URL"]
                                                     }
                                                     alt="게시물 이미지"
+                                                    onError={this.onImageError}
                                                 />
                                             </div>
                                             <h3>

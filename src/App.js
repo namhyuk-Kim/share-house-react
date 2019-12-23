@@ -39,11 +39,6 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    const myStorage = window.localStorage;
-    console.log(myStorage);
-    if (myStorage.viewdhouse === "") {
-      myStorage.setItem("viewdhouse", "");
-    }
     await this.Session_Refresh();
   }
 

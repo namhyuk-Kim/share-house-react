@@ -27,10 +27,22 @@ class Mypage extends React.Component {
         let nowComp = this.state.nowMypage;
         switch (nowComp) {
             case "recent":
-                return <Recently />;
+                return (
+                    <Recently
+                        viewdhouse_arr={this.props.viewdhouse_arr}
+                        viewdhouse_len={this.props.viewdhouse_len}
+                        SeeFavHouse={this.props.SeeFavHouse}
+                        thispage={"Recently"}
+                    />
+                );
 
             case "interest":
-                return <Recently />;
+                return (
+                    <Recently
+                        SeeFavHouse={this.props.SeeFavHouse}
+                        thispage={"Favhouse"}
+                    />
+                );
 
             case "scraps":
                 return <Scraps />;

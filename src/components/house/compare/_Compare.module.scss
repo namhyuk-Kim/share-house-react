@@ -3,8 +3,12 @@
     min-width: 360px;
     height: 842px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    position: absolute;
+    position: fixed;
     display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
 
     & > .compare-header {
         width: 1070px;

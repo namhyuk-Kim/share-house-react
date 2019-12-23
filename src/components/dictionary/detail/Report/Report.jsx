@@ -6,6 +6,7 @@ import heart from "assets/images/heart.png";
 import comment from "assets/images/comment.png";
 import dictionary_image from "assets/images/dictionary-item.png";
 import user_avata from "assets/images/user-avata.png";
+import Image from "assets/images/default-image.png";
 
 const cx = classnames.bind(styles);
 
@@ -16,6 +17,10 @@ class Report extends React.Component {
             ArticleArr: []
         };
     }
+
+    onImageError = e => {
+        e.currentTarget.src = Image;
+    };
 
     componentDidMount() {
         this.props.ArticleContent().then(array => {
@@ -48,6 +53,7 @@ class Report extends React.Component {
                                                         items["INFO_THUMB_URL"]
                                                     }
                                                     alt="게시물 이미지"
+                                                    onError={this.onImageError}
                                                 />
                                             </div>
                                             <h3>

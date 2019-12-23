@@ -29,16 +29,19 @@ class PostDetail extends React.Component {
         super(props);
         this.state = {
             commentList: [],
+            comment_len: "",
             article: []
         };
     }
 
     componentDidMount() {
         this.props.ContentDetail().then(value => {
-            this.setState({
-                commentList: value["commentList"],
-                article: value["article"]
-            });
+            let NextState = this.state;
+
+            NextState["commentList"] = value["commentList"];
+            NextState["article"] = value["article"];
+            NextState["comment_len"] = value["commentList"].length;
+            this.setState(NextState);
         });
     }
 
@@ -81,7 +84,7 @@ class PostDetail extends React.Component {
                             <div className={cx("comment_count")}>
                                 댓글
                                 <span className={cx("primary_blue")}>
-                                    &nbsp;152
+                                    &nbsp;{this.state.comment_len}
                                 </span>
                             </div>
                             <form className={cx("add-comment")}>
@@ -91,27 +94,140 @@ class PostDetail extends React.Component {
                                 />
                                 <button>등록</button>
                             </form>
-                            <div className={cx("comments")}>
-                                <p>
-                                    입주 2달을 앞두고 있습니다. 정보를 찾던 와중
-                                    자꾸 안좋은 소리만 듣게 되는데요. 방음이
-                                    너무 부실하다는 이야기가 많아서 실 제로
-                                    임대주택 거주중인 분들은 그런 문제가
-                                    없는지요?
-                                </p>
-                                <button>답글</button>
-                                <button>수정</button>
-                                <button>삭제</button>
-                                <div className={cx("comment-data")}>
-                                    <span className={cx("nickname")}>
-                                        ser***
-                                    </span>
-                                    <span className={cx("add-date")}>
-                                        2019-10-10
-                                    </span>
-                                </div>
-                            </div>
-                            <div className={cx("comments")}>
+                            {this.state.commentList
+                                .filter(value => value["IS_REPLY"] === "N")
+                                .map(item => {
+                                    return (
+                                        <>
+                                            <div className={cx("comments")}>
+                                                <p>{item["MESSAGE"]}</p>
+                                                <button>답글</button>
+                                                <button>수정</button>
+                                                <button>삭제</button>
+                                                <div
+                                                    className={cx(
+                                                        "comment-data"
+                                                    )}
+                                                >
+                                                    <span
+                                                        className={cx(
+                                                            "nickname"
+                                                        )}
+                                                    >
+                                                        {item["NICK_NAME"]}
+                                                    </span>
+                                                    <span
+                                                        className={cx(
+                                                            "add-date"
+                                                        )}
+                                                    >
+                                                        {item["CREATE_DT"]}
+                                                    </span>
+                                                </div>
+                                                {this.state.commentList
+                                                    .filter(value => {
+                                                        if (
+                                                            value[
+                                                                "IS_REPLY"
+                                                            ] === "Y" &&
+                                                            value["ORG_SEQ"] ===
+                                                                item["ORG_SEQ"]
+                                                        ) {
+                                                            return (
+                                                                value[
+                                                                    "IS_REPLY"
+                                                                ] === "Y" &&
+                                                                value[
+                                                                    "ORG_SEQ"
+                                                                ] ===
+                                                                    item[
+                                                                        "ORG_SEQ"
+                                                                    ]
+                                                            );
+                                                        }
+                                                    })
+                                                    .map(item => {
+                                                        return (
+                                                            <>
+                                                                <div
+                                                                    className={cx(
+                                                                        "clear"
+                                                                    )}
+                                                                ></div>
+                                                                <div
+                                                                    className={cx(
+                                                                        "re-comment"
+                                                                    )}
+                                                                >
+                                                                    <div>
+                                                                        <img
+                                                                            src={
+                                                                                Dashed
+                                                                            }
+                                                                            alt="dash"
+                                                                        />
+                                                                    </div>
+                                                                    <div
+                                                                        className={cx(
+                                                                            "re-comment-text"
+                                                                        )}
+                                                                    >
+                                                                        <p>
+                                                                            {
+                                                                                item[
+                                                                                    "MESSAGE"
+                                                                                ]
+                                                                            }
+                                                                        </p>
+                                                                    </div>
+                                                                    <button>
+                                                                        수정
+                                                                    </button>
+                                                                    <button>
+                                                                        삭제
+                                                                    </button>
+                                                                    <div
+                                                                        className={cx(
+                                                                            "comment-data"
+                                                                        )}
+                                                                    >
+                                                                        <span
+                                                                            className={cx(
+                                                                                "nickname"
+                                                                            )}
+                                                                        >
+                                                                            {
+                                                                                item[
+                                                                                    "NICK_NAME"
+                                                                                ]
+                                                                            }
+                                                                        </span>
+                                                                        <span
+                                                                            className={cx(
+                                                                                "add-date"
+                                                                            )}
+                                                                        >
+                                                                            {
+                                                                                item[
+                                                                                    "CREATE_DT"
+                                                                                ]
+                                                                            }
+                                                                        </span>
+                                                                    </div>
+                                                                    <div
+                                                                        className={cx(
+                                                                            "clear"
+                                                                        )}
+                                                                    ></div>
+                                                                </div>
+                                                            </>
+                                                        );
+                                                    })}
+                                            </div>
+                                        </>
+                                    );
+                                })}
+                            {/* <div className={cx("comments")}>
                                 <p>
                                     입주 2달을 앞두고 있습니다. 정보를 찾던 와중
                                     자꾸 안좋은 소리만 듣게 되는데요. 방음이
@@ -227,7 +343,7 @@ class PostDetail extends React.Component {
                                     </div>
                                     <div className={cx("clear")}></div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className={cx("house-story")}>
                             <h1>팸하우스 스토리</h1>

@@ -11,6 +11,14 @@ class RegisterDone extends React.Component {
             <div className={cx("content")}>
                 <div className={cx("register")}>
                     <div className={cx("register-left")}>
+                        <h1>
+                            함께하는 즐거움
+                            <br /> <span>‘공유’</span>와 <span>‘교류’</span>가
+                            매력적인
+                            <br />
+                            쉐어하우스
+                        </h1>
+                        <p>지금 바로 가입하세요!</p>
                         <div className={cx("clear")}></div>
                     </div>
                     <div className={cx("register-right")}>

@@ -21,9 +21,15 @@ class SearchContainer extends React.Component {
     }
   };
 
-  // SearchList = () => {
-
-  // }
+  AddCompare = async houseid => {
+    const { UserAction } = this.props;
+    try {
+      await UserAction.AddCompare(houseid);
+      return alert("비교함에 추가되었습니다.");
+    } catch (e) {
+      console.dir(e);
+    }
+  };
 
   SearchList = async ({
     page,
@@ -79,6 +85,7 @@ class SearchContainer extends React.Component {
         houseLoad={this.state.houseLoad}
         houseList={this.state.houseList}
         totalCount={this.state.totalCount}
+        AddCompare={this.AddCompare}
       />
     );
   }

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import _ from "lodash";
 import InputRange from "react-input-range"; // input range 관련 패키지 받아옴
 import "react-input-range/lib/css/index.css"; // input range 관련 패키지 css
+import Popup from "components/common/Popup/Popup";
+import Compare from "components/house/compare/Compare";
 
 import styles from "./_Search.module.scss";
 import filter from "assets/images/filter.png";
@@ -19,6 +21,7 @@ import category2 from "assets/images/subway.png";
 import category1 from "assets/images/school.png";
 import category4 from "assets/images/house.png";
 import category3 from "assets/images/pin.png";
+import map_pin from "assets/images/pin_mint.png";
 
 const cx = classnames.bind(styles);
 
@@ -36,9 +39,21 @@ class Search extends React.Component {
             ShowFlilter: false,
             Isfocus: false,
             NowSearchKeyword: "",
-            NowSearchKeyHelper: []
+            NowSearchKeyHelper: [],
+            isModalOpen: false
         };
     }
+
+    openModal = e => {
+        if (e !== undefined && e !== null) {
+            e.preventDefault();
+        }
+        this.setState({ isModalOpen: true });
+    };
+
+    closeModal = e => {
+        this.setState({ isModalOpen: false });
+    };
 
     componentDidMount() {
         this.PullSearchHelper = _.debounce(this.PullSearchHelper, 500, {
@@ -50,7 +65,6 @@ class Search extends React.Component {
             level: 3,
             position: new window.kakao.maps.LatLng(37.5837, 127.009393)
         };
-
         this.map = new window.kakao.maps.Map(this.mapRef, options);
     } //지도 생성 및 객체 리턴
 
@@ -148,6 +162,12 @@ class Search extends React.Component {
         if (!houseLoad) {
             let marker = [];
 
+            const markerImage = new window.kakao.maps.MarkerImage(
+                map_pin,
+                new window.kakao.maps.Size(31, 35),
+                new window.kakao.maps.Point(13, 34)
+            );
+
             houseList.forEach(item => {
                 if (item === null || "") return null;
                 marker.push({
@@ -163,7 +183,8 @@ class Search extends React.Component {
                 new window.kakao.maps.Marker({
                     map: this.map,
                     position: item["latlng"],
-                    title: item["title"]
+                    title: item["title"],
+                    image: markerImage
                 });
             }
         }
@@ -397,7 +418,7 @@ class Search extends React.Component {
                                 검색 하우스&nbsp;&nbsp;
                                 <span>&nbsp;{this.props.totalCount}</span>개
                             </p>
-                            <button>
+                            <button onClick={e => this.openModal(e)}>
                                 <img src={folder_add} alt="folder_add" />
                                 비교함 (2)
                             </button>
@@ -429,7 +450,14 @@ class Search extends React.Component {
                                                     className={cx("vr")}
                                                 />
                                             )}
-                                            <div className={cx("add-compare")}>
+                                            <div
+                                                className={cx("add-compare")}
+                                                onClick={() =>
+                                                    this.props.AddCompare(
+                                                        item["HOUSE_ID"]
+                                                    )
+                                                }
+                                            >
                                                 <img
                                                     src={folder_add_w}
                                                     alt="folder_add_w"
@@ -489,6 +517,17 @@ class Search extends React.Component {
                     <div className={cx("clear'")}></div>
                 </div>
                 <div className={cx("clear")}></div>
+                <>
+                    <Popup
+                        closeModal={this.closeModal}
+                        isModalOpen={this.state.isModalOpen}
+                    >
+                        <Compare
+                            closeModal={this.closeModal}
+                            isModalOpen={this.state.isModalOpen}
+                        />
+                    </Popup>
+                </>
             </div>
         );
     }

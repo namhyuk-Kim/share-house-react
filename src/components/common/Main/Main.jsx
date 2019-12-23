@@ -1,21 +1,17 @@
 import React from "react";
 import classnames from "classnames/bind";
 import { Link } from "react-router-dom";
+
 import styles from "./_Main.module.scss";
 import search from "assets/images/Search.png";
-import room1 from "assets/images/room1.png";
-import room2 from "assets/images/room2.png";
-import room3 from "assets/images/room3.png";
-import room4 from "assets/images/room4.png";
-import room5 from "assets/images/room5.png";
-import room6 from "assets/images/room6.png";
-import room7 from "assets/images/room7.png";
 import star_yellow from "assets/images/star_yellow.png";
 import star_gray from "assets/images/Star_gray.png";
 import plus_icon from "assets/images/Union.png";
-import InhabiMobile from "components/common/InhabiMobile/InhabiMobile";
-
 import Image from "assets/images/default-image.png";
+
+import InhabiMobile from "components/common/InhabiMobile/InhabiMobile";
+import Popup from "components/common/Popup/Popup";
+import Login from "components/user/Login/Login";
 
 const cx = classnames.bind(styles);
 
@@ -24,9 +20,24 @@ class Main extends React.Component {
         super(props);
         this.state = {
             active: 0,
-            nowSearchPh: "지역"
+            nowSearchPh: "지역",
+            favhouselist: [],
+            favhouselist_len: "",
+            viewtype: "recent",
+            isModalOpen: false
         };
     }
+
+    openModal = e => {
+        if (e !== undefined && e !== null) {
+            e.preventDefault();
+        }
+        this.setState({ isModalOpen: true });
+    };
+
+    closeModal = e => {
+        this.setState({ isModalOpen: false });
+    };
 
     changeActive = e => {
         let selected = e;
@@ -54,19 +65,46 @@ class Main extends React.Component {
     };
 
     ChangeView = () => {
-        if (JSON.stringify(this.props.cookies) === "{}") {
-            alert("로그인 후 이용할수 있습니다.");
-            return false;
-        } else {
+        const NextState = this.state;
+        if (NextState["viewtype"] === "recent") {
+            if (JSON.stringify(this.props.cookies) === "{}") {
+                this.openModal();
+                return false;
+            } else {
+                NextState["viewtype"] = "favhouse";
+                this.setState({ NextState });
+            }
+        } else if (NextState["viewtype"] === "favhouse") {
+            NextState["viewtype"] = "recent";
+            this.setState({ NextState });
         }
     };
 
     MoreSee = e => {
         e.preventDefault();
         if (JSON.stringify(this.props.cookies) === "{}") {
-            alert("로그인 후 이용할수 있습니다.");
+            this.openModal();
             return false;
         } else {
+            if (this.state.viewtype === "recent") {
+                window.location.replace("/user/mypage");
+            } else if (this.state.viewtype === "favhouse") {
+                window.location.replace("/user/mypage");
+            }
+        }
+    };
+
+    AddFav = (e, houseid) => {
+        e.preventDefault();
+        if (JSON.stringify(this.props.cookies) === "{}") {
+            this.openModal();
+            return false;
+        } else {
+            this.props.AddFavHouse(houseid);
+            alert(
+                "관심 하우스에 담겼습니다.\n마이페이지에서 확인하실 수 있습니다."
+            );
+            return;
         }
     };
 
@@ -81,17 +119,34 @@ class Main extends React.Component {
             return false;
         }
         // 검색결과 가 나온 하우스 검색 페이지로 이동 + 값 post 방식으로 보낼거임
-        window.location.href = "/house/search";
+        window.location.href = "/search";
     };
 
     onImageError = e => {
         e.currentTarget.src = Image;
     };
 
+    MoreContent = () => {
+        window.location.replace("/search");
+    };
+
+    componentWillMount() {
+        if (JSON.stringify(this.props.cookies) === "{}") {
+            return false;
+        } else {
+            this.props.SeeFavHouse().then(value => {
+                const NextState = this.state;
+                NextState["favhouselist"] = value.houseList;
+                NextState["favhouselist_len"] = value.houseList.length;
+                this.setState(NextState);
+            });
+        }
+    }
+
     render() {
-        const { active } = this.state;
+        const { active, favhouselist, favhouselist_len } = this.state;
         const myStorage = localStorage;
-        console.log(myStorage);
+
         return (
             <div>
                 <div className={cx("content")}></div>
@@ -147,107 +202,185 @@ class Main extends React.Component {
                             <div className={cx("content")}>
                                 <h2>Today's 인기하우스</h2>
                                 <div className={cx("popularity-items")}>
-                                    {this.props.todayHouseArr.map(item => {
-                                        return (
-                                            <div key={item["HOUSE_ID"]}>
-                                                <div>
-                                                    <img
-                                                        src={star_yellow}
-                                                        alt={"star_yellow"}
-                                                    />
-                                                    <div
-                                                        className={cx(
-                                                            "image-box"
+                                    {this.props.todayHouseArr.map(
+                                        (item, index) => {
+                                            return (
+                                                <div key={item["HOUSE_ID"]}>
+                                                    <div>
+                                                        {favhouselist_len >
+                                                        0 ? (
+                                                            favhouselist.some(
+                                                                value => {
+                                                                    if (
+                                                                        value[
+                                                                            "HOUSE_ID"
+                                                                        ] ===
+                                                                        item[
+                                                                            "HOUSE_ID"
+                                                                        ]
+                                                                    ) {
+                                                                        return true;
+                                                                    } else {
+                                                                        return false;
+                                                                    }
+                                                                }
+                                                            ) ? (
+                                                                <img
+                                                                    src={
+                                                                        star_yellow
+                                                                    }
+                                                                    alt={
+                                                                        "star_yellow"
+                                                                    }
+                                                                    onClick={e =>
+                                                                        this.AddFav(
+                                                                            e,
+                                                                            item[
+                                                                                "HOUSE_ID"
+                                                                            ]
+                                                                        )
+                                                                    }
+                                                                />
+                                                            ) : (
+                                                                <img
+                                                                    src={
+                                                                        star_gray
+                                                                    }
+                                                                    alt={
+                                                                        "star_yellow"
+                                                                    }
+                                                                    onClick={e =>
+                                                                        this.AddFav(
+                                                                            e,
+                                                                            item[
+                                                                                "HOUSE_ID"
+                                                                            ]
+                                                                        )
+                                                                    }
+                                                                />
+                                                            )
+                                                        ) : (
+                                                            <img
+                                                                src={star_gray}
+                                                                alt={
+                                                                    "star_yellow"
+                                                                }
+                                                                onClick={e =>
+                                                                    this.AddFav(
+                                                                        e,
+                                                                        item[
+                                                                            "HOUSE_ID"
+                                                                        ]
+                                                                    )
+                                                                }
+                                                            />
                                                         )}
-                                                    >
-                                                        <img
-                                                            src={
-                                                                item[
-                                                                    "INFO_THUMB_URL"
-                                                                ]
-                                                            }
-                                                            onError={
-                                                                this
-                                                                    .onImageError
-                                                            }
-                                                            alt={"room"}
-                                                        />
-                                                    </div>
-                                                    <div
-                                                        className={cx("types")}
-                                                    >
-                                                        <button>
-                                                            {
-                                                                item[
-                                                                    "RENT_TYPE_NAME"
-                                                                ]
-                                                            }
-                                                        </button>
-                                                        <span>
-                                                            {
-                                                                item[
-                                                                    "HOUSE_TYPE_NAME"
-                                                                ]
-                                                            }
-                                                        </span>
-                                                    </div>
-                                                    <div
-                                                        className={cx("title")}
-                                                    >
-                                                        <Link
-                                                            to={
-                                                                item[
-                                                                    "HOUSE_URL"
-                                                                ]
-                                                            }
+                                                        <div
+                                                            className={cx(
+                                                                "image-box"
+                                                            )}
                                                         >
-                                                            {item[
-                                                                "BRAND_NAME"
-                                                            ] +
-                                                                item[
-                                                                    "HOUSE_NAME"
-                                                                ]}
-                                                        </Link>
-                                                    </div>
-                                                    <div
-                                                        className={cx(
-                                                            "location"
-                                                        )}
-                                                    >
-                                                        <span>
-                                                            {item["ADDRESS"]}
-                                                        </span>
-                                                    </div>
-                                                    <div
-                                                        className={cx("price")}
-                                                    >
-                                                        <p>
-                                                            <span>
-                                                                월세&nbsp;
-                                                            </span>
+                                                            <img
+                                                                src={
+                                                                    item[
+                                                                        "INFO_THUMB_URL"
+                                                                    ]
+                                                                }
+                                                                onError={
+                                                                    this
+                                                                        .onImageError
+                                                                }
+                                                                alt={"room"}
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            className={cx(
+                                                                "types"
+                                                            )}
+                                                        >
+                                                            <button>
+                                                                {
+                                                                    item[
+                                                                        "RENT_TYPE_NAME"
+                                                                    ]
+                                                                }
+                                                            </button>
                                                             <span>
                                                                 {
                                                                     item[
-                                                                        "RENTFEE"
+                                                                        "HOUSE_TYPE_NAME"
                                                                     ]
                                                                 }
                                                             </span>
-                                                        </p>
-                                                        <p>
-                                                            <span>보증금</span>
+                                                        </div>
+                                                        <div
+                                                            className={cx(
+                                                                "title"
+                                                            )}
+                                                        >
+                                                            <Link
+                                                                to={
+                                                                    item[
+                                                                        "HOUSE_URL"
+                                                                    ]
+                                                                }
+                                                            >
+                                                                {item[
+                                                                    "BRAND_NAME"
+                                                                ] +
+                                                                    item[
+                                                                        "HOUSE_NAME"
+                                                                    ]}
+                                                            </Link>
+                                                        </div>
+                                                        <div
+                                                            className={cx(
+                                                                "location"
+                                                            )}
+                                                        >
                                                             <span>
                                                                 {
                                                                     item[
-                                                                        "DEPOSIT"
+                                                                        "ADDRESS"
                                                                     ]
                                                                 }
                                                             </span>
-                                                        </p>
+                                                        </div>
+                                                        <div
+                                                            className={cx(
+                                                                "price"
+                                                            )}
+                                                        >
+                                                            <p>
+                                                                <span>
+                                                                    월세&nbsp;
+                                                                </span>
+                                                                <span>
+                                                                    {
+                                                                        item[
+                                                                            "RENTFEE"
+                                                                        ]
+                                                                    }
+                                                                </span>
+                                                            </p>
+                                                            <p>
+                                                                <span>
+                                                                    보증금
+                                                                </span>
+                                                                <span>
+                                                                    {
+                                                                        item[
+                                                                            "DEPOSIT"
+                                                                        ]
+                                                                    }
+                                                                </span>
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        );
-                                    })}
+                                            );
+                                        }
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -255,111 +388,383 @@ class Main extends React.Component {
                     <div className={cx("recently-viewed")}>
                         <div className={cx("content")}>
                             <h2>
-                                최근 본 하우스&nbsp;&nbsp;&nbsp;
-                                <span onClick={() => this.ChangeView()}>
-                                    |&nbsp;&nbsp;&nbsp; 관심 하우스
+                                <span
+                                    onClick={() => this.ChangeView()}
+                                    className={
+                                        this.state.viewtype === "recent"
+                                            ? cx("seltype")
+                                            : null
+                                    }
+                                >
+                                    최근 본 하우스
+                                </span>
+                                &nbsp;&nbsp;&nbsp;|
+                                <span
+                                    onClick={() => this.ChangeView()}
+                                    className={
+                                        this.state.viewtype === "favhouse"
+                                            ? cx("seltype")
+                                            : null
+                                    }
+                                >
+                                    &nbsp;&nbsp;&nbsp; 관심 하우스
                                 </span>
                                 <Link to="/" onClick={e => this.MoreSee(e)}>
                                     더보기
                                 </Link>
                             </h2>
-                            <div className={cx("recently-viewed-items")}>
-                                {this.props.viewdhouse_len > 0
-                                    ? this.props.viewdhouse_arr.map(items => {
-                                          return (
-                                              <div>
-                                                  <div>
-                                                      <img
-                                                          src={star_gray}
-                                                          alt={"star_gray"}
-                                                      />
-                                                      <div
-                                                          className={cx(
-                                                              "image-box"
-                                                          )}
-                                                      >
-                                                          <img
-                                                              src={
-                                                                  items[
-                                                                      "INFO_THUMB_URL"
-                                                                  ]
-                                                              }
-                                                              alt={"room"}
-                                                          />
-                                                      </div>
-                                                      <div
-                                                          className={cx(
-                                                              "types"
-                                                          )}
-                                                      >
-                                                          <button>
-                                                              {
-                                                                  items[
-                                                                      "RENT_TYPE_NAME"
-                                                                  ]
-                                                              }
-                                                          </button>
-                                                          <span>
-                                                              {
-                                                                  items[
-                                                                      "HOUSE_TYPE_NAME"
-                                                                  ]
-                                                              }
-                                                          </span>
-                                                      </div>
-                                                      <div
-                                                          className={cx(
-                                                              "title"
-                                                          )}
-                                                      >
-                                                          {items["BRAND_NAME"] +
-                                                              items[
-                                                                  "HOUSE_NAME"
-                                                              ]}
-                                                      </div>
-                                                      <div
-                                                          className={cx(
-                                                              "location"
-                                                          )}
-                                                      >
-                                                          <span>
-                                                              {items["ADDRESS"]}
-                                                          </span>
-                                                      </div>
-                                                      <div
-                                                          className={cx(
-                                                              "price"
-                                                          )}
-                                                      >
-                                                          <p>
-                                                              <span>월세</span>
-                                                              <span>
-                                                                  {
-                                                                      items[
-                                                                          "RENTFEE"
-                                                                      ]
-                                                                  }
-                                                              </span>
-                                                          </p>
-                                                          <p>
-                                                              <span>
-                                                                  보증금
-                                                              </span>
-                                                              <span>
-                                                                  {
-                                                                      items[
-                                                                          "DEPOSIT"
-                                                                      ]
-                                                                  }
-                                                              </span>
-                                                          </p>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          );
-                                      })
-                                    : null}
-                            </div>
+                            {this.state.viewtype === "recent" ? (
+                                <div className={cx("recently-viewed-items")}>
+                                    {this.props.viewdhouse_len > 0 ? (
+                                        this.props.viewdhouse_arr
+                                            .filter((item, index) => index < 4)
+                                            .map(items => {
+                                                return (
+                                                    <div>
+                                                        <div>
+                                                            {favhouselist_len >
+                                                            0 ? (
+                                                                favhouselist.some(
+                                                                    value => {
+                                                                        if (
+                                                                            value[
+                                                                                "HOUSE_ID"
+                                                                            ] ===
+                                                                            items[
+                                                                                "HOUSE_ID"
+                                                                            ]
+                                                                        ) {
+                                                                            return true;
+                                                                        } else {
+                                                                            return false;
+                                                                        }
+                                                                    }
+                                                                ) ? (
+                                                                    <img
+                                                                        src={
+                                                                            star_yellow
+                                                                        }
+                                                                        alt={
+                                                                            "star_yellow"
+                                                                        }
+                                                                        onClick={e =>
+                                                                            this.AddFav(
+                                                                                e,
+                                                                                items[
+                                                                                    "HOUSE_ID"
+                                                                                ]
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                ) : (
+                                                                    <img
+                                                                        src={
+                                                                            star_gray
+                                                                        }
+                                                                        alt={
+                                                                            "star_yellow"
+                                                                        }
+                                                                        onClick={e =>
+                                                                            this.AddFav(
+                                                                                e,
+                                                                                items[
+                                                                                    "HOUSE_ID"
+                                                                                ]
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                )
+                                                            ) : (
+                                                                <img
+                                                                    src={
+                                                                        star_gray
+                                                                    }
+                                                                    alt={
+                                                                        "star_yellow"
+                                                                    }
+                                                                    onClick={e =>
+                                                                        this.AddFav(
+                                                                            e,
+                                                                            items[
+                                                                                "HOUSE_ID"
+                                                                            ]
+                                                                        )
+                                                                    }
+                                                                />
+                                                            )}
+                                                            <div
+                                                                className={cx(
+                                                                    "image-box"
+                                                                )}
+                                                            >
+                                                                <img
+                                                                    src={
+                                                                        items[
+                                                                            "INFO_THUMB_URL"
+                                                                        ]
+                                                                    }
+                                                                    alt={"room"}
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "types"
+                                                                )}
+                                                            >
+                                                                <button>
+                                                                    {
+                                                                        items[
+                                                                            "RENT_TYPE_NAME"
+                                                                        ]
+                                                                    }
+                                                                </button>
+                                                                <span>
+                                                                    {
+                                                                        items[
+                                                                            "HOUSE_TYPE_NAME"
+                                                                        ]
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "title"
+                                                                )}
+                                                            >
+                                                                <Link
+                                                                    to={
+                                                                        items[
+                                                                            "HOUSE_URL"
+                                                                        ]
+                                                                    }
+                                                                >
+                                                                    {items[
+                                                                        "BRAND_NAME"
+                                                                    ] +
+                                                                        items[
+                                                                            "HOUSE_NAME"
+                                                                        ]}
+                                                                </Link>
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "location"
+                                                                )}
+                                                            >
+                                                                <span>
+                                                                    {
+                                                                        items[
+                                                                            "ADDRESS"
+                                                                        ]
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "price"
+                                                                )}
+                                                            >
+                                                                <p>
+                                                                    <span>
+                                                                        월세
+                                                                    </span>
+                                                                    <span>
+                                                                        {
+                                                                            items[
+                                                                                "RENTFEE"
+                                                                            ]
+                                                                        }
+                                                                    </span>
+                                                                </p>
+                                                                <p>
+                                                                    <span>
+                                                                        보증금
+                                                                    </span>
+                                                                    <span>
+                                                                        {
+                                                                            items[
+                                                                                "DEPOSIT"
+                                                                            ]
+                                                                        }
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })
+                                    ) : (
+                                        <>
+                                            <div
+                                                className={cx("more-house")}
+                                                onClick={this.MoreContent}
+                                            >
+                                                <div
+                                                    className={cx(
+                                                        "more-content"
+                                                    )}
+                                                >
+                                                    <span>
+                                                        아직 못 보신 더 많은
+                                                        하우스가 있어요!
+                                                    </span>
+                                                    <button>
+                                                        <img
+                                                            src={plus_icon}
+                                                            alt="plus"
+                                                        />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className={cx("recently-viewed-items")}>
+                                    {this.state.favhouselist_len > 0 ? (
+                                        this.state.favhouselist
+                                            .filter((item, index) => index < 4)
+                                            .map(items => {
+                                                return (
+                                                    <div>
+                                                        <div>
+                                                            <img
+                                                                src={
+                                                                    star_yellow
+                                                                }
+                                                                alt={
+                                                                    "star_gray"
+                                                                }
+                                                            />
+                                                            <div
+                                                                className={cx(
+                                                                    "image-box"
+                                                                )}
+                                                            >
+                                                                <img
+                                                                    src={
+                                                                        items[
+                                                                            "INFO_THUMB_URL"
+                                                                        ]
+                                                                    }
+                                                                    alt={"room"}
+                                                                    onError={
+                                                                        this
+                                                                            .onImageError
+                                                                    }
+                                                                />
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "types"
+                                                                )}
+                                                            >
+                                                                <button>
+                                                                    {
+                                                                        items[
+                                                                            "RENT_TYPE_NAME"
+                                                                        ]
+                                                                    }
+                                                                </button>
+                                                                <span>
+                                                                    {
+                                                                        items[
+                                                                            "HOUSE_TYPE_NAME"
+                                                                        ]
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "title"
+                                                                )}
+                                                            >
+                                                                <Link
+                                                                    to={
+                                                                        items[
+                                                                            "HOUSE_URL"
+                                                                        ]
+                                                                    }
+                                                                >
+                                                                    {items[
+                                                                        "BRAND_NAME"
+                                                                    ] +
+                                                                        items[
+                                                                            "HOUSE_NAME"
+                                                                        ]}
+                                                                </Link>
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "location"
+                                                                )}
+                                                            >
+                                                                <span>
+                                                                    {
+                                                                        items[
+                                                                            "ADDRESS"
+                                                                        ]
+                                                                    }
+                                                                </span>
+                                                            </div>
+                                                            <div
+                                                                className={cx(
+                                                                    "price"
+                                                                )}
+                                                            >
+                                                                <p>
+                                                                    <span>
+                                                                        월세
+                                                                    </span>
+                                                                    <span>
+                                                                        {
+                                                                            items[
+                                                                                "RENTFEE"
+                                                                            ]
+                                                                        }
+                                                                    </span>
+                                                                </p>
+                                                                <p>
+                                                                    <span>
+                                                                        보증금
+                                                                    </span>
+                                                                    <span>
+                                                                        {
+                                                                            items[
+                                                                                "DEPOSIT"
+                                                                            ]
+                                                                        }
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })
+                                    ) : (
+                                        <>
+                                            <div className={cx("more-house")}>
+                                                <div
+                                                    className={cx(
+                                                        "more-content"
+                                                    )}
+                                                >
+                                                    <span>
+                                                        아직 못 보신 더 많은
+                                                        하우스가 있어요!
+                                                    </span>
+                                                    <button>
+                                                        <img
+                                                            src={plus_icon}
+                                                            alt="plus"
+                                                        />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className={cx("event-banner")}>
@@ -465,6 +870,15 @@ class Main extends React.Component {
                     <div className={cx("clear")}></div>
                 </div>
                 <InhabiMobile />
+                <Popup
+                    closeModal={this.closeModal}
+                    isModalOpen={this.state.isModalOpen}
+                >
+                    <Login
+                        closeModal={this.closeModal}
+                        isModalOpen={this.state.isModalOpen}
+                    />
+                </Popup>
             </div>
         );
     }
