@@ -21,7 +21,12 @@ class ReportContainer extends React.Component {
 
   render() {
     // 쉐어하우스 리포트 컴포넌트 및 콘텐츠 리스트 받아서 반환해주는 함수 반환
-    return <Report ArticleContent={this.ArticleContent} />;
+    return (
+      <Report
+        ArticleContent={this.ArticleContent}
+        category={this.props.category}
+      />
+    );
   }
 }
 

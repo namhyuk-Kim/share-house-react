@@ -21,6 +21,16 @@ class SearchContainer extends React.Component {
     }
   };
 
+  CompareList = async () => {
+    const { UserAction } = this.props;
+    try {
+      const res = await UserAction.CompareList();
+      return res.data.result.data.houseList;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   AddCompare = async houseid => {
     const { UserAction } = this.props;
     try {
@@ -86,6 +96,7 @@ class SearchContainer extends React.Component {
         houseList={this.state.houseList}
         totalCount={this.state.totalCount}
         AddCompare={this.AddCompare}
+        CompareList={this.CompareList}
       />
     );
   }

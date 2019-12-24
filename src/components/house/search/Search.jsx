@@ -6,6 +6,7 @@ import InputRange from "react-input-range"; // input range 관련 패키지 받�
 import "react-input-range/lib/css/index.css"; // input range 관련 패키지 css
 import Popup from "components/common/Popup/Popup";
 import Compare from "components/house/compare/Compare";
+import MobileSearchFilter from "./MobileSearchFilter/MobileSearchFilter";
 
 import styles from "./_Search.module.scss";
 import filter from "assets/images/filter.png";
@@ -40,7 +41,10 @@ class Search extends React.Component {
             Isfocus: false,
             NowSearchKeyword: "",
             NowSearchKeyHelper: [],
-            isModalOpen: false
+            isModalOpen: false,
+            m_filter: false,
+            CompareList: [],
+            CompareList_len: 0
         };
     }
 
@@ -60,6 +64,15 @@ class Search extends React.Component {
             maxWait: 1000
         });
 
+        console.log(this.props.CompareList());
+
+        this.props.CompareList().then(value => {
+            let NextState = this.state;
+            NextState["CompareList"] = value;
+            NextState["CompareList_len"] = value.length;
+            this.setState(NextState);
+        });
+
         const options = {
             center: new window.kakao.maps.LatLng(37.5837, 127.009393),
             level: 3,
@@ -71,7 +84,8 @@ class Search extends React.Component {
     filter_toggle = () => {
         // 필터버튼 눌러서 나오게함
         this.setState({
-            ShowFlilter: !this.state.ShowFlilter
+            ShowFlilter: !this.state.ShowFlilter,
+            m_filter: !this.state.m_filter
         });
     };
 
@@ -528,6 +542,7 @@ class Search extends React.Component {
                         />
                     </Popup>
                 </>
+                {this.state.m_filter === true ? <MobileSearchFilter /> : null}
             </div>
         );
     }

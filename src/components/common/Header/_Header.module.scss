@@ -118,7 +118,7 @@ header {
             & > h2 {
                 position: absolute;
                 top: 50%;
-                left: 50%;
+                left: 48%;
                 transform: translate(-50%, -50%);
                 float: left;
                 min-width: 143px;
@@ -140,7 +140,7 @@ header {
                 justify-content: center;
                 align-items: center;
                 float: right;
-                margin-right: 0px;
+                margin-right: 3px;
                 & > a {
                     display: none;
                     vertical-align: middle;

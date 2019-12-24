@@ -13,17 +13,24 @@ import link_share from "assets/images/link_share.png";
 const cx = classnames.bind(styles);
 
 class MobileDetailMenu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            houseData: this.props.HouseData
+        };
+    }
+
     render() {
         return (
             <div className={cx("fixed-info")}>
                 <div className={cx("tag-box")}>
                     <button className={cx("nomination-btn")}>추천</button>
                     <button className={cx("primary-blue-btn")}>
-                        쉐어하우스
+                        {this.props.HouseData["RENT_TYPE_NAME_KO"]}
                     </button>
-                    <span>아파트</span>
+                    <span>{this.props.HouseData["HOUSE_TYPE"]}</span>
                 </div>
-                <h1>단비 쉐어하우스 숙대입구 4호점</h1>
+                <h1>{this.props.HouseData["HOUSE_NAME_KO"]}</h1>
 
                 <div className={cx("util-buttons")}>
                     <div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { withCookies } from "react-cookie";
 import * as UserAction from "stores/modules/contentdetail";
 import ContentDetail from "components/dictionary/detail/Postdetail/PostDetail";
 
@@ -21,11 +22,30 @@ class ContentDetailContainer extends React.Component {
     }
   };
 
+  AddComment = async comment => {
+    const { UserAction } = this.props;
+    try {
+      const articlepath = this.props.location.pathname;
+      const res = await this.props.UserAction.AddComment(articlepath, comment);
+      return res;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
-    return <ContentDetail ContentDetail={this.ContentDetail} />;
+    return (
+      <ContentDetail
+        ContentDetail={this.ContentDetail}
+        AddComment={this.AddComment}
+        cookies={this.props.cookies.cookies}
+      />
+    );
   }
 }
 
-export default connect(null, dispatch => ({
-  UserAction: bindActionCreators(UserAction, dispatch)
-}))(ContentDetailContainer);
+export default withCookies(
+  connect(null, dispatch => ({
+    UserAction: bindActionCreators(UserAction, dispatch)
+  }))(ContentDetailContainer)
+);

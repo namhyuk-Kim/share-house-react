@@ -283,7 +283,7 @@ class Detail extends React.Component {
                                     })}
                             </div>
                         </div>
-                        <MobileDetailMenu />
+                        <MobileDetailMenu HouseData={this.state.house} />
                         <div className={cx("house-content")}>
                             <div className={cx("content-category")}>
                                 <button>하우스 상세정보</button>

@@ -97,8 +97,10 @@ class MobileFooter extends React.Component {
                                 대표 : 김문영&nbsp;&nbsp;사업자 등록번호
                                 182-81-00280
                                 <br />
-                                COPYRIGHT ⓒ Come&stay Co.Ltd.ALL RIGHTS
-                                RESERVED.
+                                <span>
+                                    COPYRIGHT ⓒ Come&stay Co.Ltd.ALL RIGHTS
+                                    RESERVED.
+                                </span>
                             </p>
                         </div>
                     </div>

@@ -93,6 +93,9 @@ class Header extends React.Component {
                 <AsideHam
                     ToggleHam={ToggleHam}
                     isShowHam={this.state.isShowHam}
+                    openModal={this.props.openModal}
+                    memberName={this.props.member_name}
+                    Logout={this.props.Logout}
                 />
                 <Popup
                     closeModal={this.props.closeModal}

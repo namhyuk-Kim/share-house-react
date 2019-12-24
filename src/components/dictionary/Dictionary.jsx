@@ -43,7 +43,12 @@ class Dictionary extends React.Component {
                             <HouseLife nowCategory={this.state.nowCategory} />
                         );
                     case "young":
-                        return <Report nowCategory={this.state.nowCategory} />; // 임시로 리포트 페이지 붙여줌 ..
+                        return (
+                            <Report
+                                nowCategory={this.state.nowCategory}
+                                category={"청년임대주택 알아보기"}
+                            />
+                        );
                     default:
                         return (
                             <MainAll

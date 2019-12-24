@@ -622,11 +622,12 @@
                 overflow: hidden;
                 margin: 0 auto;
                 & > h2 {
-                    padding-left: 16px;
+                    padding-left: 0px;
+                    margin-left: 0px;
                     max-width: 768px;
                     min-width: 360px;
                     padding-top: 32px;
-                    padding-bottom: 0px;
+                    padding-bottom: 16px;
                     font-weight: 500;
                     font-size: 20px;
                     line-height: 29px;
@@ -635,7 +636,7 @@
                 & > .popularity-items {
                     width: 100%;
                     display: flex;
-                    justify-content: center;
+                    justify-content: flex-start;
                     flex-wrap: nowrap;
                     & > div {
                         display: inline-block;
@@ -645,7 +646,8 @@
                             float: left;
                             max-width: 246px;
                             height: calc(100% - 23px);
-                            margin: 16px;
+                            margin: 0;
+                            margin-right: 13px;
                             & > img {
                                 position: absolute;
                                 top: 13px;
@@ -667,7 +669,8 @@
                             }
                             & > .location {
                                 width: 100%;
-                                margin-top: 20px;
+                                margin-top: 8px;
+                                margin-bottom: 8px;
                                 font-weight: 300;
                                 font-size: 12px;
                                 line-height: 17px;
@@ -683,7 +686,7 @@
                                     font-size: 11px;
                                     font-weight: 500;
                                     color: #fff;
-                                    line-height: 11px;
+                                    line-height: 8px;
                                     margin-right: 8px;
                                 }
 
@@ -723,19 +726,35 @@
                 overflow: hidden;
                 margin: 0 auto;
                 & > h2 {
-                    padding-left: 16px;
+                    padding-left: 0px;
+                    margin-left: 0;
                     max-width: 768px;
                     min-width: 360px;
                     position: relative;
                     padding-top: 0px;
-                    padding-bottom: 23px;
+                    padding-bottom: 16px;
+                    font-family: Noto Sans KR;
+                    font-style: normal;
                     font-weight: 500;
-                    font-size: 20px;
-                    line-height: 29px;
+                    font-size: 16px;
+                    line-height: 23px;
+
+                    & > .seltype {
+                        color: #000000;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px !important;
+                        line-height: 23px;
+                    }
+
                     & > span {
                         color: #bdbdbd;
-                        font-size: 20px;
-                        line-height: 29px;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 23px;
                     }
                     & > a {
                         font-size: 14px;
@@ -750,7 +769,7 @@
                 & > .recently-viewed-items {
                     width: 100%;
                     display: flex;
-                    justify-content: center;
+                    justify-content: flex-start;
                     flex-wrap: nowrap;
                     & > div {
                         display: inline-block;
@@ -794,7 +813,8 @@
                             float: left;
                             max-width: 246px;
                             height: calc(100% - 24px);
-                            margin: 16px;
+                            margin: 0;
+                            margin-right: 13px;
                             & > img {
                                 position: absolute;
                                 top: 13px;
@@ -816,7 +836,8 @@
                             }
                             & > .location {
                                 width: 100%;
-                                margin-top: 20px;
+                                margin-top: 8px;
+                                margin-bottom: 8px;
                                 font-weight: 300;
                                 font-size: 12px;
                                 line-height: 17px;
@@ -832,7 +853,7 @@
                                     font-size: 11px;
                                     font-weight: 500;
                                     color: #fff;
-                                    line-height: 11px;
+                                    line-height: 8px;
                                     margin-right: 8px;
                                 }
 
@@ -865,7 +886,7 @@
         & > .event-banner {
             width: 100%;
             position: relative;
-            margin-top: 64px;
+            margin-top: 16px;
             display: flex;
             justify-content: center;
             & > .content {
@@ -1048,7 +1069,7 @@
         & > .title {
             display: flex;
             justify-content: left;
-            padding-top: 70px;
+            padding-top: 41px;
             margin: 0 20px;
             & > h1 {
                 display: inline-block;
@@ -1059,10 +1080,12 @@
                 color: #27313b;
                 text-align: left;
                 line-height: 37px;
+                margin-left: -5px;
+                margin-bottom: 24px;
             }
         }
         & > .tab {
-            padding-top: 20px;
+            padding-top: unset;
             max-width: 768px;
             min-width: 320px;
             margin: 0 20px;
@@ -1074,7 +1097,6 @@
                     height: 40px;
                     min-width: 320px;
                     max-width: 768px;
-
                     width: 100%;
                     & > li {
                         width: calc(100% / 3);
@@ -1087,6 +1109,11 @@
                         background: #fafafa;
                         cursor: pointer;
                         transition: 0.5s all;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: lighter;
+                        font-size: 13px;
+                        color: #000000;
                     }
 
                     & > .active {
@@ -1094,6 +1121,10 @@
                         border-color: #16bdc8;
                         transition: 0.5s all;
                         color: #fff;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 13px;
                         font-weight: bold;
                     }
                 }
@@ -1106,12 +1137,15 @@
                         background-color: #fff;
                         box-shadow: 4px 4px 48px rgba(0, 0, 0, 0.25);
                         width: 100%;
-                        font-size: 16px;
+                        font-family: Noto Sans KR;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 14px;
                         height: 46px;
                         padding-left: 48px;
                     }
                     & > input::placeholder {
-                        color: #808080;
+                        color: #bdbdbd;
                     }
 
                     & > button {

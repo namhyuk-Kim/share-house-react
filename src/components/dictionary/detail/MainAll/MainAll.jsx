@@ -77,7 +77,8 @@ class MainAll extends React.Component {
                                                 ) : (
                                                     <Link
                                                         to={
-                                                            items["ARTICLE_URL"]
+                                                            "/article/" +
+                                                            items["ARTICLE_ID"]
                                                         }
                                                     >
                                                         {items["TITLE"]}
@@ -242,7 +243,10 @@ class MainAll extends React.Component {
                                             </div>
                                             <div className={cx("card-title")}>
                                                 <a
-                                                    href={items["ARTICLE_URL"]}
+                                                    href={
+                                                        "/article/" +
+                                                        items["ARTICLE_ID"]
+                                                    }
                                                     target="_BLANK"
                                                 >
                                                     {items["TITLE"]}
@@ -300,7 +304,12 @@ class MainAll extends React.Component {
                                                 />
                                             </div>
                                             <h3>
-                                                <Link to="/article/articleid">
+                                                <Link
+                                                    to={
+                                                        "/article/" +
+                                                        items["ARTICLE_ID"]
+                                                    }
+                                                >
                                                     {items["TITLE"]}
                                                 </Link>
                                             </h3>
@@ -351,82 +360,87 @@ class MainAll extends React.Component {
                     </h2>
                     <div className={cx("young-house")}>
                         <div>
-                            <div>
-                                <div className={cx("comic-avata")}>
-                                    <img src={young_house} alt="avata" />
-                                </div>
-                                <div className={cx("comic-info")}>
-                                    <h4>
-                                        <Link to="/article/articleid">
-                                            역세권 2030 청년주택 :
-                                            청년(층)편(공공임대,
-                                            <br /> 민간임대조건)
-                                        </Link>
-                                    </h4>
-                                    <p>
-                                        새로운 하우스 식구들과 함께하는 회식시
-                                        <br />
-                                        "앞으로 친하게 지내 보아요"
-                                    </p>
-                                    <div className={cx("publisher")}>
-                                        <span className={cx("profile")}>
-                                            <img
-                                                src={user_avata}
-                                                alt="user-avata"
-                                            />
-                                        </span>
-                                        쉐어하우스 플랜 A
-                                    </div>
-                                    <div className={cx("card-footer")}>
-                                        <span>2019.01.02</span>
-                                        <span>
-                                            <img src={heart} alt="heart" />
-                                            123
-                                        </span>
-                                        <span>
-                                            <img src={comment} alt="comment" />2
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className={cx("comic-avata")}>
-                                    <img src={young_house} alt="avata" />
-                                </div>
-                                <div className={cx("comic-info")}>
-                                    <h4>
-                                        <Link to="/article/articleid">
-                                            역세권 2030 청년주택 :
-                                            청년(층)편(공공임대,
-                                            <br /> 민간임대조건)
-                                        </Link>
-                                    </h4>
-                                    <p>
-                                        새로운 하우스 식구들과 함께하는 회식시
-                                        <br />
-                                        "앞으로 친하게 지내 보아요"
-                                    </p>
-                                    <div className={cx("publisher")}>
-                                        <span className={cx("profile")}>
-                                            <img
-                                                src={user_avata}
-                                                alt="user-avata"
-                                            />
-                                        </span>
-                                        쉐어하우스 플랜 A
-                                    </div>
-                                    <div className={cx("card-footer")}>
-                                        <span>2019.01.02</span>
-                                        <span>
-                                            <img src={heart} alt="heart" />
-                                            123
-                                        </span>
-                                        <span>
-                                            <img src={comment} alt="comment" />2
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            {this.state.ArticleArr.filter(
+                                items =>
+                                    items["CATEGORY_NAME"] ===
+                                    "청년주택의 모든 것"
+                            ).map((items, index) => {
+                                if (index < 2) {
+                                    return (
+                                        <div key={items["ARTICLE_ID"]}>
+                                            <div className={cx("comic-avata")}>
+                                                <img
+                                                    src={
+                                                        items["INFO_THUMB_URL"]
+                                                    }
+                                                    alt="청년주택의 모든 것"
+                                                    onError={this.onImageError}
+                                                />
+                                            </div>
+                                            <div className={cx("comic-info")}>
+                                                <h4>
+                                                    <a
+                                                        href={
+                                                            items["ARTICLE_URL"]
+                                                        }
+                                                        target="_BLANK"
+                                                    >
+                                                        {items["TITLE"]}
+                                                    </a>
+                                                </h4>
+                                                <p>
+                                                    새로운 하우스 식구들과
+                                                    함께하는 회식시
+                                                    <br />
+                                                    "앞으로 친하게 지내 보아요"
+                                                </p>
+                                                {items["WRITER"] !== "" && (
+                                                    <div
+                                                        className={cx(
+                                                            "publisher"
+                                                        )}
+                                                    >
+                                                        <span
+                                                            className={cx(
+                                                                "profile"
+                                                            )}
+                                                        >
+                                                            <img
+                                                                src={user_avata}
+                                                                alt="user-avata"
+                                                            />
+                                                        </span>
+                                                        {items["WRITER"]}
+                                                    </div>
+                                                )}
+                                                <div
+                                                    className={cx(
+                                                        "card-footer"
+                                                    )}
+                                                >
+                                                    <span>
+                                                        {items["CREATE_DT"]}
+                                                    </span>
+                                                    <span>
+                                                        <img
+                                                            src={heart}
+                                                            alt="heart"
+                                                        />
+                                                        123
+                                                    </span>
+                                                    <span>
+                                                        <img
+                                                            src={comment}
+                                                            alt="comment"
+                                                        />
+                                                        2
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })}
                         </div>
                     </div>
                     <h2>
@@ -435,105 +449,76 @@ class MainAll extends React.Component {
                     </h2>
                     <div className={cx("young-house-info")}>
                         <div>
-                            <div className={cx("third-cols")}>
-                                <div className={cx("image-cover")}>
-                                    <img
-                                        src={dictionary_image}
-                                        alt="게시물 이미지"
-                                    />
-                                </div>
-                                <h3>
-                                    <Link to="/article/articleid">
-                                        행복주택 입주조건 알아보기
-                                        <br /> 서울시 청년주택과 다른 점은?
-                                    </Link>
-                                </h3>
-                                <div className={cx("publisher")}>
-                                    <span className={cx("profile")}>
-                                        <img
-                                            src={user_avata}
-                                            alt="user-avata"
-                                        />
-                                    </span>
-                                    쉐어하우스 플랜 A
-                                </div>
-                                <div className={cx("card-footer")}>
-                                    <span>2019.01.02</span>
-                                    <span>
-                                        <img src={heart} alt="heart" />
-                                        123
-                                    </span>
-                                    <span>
-                                        <img src={comment} alt="comment" />2
-                                    </span>
-                                </div>
-                            </div>
-                            <div className={cx("third-cols")}>
-                                <div className={cx("image-cover")}>
-                                    <img
-                                        src={dictionary_image}
-                                        alt="게시물 이미지"
-                                    />
-                                </div>
-                                <h3>
-                                    <Link to="/article/articleid">
-                                        행복주택 입주조건 알아보기
-                                        <br /> 서울시 청년주택과 다른 점은?
-                                    </Link>
-                                </h3>
-                                <div className={cx("publisher")}>
-                                    <span className={cx("profile")}>
-                                        <img
-                                            src={user_avata}
-                                            alt="user-avata"
-                                        />
-                                    </span>
-                                    쉐어하우스 플랜 A
-                                </div>
-                                <div className={cx("card-footer")}>
-                                    <span>2019.01.02</span>
-                                    <span>
-                                        <img src={heart} alt="heart" />
-                                        123
-                                    </span>
-                                    <span>
-                                        <img src={comment} alt="comment" />2
-                                    </span>
-                                </div>
-                            </div>
-                            <div className={cx("third-cols")}>
-                                <div className={cx("image-cover")}>
-                                    <img
-                                        src={dictionary_image}
-                                        alt="게시물 이미지"
-                                    />
-                                </div>
-                                <h3>
-                                    <Link to="/article/articleid">
-                                        행복주택 입주조건 알아보기
-                                        <br /> 서울시 청년주택과 다른 점은?
-                                    </Link>
-                                </h3>
-                                <div className={cx("publisher")}>
-                                    <span className={cx("profile")}>
-                                        <img
-                                            src={user_avata}
-                                            alt="user-avata"
-                                        />
-                                    </span>
-                                    쉐어하우스 플랜 A
-                                </div>
-                                <div className={cx("card-footer")}>
-                                    <span>2019.01.02</span>
-                                    <span>
-                                        <img src={heart} alt="heart" />
-                                        123
-                                    </span>
-                                    <span>
-                                        <img src={comment} alt="comment" />2
-                                    </span>
-                                </div>
-                            </div>
+                            {this.state.ArticleArr.filter(
+                                items =>
+                                    items["CATEGORY_NAME"] ===
+                                    "청년임대주택 알아보기"
+                            ).map((items, index) => {
+                                if (index < 3) {
+                                    return (
+                                        <div
+                                            className={cx("third-cols")}
+                                            key={items["ARTICLE_ID"]}
+                                        >
+                                            <div className={cx("image-cover")}>
+                                                <img
+                                                    src={
+                                                        items["INFO_THUMB_URL"]
+                                                    }
+                                                    alt="게시물 이미지"
+                                                    onError={this.onImageError}
+                                                />
+                                            </div>
+                                            <h3>
+                                                <Link
+                                                    to={
+                                                        "/article/" +
+                                                        items["ARTICLE_ID"]
+                                                    }
+                                                >
+                                                    {items["TITLE"]}
+                                                </Link>
+                                            </h3>
+                                            {items["WRITER"] !== "" && (
+                                                <div
+                                                    className={cx("publisher")}
+                                                >
+                                                    <span
+                                                        className={cx(
+                                                            "profile"
+                                                        )}
+                                                    >
+                                                        <img
+                                                            src={user_avata}
+                                                            alt="user-avata"
+                                                        />
+                                                    </span>
+                                                    {items["WRITER"]}
+                                                </div>
+                                            )}
+                                            <div className={cx("card-footer")}>
+                                                <span>
+                                                    {items["CREATE_DT"]}
+                                                </span>
+                                                <span>
+                                                    <img
+                                                        src={heart}
+                                                        alt="heart"
+                                                    />
+                                                    123
+                                                </span>
+                                                <span>
+                                                    <img
+                                                        src={comment}
+                                                        alt="comment"
+                                                    />
+                                                    2
+                                                </span>
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                            })}
                         </div>
                     </div>
                 </div>

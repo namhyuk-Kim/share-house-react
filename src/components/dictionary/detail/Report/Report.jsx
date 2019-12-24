@@ -14,7 +14,8 @@ class Report extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ArticleArr: []
+            ArticleArr: [],
+            cate: this.props.category
         };
     }
 
@@ -28,6 +29,15 @@ class Report extends React.Component {
                 ArticleArr: array
             });
         });
+        if (
+            this.props.category === "" ||
+            this.props.category === undefined ||
+            this.props.category === null
+        ) {
+            this.setState({
+                cate: "쉐어하우스 리포트"
+            });
+        }
     }
 
     render() {
@@ -40,7 +50,7 @@ class Report extends React.Component {
                                 {this.state.ArticleArr.filter(
                                     items =>
                                         items["CATEGORY_NAME"] ===
-                                        "쉐어하우스 리포트"
+                                        this.state.cate
                                 ).map(items => {
                                     return (
                                         <div

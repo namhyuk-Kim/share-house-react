@@ -30,9 +30,41 @@ class PostDetail extends React.Component {
         this.state = {
             commentList: [],
             comment_len: "",
-            article: []
+            article: [],
+            cookies: this.props.cookies,
+            comment: ""
         };
     }
+
+    AddComment = e => {
+        e.preventDefault();
+        if (JSON.stringify(this.props.cookies) === "{}") {
+            alert("로그인 후 댓글을 등록할 수 있습니다.");
+        } else {
+            this.props.AddComment(this.state.comment);
+            window.location.reload();
+        }
+    };
+
+    AddreComment = (e, orgseq) => {
+        e.preventDefault();
+        if (JSON.stringify(this.props.cookies) === "{}") {
+            alert("로그인 후 댓글을 등록할 수 있습니다.");
+        } else {
+            this.props.AddComment(this.state.comment, orgseq);
+            window.location.reload();
+        }
+    };
+
+    showreComment = e => {
+        e.preventDefault();
+    };
+
+    onChange = e => {
+        let NextState = this.state;
+        NextState["comment"] = e.target.value;
+        this.setState(NextState);
+    };
 
     componentDidMount() {
         this.props.ContentDetail().then(value => {
@@ -90,9 +122,17 @@ class PostDetail extends React.Component {
                             <form className={cx("add-comment")}>
                                 <input
                                     type="text"
-                                    placeholder="댓글을 작성하시려면 로그인해 주세요."
+                                    placeholder={
+                                        JSON.stringify(this.props.cookies) ===
+                                        "{}"
+                                            ? "댓글을 작성하려면 로그인해 주세요."
+                                            : "댓글을 작성하여 주세요."
+                                    }
+                                    onChange={e => this.onChange(e)}
                                 />
-                                <button>등록</button>
+                                <button onClick={e => this.AddreComment(e)}>
+                                    등록
+                                </button>
                             </form>
                             {this.state.commentList
                                 .filter(value => value["IS_REPLY"] === "N")
@@ -101,9 +141,23 @@ class PostDetail extends React.Component {
                                         <>
                                             <div className={cx("comments")}>
                                                 <p>{item["MESSAGE"]}</p>
-                                                <button>답글</button>
-                                                <button>수정</button>
-                                                <button>삭제</button>
+                                                {JSON.stringify(
+                                                    this.props.cookies
+                                                ) === "{}" ? null : (
+                                                    <>
+                                                        <button
+                                                            onClick={e =>
+                                                                this.showreComment(
+                                                                    e
+                                                                )
+                                                            }
+                                                        >
+                                                            답글
+                                                        </button>
+                                                        <button>수정</button>
+                                                        <button>삭제</button>
+                                                    </>
+                                                )}
                                                 <div
                                                     className={cx(
                                                         "comment-data"
@@ -124,6 +178,48 @@ class PostDetail extends React.Component {
                                                         {item["CREATE_DT"]}
                                                     </span>
                                                 </div>
+
+                                                <div
+                                                    className={cx("clear")}
+                                                ></div>
+                                                <div
+                                                    className={cx("re-comment")}
+                                                >
+                                                    <div>
+                                                        <img
+                                                            src={Dashed}
+                                                            alt="dash"
+                                                        />
+                                                    </div>
+                                                    <div
+                                                        className={cx(
+                                                            "add-re-comment"
+                                                        )}
+                                                    >
+                                                        <form
+                                                            className={cx(
+                                                                "add-comment"
+                                                            )}
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                placeholder={
+                                                                    JSON.stringify(
+                                                                        this
+                                                                            .props
+                                                                            .cookies
+                                                                    ) === "{}"
+                                                                        ? "댓글을 작성하려면 로그인해 주세요."
+                                                                        : "댓글을 작성하여 주세요."
+                                                                }
+                                                            />
+                                                            <button>
+                                                                등록
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
                                                 {this.state.commentList
                                                     .filter(value => {
                                                         if (
@@ -149,11 +245,6 @@ class PostDetail extends React.Component {
                                                     .map(item => {
                                                         return (
                                                             <>
-                                                                <div
-                                                                    className={cx(
-                                                                        "clear"
-                                                                    )}
-                                                                ></div>
                                                                 <div
                                                                     className={cx(
                                                                         "re-comment"
@@ -219,6 +310,48 @@ class PostDetail extends React.Component {
                                                                             "clear"
                                                                         )}
                                                                     ></div>
+                                                                    <div
+                                                                        className={cx(
+                                                                            "re-comment"
+                                                                        )}
+                                                                    >
+                                                                        <div>
+                                                                            <img
+                                                                                src={
+                                                                                    Dashed
+                                                                                }
+                                                                                alt="dash"
+                                                                            />
+                                                                        </div>
+                                                                        <div
+                                                                            className={cx(
+                                                                                "add-re-comment"
+                                                                            )}
+                                                                        >
+                                                                            <form
+                                                                                className={cx(
+                                                                                    "add-comment"
+                                                                                )}
+                                                                            >
+                                                                                <input
+                                                                                    type="text"
+                                                                                    placeholder={
+                                                                                        JSON.stringify(
+                                                                                            this
+                                                                                                .props
+                                                                                                .cookies
+                                                                                        ) ===
+                                                                                        "{}"
+                                                                                            ? "댓글을 작성하려면 로그인해 주세요."
+                                                                                            : "댓글을 작성하여 주세요."
+                                                                                    }
+                                                                                />
+                                                                                <button>
+                                                                                    등록
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </>
                                                         );
