@@ -201,6 +201,25 @@
                             line-height: 24px;
                             margin-bottom: 15px;
                             color: rgba(0, 0, 0, 0.65);
+                            & > button {
+                                display: inline-block;
+                                font-family: Noto Sans KR;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 12px;
+                                height: 24px;
+                                margin-right: 16px;
+                                color: rgba(0, 0, 0, 0.65);
+                            }
+
+                            & > p {
+                                font-family: Noto Sans KR;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 14px;
+                                line-height: 24px;
+                                color: rgba(0, 0, 0, 0.65);
+                            }
                         }
 
                         & > button:nth-child(3) {
@@ -245,6 +264,54 @@
                                 border: 1px solid #e0e0e0;
                             }
                         }
+
+                        & > .re-comment {
+                            & > .add-re-comment {
+                                width: calc(100% - 34px);
+                                display: inline-block;
+                                vertical-align: text-top;
+                                font-family: Noto Sans KR;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 14px;
+                                line-height: 24px;
+                                color: rgba(0, 0, 0, 0.65);
+                                margin-right: 0;
+                                & > .add-comment {
+                                    max-width: 100%;
+                                    width: 100%;
+                                    margin-bottom: 8px;
+                                    & > input {
+                                        width: calc(100% - 80px);
+                                        font-family: Noto Sans KR;
+                                        font-style: normal;
+                                        font-weight: normal;
+                                        font-size: 13px;
+                                        padding-left: 16px;
+                                        display: inline-block;
+                                        border: 1px solid #e0e0e0;
+                                        border-right: none;
+                                        border-radius: 3px 0 3px 0;
+                                        height: 56px;
+                                        vertical-align: middle;
+                                    }
+                                    & > button {
+                                        display: inline-block;
+                                        height: 56px;
+                                        width: 80px;
+                                        border: 1px solid #e0e0e0;
+                                        border-radius: 0px 3px 3px 3px;
+                                        background-color: #ffffff;
+                                        font-family: Noto Sans KR;
+                                        font-style: normal;
+                                        font-weight: normal;
+                                        font-size: 14px;
+                                        vertical-align: middle;
+                                    }
+                                }
+                            }
+                        }
+
                         & > .add-re-comment {
                             width: calc(100% - 34px);
                             display: inline-block;

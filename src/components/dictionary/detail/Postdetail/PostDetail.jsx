@@ -20,7 +20,9 @@ import book_mark from "assets/images/bookmark.png";
 import color_kakao from "assets/images/color_kakao.png";
 import color_facebook from "assets/images/color_facebook.png";
 import color_blog from "assets/images/color_blog.png";
+
 import MobilePostDetailMenu from "./MobilePostDetailMenu/MobilePostDetailMenu";
+import Recomment from "./recomment/Recomment";
 
 const cx = classnames.bind(styles);
 
@@ -32,7 +34,9 @@ class PostDetail extends React.Component {
             comment_len: "",
             article: [],
             cookies: this.props.cookies,
-            comment: ""
+            comment: "",
+            RecommentVis: false,
+            visIndex: -1
         };
     }
 
@@ -46,18 +50,22 @@ class PostDetail extends React.Component {
         }
     };
 
-    AddreComment = (e, orgseq) => {
-        e.preventDefault();
-        if (JSON.stringify(this.props.cookies) === "{}") {
-            alert("로그인 후 댓글을 등록할 수 있습니다.");
-        } else {
-            this.props.AddComment(this.state.comment, orgseq);
-            window.location.reload();
-        }
-    };
+    // AddreComment = (e, orgseq) => {
+    //     e.preventDefault();
+    //     if (JSON.stringify(this.props.cookies) === "{}") {
+    //         alert("로그인 후 댓글을 등록할 수 있습니다.");
+    //     } else {
+    //         this.props.AddComment(this.state.comment, orgseq);
+    //         window.location.reload();
+    //     }
+    // };
 
-    showreComment = e => {
+    showreComment = (e, index, seq) => {
         e.preventDefault();
+        let NextState = this.state;
+        NextState["RecommentVis"] = !NextState["RecommentVis"];
+        NextState["visIndex"] = index;
+        this.setState(NextState);
     };
 
     onChange = e => {
@@ -130,34 +138,76 @@ class PostDetail extends React.Component {
                                     }
                                     onChange={e => this.onChange(e)}
                                 />
-                                <button onClick={e => this.AddreComment(e)}>
+                                <button onClick={e => this.AddComment(e)}>
                                     등록
                                 </button>
                             </form>
                             {this.state.commentList
                                 .filter(value => value["IS_REPLY"] === "N")
-                                .map(item => {
+                                .map((item, index) => {
                                     return (
                                         <>
                                             <div className={cx("comments")}>
                                                 <p>{item["MESSAGE"]}</p>
-                                                {JSON.stringify(
-                                                    this.props.cookies
-                                                ) === "{}" ? null : (
-                                                    <>
-                                                        <button
-                                                            onClick={e =>
-                                                                this.showreComment(
-                                                                    e
-                                                                )
-                                                            }
-                                                        >
-                                                            답글
-                                                        </button>
-                                                        <button>수정</button>
-                                                        <button>삭제</button>
-                                                    </>
-                                                )}
+
+                                                <>
+                                                    {this.state.RecommentVis ? (
+                                                        this.state.visIndex ===
+                                                        index ? (
+                                                            <button
+                                                                onClick={e =>
+                                                                    this.showreComment(
+                                                                        e,
+                                                                        index,
+                                                                        item[
+                                                                            "SEQ"
+                                                                        ]
+                                                                    )
+                                                                }
+                                                            >
+                                                                답글취소
+                                                            </button>
+                                                        ) : (
+                                                            <>
+                                                                <button
+                                                                    onClick={e =>
+                                                                        this.showreComment(
+                                                                            e
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    답글
+                                                                </button>
+                                                                <button>
+                                                                    수정
+                                                                </button>
+                                                                <button>
+                                                                    삭제
+                                                                </button>
+                                                            </>
+                                                        )
+                                                    ) : (
+                                                        <>
+                                                            <button
+                                                                onClick={e =>
+                                                                    this.showreComment(
+                                                                        e,
+                                                                        index
+                                                                    )
+                                                                }
+                                                            >
+                                                                답글
+                                                            </button>
+                                                            <button>
+                                                                수정
+                                                            </button>
+                                                            <button>
+                                                                삭제
+                                                            </button>
+                                                        </>
+                                                    )}
+                                                </>
+
                                                 <div
                                                     className={cx(
                                                         "comment-data"
@@ -182,44 +232,24 @@ class PostDetail extends React.Component {
                                                 <div
                                                     className={cx("clear")}
                                                 ></div>
-                                                <div
-                                                    className={cx("re-comment")}
-                                                >
-                                                    <div>
-                                                        <img
-                                                            src={Dashed}
-                                                            alt="dash"
+                                                {this.state.RecommentVis ? (
+                                                    this.state.visIndex ===
+                                                    index ? (
+                                                        <Recomment
+                                                            cookies={
+                                                                this.props
+                                                                    .cookies
+                                                            }
+                                                            org_seq={
+                                                                item["SEQ"]
+                                                            }
+                                                            AddreComment={
+                                                                this.props
+                                                                    .AddComment
+                                                            }
                                                         />
-                                                    </div>
-                                                    <div
-                                                        className={cx(
-                                                            "add-re-comment"
-                                                        )}
-                                                    >
-                                                        <form
-                                                            className={cx(
-                                                                "add-comment"
-                                                            )}
-                                                        >
-                                                            <input
-                                                                type="text"
-                                                                placeholder={
-                                                                    JSON.stringify(
-                                                                        this
-                                                                            .props
-                                                                            .cookies
-                                                                    ) === "{}"
-                                                                        ? "댓글을 작성하려면 로그인해 주세요."
-                                                                        : "댓글을 작성하여 주세요."
-                                                                }
-                                                            />
-                                                            <button>
-                                                                등록
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-
+                                                    ) : null
+                                                ) : null}
                                                 {this.state.commentList
                                                     .filter(value => {
                                                         if (
@@ -270,13 +300,69 @@ class PostDetail extends React.Component {
                                                                                 ]
                                                                             }
                                                                         </p>
+                                                                        <>
+                                                                            {this
+                                                                                .state
+                                                                                .RecommentVis ? (
+                                                                                this
+                                                                                    .state
+                                                                                    .visIndex ===
+                                                                                index ? (
+                                                                                    <button
+                                                                                        onClick={e =>
+                                                                                            this.showreComment(
+                                                                                                e,
+                                                                                                index,
+                                                                                                item[
+                                                                                                    "SEQ"
+                                                                                                ]
+                                                                                            )
+                                                                                        }
+                                                                                    >
+                                                                                        답글취소
+                                                                                    </button>
+                                                                                ) : (
+                                                                                    <>
+                                                                                        <button
+                                                                                            onClick={e =>
+                                                                                                this.showreComment(
+                                                                                                    e
+                                                                                                )
+                                                                                            }
+                                                                                        >
+                                                                                            답글
+                                                                                        </button>
+                                                                                        <button>
+                                                                                            수정
+                                                                                        </button>
+                                                                                        <button>
+                                                                                            삭제
+                                                                                        </button>
+                                                                                    </>
+                                                                                )
+                                                                            ) : (
+                                                                                <>
+                                                                                    <button
+                                                                                        onClick={e =>
+                                                                                            this.showreComment(
+                                                                                                e,
+                                                                                                index
+                                                                                            )
+                                                                                        }
+                                                                                    >
+                                                                                        답글
+                                                                                    </button>
+                                                                                    <button>
+                                                                                        수정
+                                                                                    </button>
+                                                                                    <button>
+                                                                                        삭제
+                                                                                    </button>
+                                                                                </>
+                                                                            )}
+                                                                        </>
                                                                     </div>
-                                                                    <button>
-                                                                        수정
-                                                                    </button>
-                                                                    <button>
-                                                                        삭제
-                                                                    </button>
+
                                                                     <div
                                                                         className={cx(
                                                                             "comment-data"
@@ -310,48 +396,31 @@ class PostDetail extends React.Component {
                                                                             "clear"
                                                                         )}
                                                                     ></div>
-                                                                    <div
-                                                                        className={cx(
-                                                                            "re-comment"
-                                                                        )}
-                                                                    >
-                                                                        <div>
-                                                                            <img
-                                                                                src={
-                                                                                    Dashed
+                                                                    {this.state
+                                                                        .RecommentVis ? (
+                                                                        this
+                                                                            .state
+                                                                            .visIndex ===
+                                                                        index ? (
+                                                                            <Recomment
+                                                                                cookies={
+                                                                                    this
+                                                                                        .props
+                                                                                        .cookies
                                                                                 }
-                                                                                alt="dash"
+                                                                                org_seq={
+                                                                                    item[
+                                                                                        "SEQ"
+                                                                                    ]
+                                                                                }
+                                                                                AddreComment={
+                                                                                    this
+                                                                                        .props
+                                                                                        .AddComment
+                                                                                }
                                                                             />
-                                                                        </div>
-                                                                        <div
-                                                                            className={cx(
-                                                                                "add-re-comment"
-                                                                            )}
-                                                                        >
-                                                                            <form
-                                                                                className={cx(
-                                                                                    "add-comment"
-                                                                                )}
-                                                                            >
-                                                                                <input
-                                                                                    type="text"
-                                                                                    placeholder={
-                                                                                        JSON.stringify(
-                                                                                            this
-                                                                                                .props
-                                                                                                .cookies
-                                                                                        ) ===
-                                                                                        "{}"
-                                                                                            ? "댓글을 작성하려면 로그인해 주세요."
-                                                                                            : "댓글을 작성하여 주세요."
-                                                                                    }
-                                                                                />
-                                                                                <button>
-                                                                                    등록
-                                                                                </button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
+                                                                        ) : null
+                                                                    ) : null}
                                                                 </div>
                                                             </>
                                                         );

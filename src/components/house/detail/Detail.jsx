@@ -60,7 +60,6 @@ import police from "assets/images/police.png";
 import Drugstore from "assets/images/Drugstore.png";
 import Daiso from "assets/images/Daiso.png";
 import MobileDetailMenu from "./MobileDetailMenu/MobileDetailMenu.jsx";
-import { string } from "prop-types";
 
 const cx = classnames.bind(styles);
 
@@ -81,9 +80,13 @@ class Detail extends React.Component {
             roomList: [],
             subwayList: [],
             universityList: [],
-            NowCaption: "공용공간"
+            NowCaption: "공용공간",
+            nthImage: 0,
+            maxslidelen: 10
         };
     }
+
+    componentDidMount() {}
 
     onChange = e => {
         const ori_RoomName = e.target.value;
@@ -108,6 +111,51 @@ class Detail extends React.Component {
         this.map = new window.kakao.maps.Map(this.mapRef, options);
     };
 
+    // shareKakaotalk = (
+    //     address,
+    //     addressTitle,
+    //     title,
+    //     description,
+    //     imageUrl,
+    //     mobileWebUrl,
+    //     webUrl,
+    //     e
+    // ) => {
+    //     e.preventDefault();
+
+    //     console.log(e.target);
+    // };
+
+    previmage = () => {
+        let Nextstate = this.state;
+
+        if (Nextstate["nthImage"] > 0) {
+            Nextstate["nthImage"] = Nextstate["nthImage"] - 1;
+            this.setState(Nextstate);
+        } else {
+            Nextstate["nthImage"] = Nextstate["maxslidelen"];
+            this.setState(Nextstate);
+        }
+    };
+
+    nextimage = () => {
+        let Nextstate = this.state;
+
+        if (Nextstate["nthImage"] < Nextstate["maxslidelen"]) {
+            Nextstate["nthImage"] = Nextstate["nthImage"] + 1;
+            this.setState(Nextstate);
+        } else {
+            Nextstate["nthImage"] = 0;
+            this.setState(Nextstate);
+        }
+    };
+
+    warpslide = index => {
+        let Nextstate = this.state;
+        Nextstate["nthImage"] = index;
+        this.setState(Nextstate);
+    };
+
     componentWillMount() {
         this.props.HouseDetail().then(value => {
             let NextState = this.state;
@@ -122,6 +170,10 @@ class Detail extends React.Component {
             NextState["roomList"] = value.roomList;
             NextState["subwayList"] = value.subwayList;
             NextState["universityList"] = value.universityList;
+            NextState["maxslidelen"] =
+                value.pictureList.filter(
+                    value => value["CAPTION"] === "공용공간"
+                ).length - 1;
             this.setState(NextState);
             const options = {
                 center: new window.kakao.maps.LatLng(
@@ -147,6 +199,58 @@ class Detail extends React.Component {
         this.setState({
             isLoading: false
         });
+
+        if (!this.state.sLoading) {
+            window.Kakao.init("7948b1ade860cba5b7eb0c9d44af8b2f"); // 사용할 앱의 JavaScript 키를 설정
+
+            window.Kakao.Link.createDefaultButton({
+                container: "#kakao",
+                objectType: "location",
+                address: this.state.house["ADDRESS"],
+                addressTitle:
+                    this.state.brand["BRAND_NAME_KO"] +
+                    " " +
+                    this.state.house["HOUSE_NAME_KO"],
+                content: {
+                    title:
+                        "[컴앤스테이]" +
+                        this.state.brand["BRAND_NAME_KO"] +
+                        " " +
+                        this.state.house["HOUSE_NAME_KO"],
+                    description: this.state.house["INTRODUCE"],
+                    // imageUrl: this.state.pictureList[0]["PIC_URL"],
+                    link: {
+                        mobileWebUrl:
+                            "localhost:3000/house/" +
+                            this.state.house["HOUSE_ID"], // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                        webUrl:
+                            "localhost:3000/house/" +
+                            this.state.house["HOUSE_ID"] // PC버전 카카오톡에서 사용하는 웹 링크 URL
+                    }
+                },
+                social: {
+                    likeCount: 286,
+                    commentCount: 45,
+                    sharedCount: 845
+                },
+                buttons: [
+                    {
+                        title: "웹으로 보기",
+                        link: {
+                            mobileWebUrl:
+                                "localhost:3000/house/" +
+                                this.state.house["HOUSE_ID"], // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                            webUrl:
+                                "localhost:3000/house/" +
+                                this.state.house["HOUSE_ID"] // PC버전 카카오톡에서 사용하는 웹 링크 URL
+                        }
+                    }
+                ]
+            });
+
+            console.log(this.state);
+            console.log(this.state.house.ADDRESS);
+        }
     }
 
     render() {
@@ -219,7 +323,10 @@ class Detail extends React.Component {
                                     VR보기
                                 </button>
                             )}
-                            <div className={cx("detail-slider-inner")}>
+                            <div
+                                className={cx("detail-slider-inner")}
+                                data-image_nth={this.state.nthImage}
+                            >
                                 {this.state.pictureList
                                     .filter((value, index) => {
                                         if (
@@ -250,13 +357,23 @@ class Detail extends React.Component {
                             </div>
                         </div>
                         <div className={cx("thumb-changer")}>
-                            <div className={cx("thumb-slide-left")}>
+                            <div
+                                className={cx("thumb-slide-left")}
+                                onClick={() => this.previmage()}
+                            >
                                 <img src={arrow_left} alt="arrow_left" />
                             </div>
                             <div className={cx("thumb-slide-right")}>
-                                <img src={arrow_left} alt="arrow_left" />
+                                <img
+                                    src={arrow_left}
+                                    alt="arrow_left"
+                                    onClick={() => this.nextimage()}
+                                />
                             </div>
-                            <div className={cx("thumb-changer-slider")}>
+                            <div
+                                className={cx("thumb-changer-slider")}
+                                data-image_nth={this.state.nthImage}
+                            >
                                 {this.state.pictureList
                                     .filter((value, index) => {
                                         if (
@@ -273,7 +390,12 @@ class Detail extends React.Component {
                                     })
                                     .map((items, index) => {
                                         return (
-                                            <div key={index}>
+                                            <div
+                                                key={index}
+                                                onClick={() =>
+                                                    this.warpslide(index)
+                                                }
+                                            >
                                                 <img
                                                     src={items["THUMB_URL"]}
                                                     alt="thumb1_s"
@@ -1208,21 +1330,84 @@ class Detail extends React.Component {
                             <img src={share} alt="share" />
                         </div>
                         <div className={cx("hover-util")}>
-                            <Link to="/">
+                            <a href="#" id="kakao">
                                 <img src={kakao_share} alt="kakao_share" />
-                            </Link>
+                            </a>
 
-                            <Link to="/">
+                            {/* <a
+                                href="#"
+                                onClick={e =>
+                                    this.shareKakaotalk(
+                                        this.state.house["ADDRESS"],
+                                        this.state.brand["BRAND_NAME_KO"] +
+                                            " " +
+                                            this.state.house["HOUSE_NAME_KO"],
+                                        "[컴앤스테이]" +
+                                            this.state.brand["BRAND_NAME_KO"] +
+                                            " " +
+                                            this.state.house["HOUSE_NAME_KO"],
+                                        this.state.house["INTRODUCE"],
+                                        this.state.pictureList["PIC_URL"],
+                                        "localhost:3000/house/" +
+                                            this.state.house["HOUSE_ID"],
+                                        "localhost:3000/house/" +
+                                            this.state.house["HOUSE_ID"],
+                                        e
+                                    )
+                                }
+                            >
                                 <img src={facebook_share} alt="kakao_share" />
-                            </Link>
+                            </a>
 
-                            <Link to="/">
+                            <a
+                                href="#"
+                                onClick={e =>
+                                    this.shareKakaotalk(
+                                        this.state.house["ADDRESS"],
+                                        this.state.brand["BRAND_NAME_KO"] +
+                                            " " +
+                                            this.state.house["HOUSE_NAME_KO"],
+                                        "[컴앤스테이]" +
+                                            this.state.brand["BRAND_NAME_KO"] +
+                                            " " +
+                                            this.state.house["HOUSE_NAME_KO"],
+                                        this.state.house["INTRODUCE"],
+                                        this.state.pictureList["PIC_URL"],
+                                        "localhost:3000/house/" +
+                                            this.state.house["HOUSE_ID"],
+                                        "localhost:3000/house/" +
+                                            this.state.house["HOUSE_ID"],
+                                        e
+                                    )
+                                }
+                            >
                                 <img src={twitter_share} alt="kakao_share" />
-                            </Link>
+                            </a>
 
-                            <Link to="/">
+                            <a
+                                href="#"
+                                onClick={e =>
+                                    this.shareKakaotalk(
+                                        this.state.house["ADDRESS"],
+                                        this.state.brand["BRAND_NAME_KO"] +
+                                            " " +
+                                            this.state.house["HOUSE_NAME_KO"],
+                                        "[컴앤스테이]" +
+                                            this.state.brand["BRAND_NAME_KO"] +
+                                            " " +
+                                            this.state.house["HOUSE_NAME_KO"],
+                                        this.state.house["INTRODUCE"],
+                                        this.state.pictureList["PIC_URL"],
+                                        "localhost:3000/house/" +
+                                            this.state.house["HOUSE_ID"],
+                                        "localhost:3000/house/" +
+                                            this.state.house["HOUSE_ID"],
+                                        e
+                                    )
+                                }
+                            >
                                 <img src={link_share} alt="kakao_share" />
-                            </Link>
+                            </a> */}
                         </div>
                         <button>
                             <img src={folder_add} alt="folder_add" />

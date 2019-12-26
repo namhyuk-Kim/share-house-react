@@ -22,12 +22,25 @@ class ContentDetailContainer extends React.Component {
     }
   };
 
-  AddComment = async comment => {
+  AddComment = async (comment, seq) => {
     const { UserAction } = this.props;
     try {
-      const articlepath = this.props.location.pathname;
-      const res = await this.props.UserAction.AddComment(articlepath, comment);
-      return res;
+      if (seq !== "" && seq !== null && seq !== undefined) {
+        const articlepath = this.props.location.pathname;
+        const res = await this.props.UserAction.AddComment(
+          articlepath,
+          comment,
+          seq
+        );
+        return res;
+      } else {
+        const articlepath = this.props.location.pathname;
+        const res = await this.props.UserAction.AddComment(
+          articlepath,
+          comment
+        );
+        return res;
+      }
     } catch (e) {
       console.log(e);
     }

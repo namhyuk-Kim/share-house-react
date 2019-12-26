@@ -418,9 +418,9 @@ class Main extends React.Component {
                                     {this.props.viewdhouse_len > 0 ? (
                                         this.props.viewdhouse_arr
                                             .filter((item, index) => index < 4)
-                                            .map(items => {
+                                            .map((items, index) => {
                                                 return (
-                                                    <div>
+                                                    <div key={index}>
                                                         <div>
                                                             {favhouselist_len >
                                                             0 ? (

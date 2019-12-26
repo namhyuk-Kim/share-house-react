@@ -22,7 +22,6 @@ class PasswordChange extends React.Component {
 
     onClick = e => {
         e.preventDefault();
-
         var pattern1 = /[0-9]/;
 
         var pattern2 = /[a-zA-Z]/;
@@ -59,9 +58,9 @@ class PasswordChange extends React.Component {
                 var chr_pass_0;
                 var chr_pass_1;
 
-                for (var i = 0; i < this.state.newPassword.value.length; i++) {
-                    chr_pass_0 = this.state.newPassword.value.charAt(i);
-                    chr_pass_1 = this.state.newPassword.value.charAt(i + 1);
+                for (var i = 0; i < this.state.newPassword.length; i++) {
+                    chr_pass_0 = this.state.newPassword.charAt(i);
+                    chr_pass_1 = this.state.newPassword.charAt(i + 1);
 
                     //동일문자 카운트
                     if (chr_pass_0 === chr_pass_1) {
@@ -84,6 +83,7 @@ class PasswordChange extends React.Component {
                         SamePass_2 = SamePass_2 + 1;
                     } // if
                 } // for
+
                 if (SamePass_0 > 1) {
                     alert("동일문자를 3번 이상 사용할 수 없습니다.");
                     return false;
@@ -96,7 +96,10 @@ class PasswordChange extends React.Component {
                     return false;
                 } // if
             }
-            alert("test성공");
+            this.props.passwordChange(
+                this.state.oldPassword,
+                this.state.re_newPassword
+            );
         }
     };
 

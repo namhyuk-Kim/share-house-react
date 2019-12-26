@@ -36,6 +36,50 @@
                         }
                     }
                 }
+                & > .detail-slider-inner[data-image_nth="0"] {
+                    margin-left: calc(-736px * 0);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="1"] {
+                    margin-left: calc(-736px * 1);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="2"] {
+                    margin-left: calc(-736px * 2);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="3"] {
+                    margin-left: calc(-736px * 3);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="4"] {
+                    margin-left: calc(-736px * 4);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="5"] {
+                    margin-left: calc(-736px * 5);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="6"] {
+                    margin-left: calc(-736px * 6);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="7"] {
+                    margin-left: calc(-736px * 7);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="8"] {
+                    margin-left: calc(-736px * 8);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="9"] {
+                    margin-left: calc(-736px * 9);
+                    transition: 1s all;
+                }
+                & > .detail-slider-inner[data-image_nth="10"] {
+                    margin-left: calc(-736px * 10);
+                    transition: 1s all;
+                }
             }
 
             & > .thumb-changer {
@@ -63,6 +107,52 @@
                         }
                     }
                 }
+
+                & > .thumb-changer-slider[data-image_nth="0"] {
+                    left: 32px;
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="1"] {
+                    left: calc(-114px * 1);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="2"] {
+                    left: calc(-114px * 2);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="3"] {
+                    left: calc(-114px * 3);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="4"] {
+                    left: calc(-114px * 4);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="5"] {
+                    left: calc(-114px * 5);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="6"] {
+                    left: calc(-114px * 6);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="7"] {
+                    left: calc(-114px * 7);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="8"] {
+                    left: calc(-114px * 8);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="9"] {
+                    left: calc(-114px * 9);
+                    transition: 1s all;
+                }
+                & > .thumb-changer-slider[data-image_nth="10"] {
+                    left: calc(-114px * 10);
+                    transition: 1s all;
+                }
+
                 & > .thumb-slide-left {
                     cursor: pointer;
                     width: 24px;
@@ -75,6 +165,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    z-index: 999;
                 }
                 & > .thumb-slide-right {
                     cursor: pointer;
@@ -91,6 +182,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    z-index: 9999;
                 }
             }
 
@@ -1103,6 +1195,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        z-index: 999;
                     }
                     & > .thumb-slide-right {
                         cursor: pointer;
@@ -1119,6 +1212,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        z-index: 999;
                     }
                 }
 

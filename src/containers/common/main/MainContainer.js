@@ -87,7 +87,6 @@ class MainContainer extends React.Component {
     const { UserActions } = this.props;
     try {
       const res = await this.props.UserActions.SeeFavHouse();
-      console.log(res);
       return res.data.result.data;
     } catch (e) {
       console.log(e);

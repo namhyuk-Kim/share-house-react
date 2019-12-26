@@ -22,7 +22,7 @@ import Dictionary from "components/dictionary/Dictionary";
 import DictionaryPost from "containers/dictionary/PostDetailContainer";
 import Mypage from "containers/user/mypage/MypageContainer";
 import inquiryDetail from "components/user/mypage/details/Inquiry/detail/InquiryDetail";
-import PasswordChange from "components/user/PasswordChange/PasswordChange";
+import PasswordChange from "containers/user/PasswordChange/PasswordChangeContainer";
 import EmailOk from "components/user/EmailOk/EmailOk";
 import ExpiredEmail from "components/user/ExpiredEmail/ExpiredEmail";
 
@@ -38,14 +38,14 @@ class App extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    await this.Session_Refresh();
+  componentDidMount() {
+    this.Session_Refresh();
   }
 
   Session_Refresh = async () => {
     const token = this.props.cookies.get("auth");
 
-    if (token !== undefined && token !== null) {
+    if (token !== undefined && token !== null && token !== "") {
       const access = JSON.parse(decode(token))["refresh_token"];
       const refresh_token = access;
       const res = await this.props.UserActions.Session_Refresh({
